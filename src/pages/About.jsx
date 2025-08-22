@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <Navbar />
 
       <main className="relative z-10 max-w-6xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
@@ -139,6 +139,17 @@ export default function About() {
       </main>
 
       <Footer />
+
+      {/* Background Pattern Overlay */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: 'radial-gradient(#D89F30 0.5px, transparent 0.5px), radial-gradient(#734918 0.5px, transparent 0.5px)',
+          backgroundSize: '28px 28px',
+          backgroundPosition: '0 0, 14px 14px'
+        }}></div>
+        <div className="absolute top-24 right-20 w-72 h-72 bg-gradient-to-br from-[#D89F30]/15 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-24 left-20 w-64 h-64 bg-gradient-to-tl from-[#734918]/15 to-transparent rounded-full blur-3xl"></div>
+      </div>
     </div>
   )
 }

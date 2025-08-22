@@ -46,9 +46,18 @@
 
 .luxury-nav {
   font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+/* Gold gradient text for high-visibility nav links */
+.gold-text {
+  background: linear-gradient(135deg, #D89F30 0%, #8f6526 35%, #734918 50%, #c99333 75%, #D89F30 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.04);
 }
 
 .luxury-button {
