@@ -88,7 +88,7 @@ export default function FAQ() {
                   openIndex === index ? 'max-h-80 opacity-100 mt-2 lg:mt-3' : 'max-h-0 opacity-0'
                 }`}>
                   <div className="pt-2 border-t border-[#D89F30]/20">
-                    <p className="luxury-subtitle text-gray-200 leading-relaxed text-xs lg:text-sm font-light tracking-wide">
+                    <p className="luxury-subtitle !text-white leading-relaxed text-xs lg:text-sm font-light tracking-wide">
                       {faq.answer}
                     </p>
                   </div>

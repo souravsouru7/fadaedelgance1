@@ -89,7 +89,7 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div className="relative w-full max-w-3xl h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -102,7 +102,7 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
 
         <div className="flex flex-col lg:flex-row h-full">
           {/* Image */}
-          <div className="w-full lg:w-1/2 h-64 lg:h-full">
+          <div className="w-full lg:w-1/2 h-full min-h-[280px]">
             <FallbackImage
               sources={serviceDetail.images}
               alt={serviceDetail.title}
@@ -173,7 +173,7 @@ const ServiceModal = ({ isOpen, onClose, service, onServiceClick }) => {
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div className="relative w-full max-w-4xl h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -186,7 +186,7 @@ const ServiceModal = ({ isOpen, onClose, service, onServiceClick }) => {
 
         <div className="flex flex-col lg:flex-row h-full">
           {/* Image */}
-          <div className="w-full lg:w-1/2 h-64 lg:h-full">
+          <div className="w-full lg:w-1/2 h-full min-h-[300px]">
             <FallbackImage
               sources={service.sources}
               alt={service.title}
@@ -239,8 +239,8 @@ const SERVICE_DETAILS = {
     title: 'Cleaning & Conditioning',
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
-      'https://images.unsplash.com/photo-1581291518570-81c7d0f0b4b0?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/cleaning/1600/900'
+      '/FE%20JPEG/pexels-monicore-134064.jpg',
+      '/FE%20JPEG/pexels-scottwebb-137603.jpg'
     ],
     process: [
       'Assessment of leather type and condition',
@@ -262,8 +262,8 @@ const SERVICE_DETAILS = {
     title: 'Color Restoration',
     description: 'Reviving faded or discolored items to their original charm.',
     images: [
-      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/color/1600/900'
+      '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg',
+      '/FE%20JPEG/pexels-bellazhong-3076787.jpg'
     ],
     process: [
       'Color analysis and matching',
@@ -285,8 +285,8 @@ const SERVICE_DETAILS = {
     title: 'Stitching & Edging',
     description: 'Repairing loose stitches and edges for a refined finish.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/stitching/1600/900'
+      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
+      '/FE%20JPEG/pexels-geyonk-1152077.jpg'
     ],
     process: [
       'Inspection of damaged areas',
@@ -308,8 +308,8 @@ const SERVICE_DETAILS = {
     title: 'Zipper Repair & Replacement',
     description: 'Fixing or replacing zippers for smooth use.',
     images: [
-      'https://images.unsplash.com/photo-1592878904946-b3cd9e8f2c8f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/zipper/1600/900'
+      '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
+      '/FE%20JPEG/pexels-vlada-karpovich-4452502.jpg'
     ],
     process: [
       'Zipper functionality assessment',
@@ -331,8 +331,8 @@ const SERVICE_DETAILS = {
     title: 'Hardware Repair & Replacement',
     description: 'Restoring metal clasps, locks, and buckles.',
     images: [
-      'https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/hardware/1600/900'
+      '/FE%20JPEG/pexels-castorlystock-3682292.jpg',
+      '/FE%20JPEG/pexels-august-de-richelieu-4427712.jpg'
     ],
     process: [
       'Hardware condition evaluation',
@@ -354,8 +354,8 @@ const SERVICE_DETAILS = {
     title: 'Custom Coloring & Patterns',
     description: 'Personalized colors or patterns for a unique style.',
     images: [
-      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/custom/1600/900'
+      '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
+      '/FE%20JPEG/pexels-karolina-grabowska-5713293.jpg'
     ],
     process: [
       'Design consultation and planning',
@@ -377,8 +377,8 @@ const SERVICE_DETAILS = {
     title: 'Customized Artwork',
     description: 'Handcrafted designs to make your item one of a kind.',
     images: [
-      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/artwork/1600/900'
+      '/FE%20JPEG/pexels-karolina-grabowska-5713781.jpg',
+      '/FE%20JPEG/pexels-matt-hatchett-982360-2599270.jpg'
     ],
     process: [
       'Artwork concept development',
@@ -401,8 +401,8 @@ const SERVICE_DETAILS = {
     title: 'Stitching',
     description: 'Repairing seams for durability.',
     images: [
-      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/stitching-shoes/1600/900'
+      '/FE%20JPEG/pexels-kristian-bogh-141442255-10340652.jpg',
+      '/FE%20JPEG/pexels-kristian-bogh-141442255-10340652 (1).jpg'
     ],
     process: [
       'Seam inspection and damage assessment',
@@ -424,8 +424,8 @@ const SERVICE_DETAILS = {
     title: 'Shoe Stretching',
     description: 'Adjusting size for perfect comfort.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/stretching/1600/900'
+      '/FE%20JPEG/pexels-josh-dago-377312171-30050886.jpg',
+      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg'
     ],
     process: [
       'Foot measurement and analysis',
@@ -447,8 +447,8 @@ const SERVICE_DETAILS = {
     title: 'Heel & Sole Repair',
     description: 'Fixing worn heels, adding new soles, or sole guards.',
     images: [
-      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/heel-repair/1600/900'
+      '/FE%20JPEG/pexels-matt-hatchett-982360-2599270.jpg',
+      '/FE%20JPEG/pexels-nishantaneja-12105084.jpg'
     ],
     process: [
       'Heel and sole condition assessment',
@@ -470,8 +470,8 @@ const SERVICE_DETAILS = {
     title: 'Shoe Shine',
     description: 'A luxury shine to enhance elegance.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/shoe-shine/1600/900'
+      '/FE%20JPEG/pexels-pedrofurtadoo-31451028.jpg',
+      '/FE%20JPEG/pexels-dhanno-23223837.jpg'
     ],
     process: [
       'Surface cleaning and preparation',
@@ -493,8 +493,8 @@ const SERVICE_DETAILS = {
     title: 'Hardware Repair',
     description: 'Fixing clips, chains, and metallic details.',
     images: [
-      'https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/wallet-hardware/1600/900'
+      '/FE%20JPEG/pexels-scottwebb-137603.jpg',
+      '/FE%20JPEG/pexels-geyonk-1152077.jpg'
     ],
     process: [
       'Hardware condition evaluation',
@@ -516,8 +516,8 @@ const SERVICE_DETAILS = {
     title: 'Stitching & Sole Repair',
     description: 'Fixing straps, edges, and soles.',
     images: [
-      'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/sandal-repair/1600/900'
+      '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
+      '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
     ],
     process: [
       'Damage assessment and planning',
@@ -539,8 +539,8 @@ const SERVICE_DETAILS = {
     title: 'Heel Tips',
     description: 'Replacing worn-out tips for comfort.',
     images: [
-      'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/heel-tips/1600/900'
+      '/FE%20JPEG/pexels-vlada-karpovich-4452502.jpg',
+      '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
     ],
     process: [
       'Heel tip condition assessment',
@@ -562,8 +562,8 @@ const SERVICE_DETAILS = {
     title: 'Custom Coloring & Artwork',
     description: 'Personal touches to elevate your sandals.',
     images: [
-      'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/sandal-art/1600/900'
+      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450735.jpg',
+      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450738.jpg'
     ],
     process: [
       'Design consultation',
@@ -586,8 +586,8 @@ const SERVICE_DETAILS = {
     title: 'Hardware & Zipper Upgrades',
     description: 'Luxury-level detailing.',
     images: [
-      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/hardware-upgrade/1600/900'
+      '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
+      '/FE%20JPEG/pexels-monicore-134064.jpg'
     ],
     process: [
       'Design consultation',
@@ -609,8 +609,8 @@ const SERVICE_DETAILS = {
     title: 'Fine Stitch Detailing',
     description: 'Elegant refinishing of seams.',
     images: [
-      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/fine-stitch/1600/900'
+      '/FE%20JPEG/pexels-castorlystock-3682292.jpg',
+      '/FE%20JPEG/pexels-monicore-134064.jpg'
     ],
     process: [
       'Seam inspection and planning',
@@ -632,8 +632,8 @@ const SERVICE_DETAILS = {
     title: 'Bespoke Coloring & Patterns',
     description: 'Premium finishes that stand out.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/bespoke-shoes/1600/900'
+      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
+      '/FE%20JPEG/pexels-lum3n-44775-167703.jpg'
     ],
     process: [
       'Design consultation',
@@ -655,8 +655,8 @@ const SERVICE_DETAILS = {
     title: 'Luxury Shoe Shine',
     description: 'A glossy, mirror-like shine for formal occasions.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/luxury-shine/1600/900'
+      '/FE%20JPEG/pexels-scottwebb-137603.jpg',
+      '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
     ],
     process: [
       'Deep cleaning and preparation',
@@ -678,8 +678,8 @@ const SERVICE_DETAILS = {
     title: 'Unique Sole & Heel Finishing',
     description: 'Special treatments for a refined touch.',
     images: [
-      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/unique-finish/1600/900'
+      '/FE%20JPEG/pexels-geyonk-1152077.jpg',
+      '/FE%20JPEG/pexels-monicore-134064.jpg'
     ],
     process: [
       'Design consultation',
@@ -701,8 +701,8 @@ const SERVICE_DETAILS = {
     title: 'Signature Coloring Styles',
     description: 'Personalized tones.',
     images: [
-      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/signature-color/1600/900'
+      '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg',
+      '/FE%20JPEG/pexels-bellazhong-3076787.jpg'
     ],
     process: [
       'Color consultation',
@@ -724,8 +724,8 @@ const SERVICE_DETAILS = {
     title: 'Artistic Detailing',
     description: 'Handcrafted accents.',
     images: [
-      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/artistic-detail/1600/900'
+      '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
+      '/FE%20JPEG/pexels-scottwebb-137603.jpg'
     ],
     process: [
       'Design consultation',
@@ -747,8 +747,8 @@ const SERVICE_DETAILS = {
     title: 'Hardware Upgrades',
     description: 'Luxury metallic upgrades.',
     images: [
-      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/wallet-hardware-upgrade/1600/900'
+      '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
+      '/FE%20JPEG/pexels-monicore-134064.jpg'
     ],
     process: [
       'Hardware selection',
@@ -770,8 +770,8 @@ const SERVICE_DETAILS = {
     title: 'Premium Stitch Craft',
     description: 'Precision for elegance.',
     images: [
-      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/premium-stitch/1600/900'
+      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
+      '/FE%20JPEG/pexels-geyonk-1152077.jpg'
     ],
     process: [
       'Stitch pattern planning',
@@ -793,8 +793,8 @@ const SERVICE_DETAILS = {
     title: 'Exclusive Coloring & Patterns',
     description: 'Distinctive customization.',
     images: [
-      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/exclusive-sandals/1600/900'
+      '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
+      '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
     ],
     process: [
       'Design consultation',
@@ -816,8 +816,8 @@ const SERVICE_DETAILS = {
     title: 'Artistic Customization',
     description: 'Elevating style with design work.',
     images: [
-      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/artistic-sandals/1600/900'
+      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450745.jpg',
+      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450738.jpg'
     ],
     process: [
       'Artistic design consultation',
@@ -839,8 +839,8 @@ const SERVICE_DETAILS = {
     title: 'Sole Refinement',
     description: 'Comfortable yet stylish finishing.',
     images: [
-      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/sole-refine/1600/900'
+      '/FE%20JPEG/pexels-lum3n-44775-167703.jpg',
+      '/FE%20JPEG/pexels-scottwebb-137603.jpg'
     ],
     process: [
       'Sole condition assessment',
@@ -862,8 +862,8 @@ const SERVICE_DETAILS = {
     title: 'Elegant Stitch Work',
     description: 'Detailing for luxury feel.',
     images: [
-      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/elegant-stitch/1600/900'
+      '/FE%20JPEG/pexels-geyonk-1152077.jpg',
+      '/FE%20JPEG/pexels-monicore-134064.jpg'
     ],
     process: [
       'Stitch pattern design',
@@ -886,8 +886,8 @@ const SERVICE_DETAILS = {
     title: 'Creative Coloring & Patterns',
     description: 'Unique, playful looks.',
     images: [
-      'https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/kids-patterns/1600/900'
+      '/FE%20JPEG/pexels-746807869-18576107.jpg',
+      '/FE%20JPEG/pexels-27298298 (1).jpg'
     ],
     process: [
       'Child-friendly design consultation',
@@ -909,8 +909,8 @@ const SERVICE_DETAILS = {
     title: 'Personalized Artwork',
     description: 'Fun artwork designed for children.',
     images: [
-      'https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-      'https://picsum.photos/seed/kids-art/1600/900'
+      '/FE%20JPEG/pexels-746807869-18576107.jpg',
+      '/FE%20JPEG/pexels-monicore-134064.jpg'
     ],
     process: [
       'Child-friendly artwork consultation',
@@ -940,8 +940,8 @@ const TABS = [
         title: 'Handbag Restoration',
         subtitle: 'Clean • Restore • Detail',
         sources: [
-          'https://images.unsplash.com/photo-1592878904946-b3cd9e8f2c8f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/handbag/1600/900'
+          '/FE%20JPEG/pexels-monicore-134064.jpg',
+          '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
         ],
         tags: ['Cleaning', 'Color', 'Stitching', 'Hardware'],
         details: [
@@ -980,8 +980,8 @@ const TABS = [
         title: 'Shoes (Men & Women)',
         subtitle: 'Shine • Repair • Comfort',
         sources: [
-          'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/shoes/1600/900'
+          '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
+          '/FE%20JPEG/pexels-scottwebb-137603.jpg'
         ],
         tags: ['Sole', 'Heel', 'Stretch', 'Shine'],
         details: [
@@ -1023,8 +1023,8 @@ const TABS = [
         title: 'Wallet Detailing',
         subtitle: 'Refinish • Repair • Personalize',
         sources: [
-          'https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/wallet/1600/900'
+          '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
+          '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg'
         ],
         tags: ['Edges', 'Zipper', 'Hardware', 'Color'],
         details: [
@@ -1062,8 +1062,8 @@ const TABS = [
         title: 'Sandals Care',
         subtitle: 'Refresh • Repair • Refine',
         sources: [
-          'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/sandals/1600/900'
+          '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
+          '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
         ],
         tags: ['Straps', 'Sole', 'Tips', 'Color'],
         details: [
@@ -1100,8 +1100,8 @@ const TABS = [
         title: 'Handbag Custom',
         subtitle: 'Color • Artwork • Hardware',
         sources: [
-          'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/handbag2/1600/900'
+          '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
+          '/FE%20JPEG/pexels-monicore-134064.jpg'
         ],
         tags: ['Custom Color', 'Artwork', 'Upgrades'],
         details: [
@@ -1127,8 +1127,8 @@ const TABS = [
         title: 'Bespoke Shoes',
         subtitle: 'Patterns • Shine • Finish',
         sources: [
-          'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/shoes2/1600/900'
+          '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
+          '/FE%20JPEG/pexels-lum3n-44775-167703.jpg'
         ],
         tags: ['Patterns', 'Mirror Shine', 'Unique Finish'],
         details: [
@@ -1154,8 +1154,8 @@ const TABS = [
         title: 'Wallet Personal',
         subtitle: 'Tones • Detailing • Premium',
         sources: [
-          'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/wallet2/1600/900'
+          '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg',
+          '/FE%20JPEG/pexels-bellazhong-3076787.jpg'
         ],
         tags: ['Signature Tones', 'Accents', 'Hardware'],
         details: [
@@ -1181,8 +1181,8 @@ const TABS = [
         title: 'Sandals Design',
         subtitle: 'Exclusive • Artistic • Refined',
         sources: [
-          'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/sandals2/1600/900'
+          '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
+          '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
         ],
         tags: ['Exclusive', 'Artistic', 'Refined'],
         details: [
@@ -1215,8 +1215,8 @@ const TABS = [
         title: 'Kids Shoes',
         subtitle: 'Bright • Playful • Personalized',
         sources: [
-          'https://images.unsplash.com/photo-1520975693411-6c7094a0d593?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/kids1/1600/900'
+          '/FE%20JPEG/pexels-746807869-18576107.jpg',
+          '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
         ],
         tags: ['Color', 'Artwork'],
         details: [
@@ -1234,8 +1234,8 @@ const TABS = [
         title: 'Kids Bags',
         subtitle: 'Creative • Unique • Personal',
         sources: [
-          'https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-          'https://picsum.photos/seed/kids2/1600/900'
+          '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450735.jpg',
+          '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450738.jpg'
         ],
         tags: ['Patterns', 'Artwork'],
         details: [

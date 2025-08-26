@@ -4,192 +4,127 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative overflow-hidden py-10 lg:py-14" style={{
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%)'
-    }}>
-      {/* Ornamental top arc */}
-      <svg aria-hidden="true" width="520" height="120" viewBox="0 0 640 160" className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 opacity-40">
-        <defs>
-          <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#7a4a10"/>
-            <stop offset="50%" stopColor="#D89F30"/>
-            <stop offset="100%" stopColor="#7a4a10"/>
-          </linearGradient>
-        </defs>
-        <path d="M0,150 C160,10 480,10 640,150" fill="none" stroke="url(#goldStroke)" strokeWidth="1.5"/>
-      </svg>
-      {/* Subtle diagonal pattern */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{
-        backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 22px)'
+    <footer className="relative overflow-hidden">
+      {/* Background */}
+      <div aria-hidden="true" className="absolute inset-0" style={{
+        background: 'radial-gradient(1200px 400px at 50% -10%, rgba(216,159,48,0.10), transparent 40%), linear-gradient(180deg, #0b0b0b 0%, #0a0a0a 60%, #0b0b0b 100%)'
       }} />
 
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <img
-          src="/footerlogo.png"
-          alt=""
-          className="select-none w-[520px] max-w-none opacity-20"
-          style={{ filter: 'grayscale(100%) brightness(1.4) drop-shadow(0 16px 40px rgba(0,0,0,0.35))', transform: 'rotate(-8deg)' }}
-        />
-      </div>
-      {/* Floating gold dust */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <span className="dust absolute w-1 h-1 rounded-full bg-[#D89F30]" style={{ left: '12%', top: '30%', opacity: 0.25, filter: 'blur(0.5px)', animationDuration: '14s' }}></span>
-        <span className="dust absolute w-1 h-1 rounded-full bg-[#D89F30]" style={{ left: '78%', top: '18%', opacity: 0.2, filter: 'blur(0.5px)', animationDuration: '18s', animationDelay: '1s' }}></span>
-        <span className="dust absolute w-[6px] h-[6px] rounded-full bg-[#D89F30]" style={{ left: '64%', top: '72%', opacity: 0.16, filter: 'blur(1px)', animationDuration: '16s', animationDelay: '0.5s' }}></span>
-        <span className="dust absolute w-[3px] h-[3px] rounded-full bg-[#D89F30]" style={{ left: '22%', top: '68%', opacity: 0.18, filter: 'blur(0.5px)', animationDuration: '20s', animationDelay: '0.2s' }}></span>
-      </div>
+      {/* Top divider glow */}
+      <div aria-hidden="true" className="absolute left-0 right-0 top-0 h-px" style={{
+        background: 'linear-gradient(90deg, transparent, rgba(216,159,48,0.7), transparent)'
+      }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8">
-        
+      <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        {/* CTA Card */}
+        <div className="relative mb-10 lg:mb-14">
+          <div className="rounded-2xl p-6 lg:p-8 bg-white/5 border border-white/10 backdrop-blur-md">
+            <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
+              background: 'linear-gradient(135deg, rgba(216,159,48,0.25) 0%, rgba(216,159,48,0.06) 35%, transparent 60%)',
+              maskImage: 'radial-gradient(500px 120px at 50% 0%, black, transparent)'
+            }} />
+            <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+              <div className="flex items-center gap-4">
+                <div className="h-10 w-10 rounded-xl bg-[#D89F30]/15 border border-[#D89F30]/30 grid place-items-center">
+                  <span className="h-2 w-2 rounded-full bg-[#D89F30] shadow-[0_0_20px_2px_rgba(216,159,48,0.6)]"></span>
+                </div>
+                <div>
+                  <h3 className="text-white text-lg lg:text-2xl font-medium tracking-wide" style={{ fontFamily: '"Cormorant Garamond", serif' }}>Ready to restore your luxury items?</h3>
+                  <p className="text-gray-300 text-sm lg:text-base" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>Talk to a specialist now and get a tailored quote.</p>
+                </div>
+              </div>
+              <div className="flex-1" />
+              <div className="relative">
+                <a href="https://wa.me/971545770967" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm lg:text-base text-black bg-[#D89F30] hover:bg-[#e0ab4a] transition-colors">
+                  <span className="h-2 w-2 rounded-full bg-black/30"></span>
+                  <span>Chat on WhatsApp</span>
+                  <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 5l6 5-6 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-12">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10 lg:mb-14">
           {/* Brand */}
           <div>
-            <div className="relative mb-4 lg:mb-6">
-              <div className="absolute inset-0 -z-10 rounded-full blur-3xl" style={{ background: 'conic-gradient(from 180deg, rgba(216,159,48,0.18), rgba(122,74,16,0.06), transparent 60%)' }}></div>
-              <img 
-                src="/fenav.png"
-                alt="Faded Elegance Logo"
-                className="w-24 lg:w-32 h-auto object-contain"
-              />
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/fenav.png" alt="Faded Elegance" className="h-10 w-auto object-contain" />
             </div>
-            <p className="text-gray-200 leading-relaxed text-sm lg:text-base font-light tracking-wide" style={{
-              fontFamily: '"Playfair Display", serif'
-            }}>
-              Luxury restoration for handbags, footwear, and leather goods. 
-              Crafted with precision and a commitment to timeless elegance.
+            <p className="text-gray-300 text-sm leading-relaxed" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+              Precision restoration for handbags, footwear, and leather goods in Dubai.
             </p>
+            <div className="mt-5 flex items-center gap-3">
+              <a href="tel:+971545770967" className="text-gray-300 hover:text-white transition-colors text-sm inline-flex items-center gap-2" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 5.5C2.5 15 9 21.5 18.5 21.5c1.2 0 2-1 2-2.2v-2.3c0-.8-.5-1.5-1.3-1.7l-3.1-.8c-.6-.1-1.2.1-1.6.5l-.9.9c-3.1-1.3-5.6-3.7-6.9-6.9l.9-.9c.4-.4.6-1 .5-1.6l-.8-3.1C7.1 2.5 6.4 2 5.6 2H3.2C2 2 1 2.8 1 4c0 .5.2 1 .5 1.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                +971 54 5770967
+              </a>
+            </div>
           </div>
 
-          {/* Contact */}
+          {/* Services */}
           <div>
-            <h3 className="text-[#D89F30] text-xl lg:text-2xl font-medium mb-4 tracking-wider" style={{
-              fontFamily: '"Abhaya Libre", serif'
-            }}>
-              Contact
-            </h3>
-            <ul className="space-y-4">
-              <li>
-                <span className="block text-gray-400 text-xs uppercase tracking-wider mb-1">Phone</span>
-                <a href="tel:+971545770967" className="text-gray-200 hover:text-[#D89F30] transition-colors text-sm lg:text-base font-light tracking-wide" style={{
-                  fontFamily: '"Playfair Display", serif'
-                }}>
-                  +971 54 5770967
-                </a>
-              </li>
-              <li>
-                <span className="block text-gray-400 text-xs uppercase tracking-wider mb-1">WhatsApp</span>
-                <a href="https://wa.me/971545770967" target="_blank" rel="noreferrer" className="text-gray-200 hover:text-[#D89F30] transition-colors text-sm lg:text-base font-light tracking-wide" style={{
-                  fontFamily: '"Playfair Display", serif'
-                }}>
-                  Chat on WhatsApp
-                </a>
-              </li>
-              <li>
-                <span className="block text-gray-400 text-xs uppercase tracking-wider mb-1">Location</span>
-                <p className="text-gray-200 text-sm lg:text-base font-light tracking-wide" style={{
-                  fontFamily: '"Playfair Display", serif'
-                }}>
-                  Dubai, United Arab Emirates
-                </p>
-              </li>
+            <h4 className="text-white font-medium mb-4" style={{ fontFamily: '"Cormorant Garamond", serif' }}>Services</h4>
+            <ul className="space-y-3 text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Handbag Restoration</a></li>
+              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Footwear Care</a></li>
+              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Color Refinishing</a></li>
+              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Deep Cleaning</a></li>
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Company */}
           <div>
-            <h3 className="text-[#D89F30] text-xl lg:text-2xl font-medium mb-4 tracking-wider" style={{
-              fontFamily: '"Abhaya Libre", serif'
-            }}>
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#about" className="group flex items-center text-gray-300 hover:text-[#D89F30] transition-all duration-300">
-                  <div className="w-2 h-2 bg-[#D89F30] rounded-full mr-3 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="link-underline text-sm lg:text-base font-light tracking-wide group-hover:translate-x-1 transition-transform duration-300" style={{
-                    fontFamily: '"Playfair Display", serif'
-                  }}>About Us</span>
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="group flex items-center text-gray-300 hover:text-[#D89F30] transition-all duration-300">
-                  <div className="w-2 h-2 bg-[#D89F30] rounded-full mr-3 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="link-underline text-sm lg:text-base font-light tracking-wide group-hover:translate-x-1 transition-transform duration-300" style={{
-                    fontFamily: '"Playfair Display", serif'
-                  }}>Services</span>
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="group flex items-center text-gray-300 hover:text-[#D89F30] transition-all duration-300">
-                  <div className="w-2 h-2 bg-[#D89F30] rounded-full mr-3 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="link-underline text-sm lg:text-base font-light tracking-wide group-hover:translate-x-1 transition-transform duration-300" style={{
-                    fontFamily: '"Playfair Display", serif'
-                  }}>Contact</span>
-                </a>
-              </li>
+            <h4 className="text-white font-medium mb-4" style={{ fontFamily: '"Cormorant Garamond", serif' }}>Company</h4>
+            <ul className="space-y-3 text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+              <li><a href="#about" className="link text-gray-300 hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#contact" className="link text-gray-300 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="#faq" className="link text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#work" className="link text-gray-300 hover:text-white transition-colors">Our Process</a></li>
             </ul>
+          </div>
+
+          {/* Social */}
+          <div>
+            <h4 className="text-white font-medium mb-4" style={{ fontFamily: '"Cormorant Garamond", serif' }}>Connect</h4>
+            <div className="flex gap-3">
+              <a href="https://wa.me/971545770967" target="_blank" rel="noreferrer" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
+                <svg className="h-5 w-5 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.9 11.9 0 0012.06 0C5.53.03.27 5.29.3 11.82a11.77 11.77 0 001.62 6.05L0 24l6.31-1.65a11.85 11.85 0 005.69 1.47h.01c6.53 0 11.79-5.26 11.82-11.79a11.75 11.75 0 00-3.31-8.55zM12 21.17h-.01a9.8 9.8 0 01-5.01-1.37l-.36-.21-3.74.98 1-3.65-.24-.37A9.73 9.73 0 012.2 11.8C2.18 6.47 6.55 2.1 11.88 2.08a9.7 9.7 0 016.93 2.86 9.66 9.66 0 012.83 6.95c-.02 5.33-4.39 9.68-9.64 9.68zm5.53-7.26c-.3-.15-1.77-.88-2.04-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.94 1.18-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47a9.01 9.01 0 01-1.67-2.06c-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.53.08-.81.38-.27.3-1.06 1.04-1.06 2.54s1.08 2.94 1.23 3.14c.15.2 2.13 3.24 5.16 4.54.72.31 1.29.49 1.73.63.73.23 1.4.2 1.93.12.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
+              </a>
+              <a href="#" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
+                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 001.88-2.36 8.55 8.55 0 01-2.71 1.04 4.27 4.27 0 00-7.27 3.89A12.12 12.12 0 013 4.89a4.26 4.26 0 001.32 5.69 4.24 4.24 0 01-1.94-.54v.06a4.27 4.27 0 003.43 4.18 4.3 4.3 0 01-1.93.07 4.27 4.27 0 003.98 2.96A8.57 8.57 0 012 19.54a12.08 12.08 0 006.56 1.92c7.87 0 12.18-6.52 12.18-12.18 0-.19 0-.39-.01-.58A8.7 8.7 0 0024 5.5c-.7.31-1.46.52-2.26.6z"/></svg>
+              </a>
+              <a href="#" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
+                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.86 8.15 6.83 9.48.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.16-3.37-1.16-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.61.07-.61 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.33 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.02-2.68-.1-.25-.44-1.28.1-2.67 0 0 .83-.27 2.74 1.02A9.55 9.55 0 0112 6.8c.85 0 1.7.11 2.5.33 1.9-1.3 2.73-1.02 2.73-1.02.54 1.39.2 2.42.1 2.67.63.7 1.02 1.59 1.02 2.68 0 3.83-2.34 4.67-4.57 4.92.36.31.68.93.68 1.88 0 1.36-.01 2.46-.01 2.79 0 .26.18.58.69.48A10 10 0 0022 12c0-5.5-4.46-9.96-9.96-9.96z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-[#D89F30]/20 pt-6 lg:pt-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-6">
-            <p className="text-gray-400 text-xs lg:text-sm font-light tracking-wide text-center lg:text-left" style={{
-              fontFamily: '"Playfair Display", serif'
-            }}>
-              © {currentYear} Faded Elegance. All rights reserved.
-            </p>
-            <div className="flex flex-wrap gap-4 lg:gap-6 justify-center lg:justify-end">
-              <a 
-                href="#"
-                className="text-gray-400 hover:text-[#D89F30] text-xs lg:text-sm font-light tracking-wide transition-colors duration-300" style={{
-                  fontFamily: '"Playfair Display", serif'
-                }}
-              >
-                Privacy Policy
-              </a>
-              <a 
-                href="#"
-                className="text-gray-400 hover:text-[#D89F30] text-xs lg:text-sm font-light tracking-wide transition-colors duration-300" style={{
-                  fontFamily: '"Playfair Display", serif'
-                }}
-              >
-                Terms of Service
-              </a>
+        {/* Bottom bar */}
+        <div className="border-t border-white/10 pt-6 lg:pt-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+            <p className="text-gray-400 text-xs lg:text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>© {currentYear} Faded Elegance. All rights reserved.</p>
+            <div className="flex items-center gap-6 text-xs lg:text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
       </div>
-      {/* Component-scoped styles for unique effects */}
+
+      {/* Component styles */}
       <style>{`
-        @keyframes floatY {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-14px); }
-          100% { transform: translateY(0px); }
-        }
-        .dust { animation: floatY var(--dur,12s) ease-in-out infinite; }
-        .link-underline {
-          background-image: linear-gradient(to right, rgba(255,255,255,0) 0, rgba(255,255,255,0) 100%), linear-gradient(90deg, #7a4a10, #D89F30, #7a4a10);
-          background-size: 100% 1px, 0 1px;
-          background-position: 0 100%, 0 100%;
-          background-repeat: no-repeat;
-          transition: background-size .35s ease;
-        }
-        .group:hover .link-underline { background-size: 100% 1px, 100% 1px; }
-        @keyframes shine {
-          0% { transform: translateX(-150%); }
-          100% { transform: translateX(150%); }
-        }
-        .btn-shine .shine {
+        .link { position: relative; }
+        .link:after {
+          content: '';
           position: absolute;
-          top: -2px; bottom: -2px; left: -2px; right: -2px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-          filter: blur(2px);
-          animation: shine 3.2s linear infinite;
-          pointer-events: none;
+          left: 0; bottom: -2px; height: 1px; width: 0%;
+          background: linear-gradient(90deg, #7a4a10, #D89F30, #7a4a10);
+          transition: width .3s ease;
         }
+        .link:hover:after { width: 100%; }
       `}</style>
     </footer>
   )

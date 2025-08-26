@@ -2,12 +2,12 @@ import React from 'react'
 
 export default function WorkProcess() {
   const processSteps = [
-    { number: '01', title: 'CONSULTATION', description: "Share details about your item and what you'd like restored or customized.", icon: '💬', color: 'from-[#D89F30] to-[#F4B942]' },
-    { number: '02', title: 'ASSESSMENT', description: 'Our experts evaluate the material, damage, and requirements.', icon: '🔍', color: 'from-[#F4B942] to-[#D89F30]' },
-    { number: '03', title: 'QUOTATION', description: 'We provide a clear price and timeline before we begin.', icon: '📋', color: 'from-[#D89F30] to-[#734918]' },
-    { number: '04', title: 'RESTORATION / CUSTOMIZATION', description: 'Our craftsmen carefully repair, restore, or customize your piece using premium materials.', icon: '⚒️', color: 'from-[#734918] to-[#D89F30]' },
-    { number: '05', title: 'FINAL QUALITY CHECK', description: 'Every detail is inspected to meet our luxury standards.', icon: '✅', color: 'from-[#D89F30] to-[#F4B942]' },
-    { number: '06', title: 'DELIVERY / PICKUP', description: 'Your treasured item is returned looking stunning and ready to be enjoyed again.', icon: '🎁', color: 'from-[#F4B942] to-[#734918]' }
+    { number: '01', title: 'CONSULTATION', description: 'Tell us about your item and goal.', icon: '💬', color: 'from-[#D89F30] to-[#F4B942]' },
+    { number: '02', title: 'ASSESSMENT', description: 'We review material and condition.', icon: '🔍', color: 'from-[#F4B942] to-[#D89F30]' },
+    { number: '03', title: 'QUOTATION', description: 'Clear price and timeline upfront.', icon: '📋', color: 'from-[#D89F30] to-[#734918]' },
+    { number: '04', title: 'RESTORATION / CUSTOMIZATION', description: 'Crafted with premium techniques.', icon: '⚒️', color: 'from-[#734918] to-[#D89F30]' },
+    { number: '05', title: 'FINAL QUALITY CHECK', description: 'Detailed inspection for perfection.', icon: '✅', color: 'from-[#D89F30] to-[#F4B942]' },
+    { number: '06', title: 'DELIVERY / PICKUP', description: 'Return looking fresh and refined.', icon: '🎁', color: 'from-[#F4B942] to-[#734918]' }
   ]
 
   return (
@@ -58,13 +58,13 @@ export default function WorkProcess() {
                           </span>
                         </div>
                         <h3 className="luxury-nav text-[#D89F30] text-base lg:text-2xl font-semibold mb-2 lg:mb-4 tracking-wide">{step.title}</h3>
-                        <p className="luxury-subtitle text-gray-200 leading-relaxed text-xs lg:text-sm max-w-2xl mx-auto lg:mx-0 lg:ml-auto font-light tracking-wide">{step.description}</p>
+                        <p className="luxury-subtitle text-gray-200 leading-relaxed text-xs lg:text-sm max-w-md mx-auto lg:mx-0 lg:ml-auto font-light tracking-wide">{step.description}</p>
                       </div>
                     </div>
 
                     {/* Right Side Icon */}
                     <div className="flex-1 flex justify-center lg:justify-start lg:pl-6 relative z-10">
-                      <div className="relative w-16 h-16 lg:w-24 lg:h-24 rounded-full flex items-center justify-center text-xl lg:text-3xl shadow-xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
+                      <div className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-base lg:text-xl shadow-xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
                         style={{
                           background: `linear-gradient(135deg, ${step.color})`,
                           border: '3px solid rgba(216, 159, 48, 0.3)',
@@ -81,7 +81,7 @@ export default function WorkProcess() {
                   <>
                     {/* Left Side Icon */}
                     <div className="flex-1 flex justify-center lg:justify-end lg:pr-6 relative z-10">
-                      <div className="relative w-16 h-16 lg:w-24 lg:h-24 rounded-full flex items-center justify-center text-xl lg:text-3xl shadow-xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
+                      <div className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-base lg:text-xl shadow-xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
                         style={{
                           background: `linear-gradient(135deg, ${step.color})`,
                           border: '3px solid rgba(216, 159, 48, 0.3)',
@@ -109,7 +109,7 @@ export default function WorkProcess() {
                           </span>
                         </div>
                         <h3 className="luxury-nav text-[#D89F30] text-base lg:text-2xl font-semibold mb-2 lg:mb-4 tracking-wide">{step.title}</h3>
-                        <p className="luxury-subtitle text-gray-200 leading-relaxed text-xs lg:text-sm max-w-2xl mx-auto lg:mx-0 font-light tracking-wide">{step.description}</p>
+                        <p className="luxury-subtitle text-gray-200 leading-relaxed text-xs lg:text-sm max-w-md mx-auto lg:mx-0 font-light tracking-wide">{step.description}</p>
                       </div>
                     </div>
                   </>

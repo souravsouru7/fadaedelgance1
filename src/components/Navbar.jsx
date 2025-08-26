@@ -157,7 +157,13 @@ export default function Navbar() {
 
       {/* Centered navigation (desktop) */}
       <nav className="hidden lg:flex items-center space-x-6 absolute left-1/2 -translate-x-1/2 z-50">
-        
+        <NavLink
+          to="/"
+          className={({ isActive }) => `luxury-nav ${navTextClass} hover:opacity-90 transition-opacity duration-300 pb-0.5 font-bold text-xs lg:text-sm tracking-wide ${isActive ? `border-b-2 ${navBorderClass}` : `border-b-2 border-transparent ${navHoverClass}`}`}
+        >
+          HOME
+        </NavLink>
+        <span className="text-black/30 text-sm lg:text-base font-bold">|</span>
         <NavLink
           to="/about"
           className={({ isActive }) => `luxury-nav ${navTextClass} hover:opacity-90 transition-opacity duration-300 pb-0.5 font-bold text-xs lg:text-sm tracking-wide ${isActive ? `border-b-2 ${navBorderClass}` : `border-b-2 border-transparent ${navHoverClass}`}`}
@@ -179,9 +185,11 @@ export default function Navbar() {
           {/* Dropdown Panel */}
           <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[min(90vw,1000px)] transition-opacity duration-200 ${servicesOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
             <div className="rounded-3xl p-6 font-sans" style={{
-              background: '#000',
+              background: 'rgba(0,0,0,0.6)',
               border: '1px solid rgba(216,159,48,0.25)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.02)'
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.02)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)'
             }}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[70vh] overflow-y-auto pr-2">
                 {servicesData.map((cat) => (
@@ -266,6 +274,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur border-t border-[#D89F30]/30 shadow-xl z-40">
           <div className="p-4 space-y-2">
+            <NavLink to="/" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Home</NavLink>
             <NavLink to="/about" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>About</NavLink>
             <button
               type="button"
