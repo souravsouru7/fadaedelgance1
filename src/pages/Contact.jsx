@@ -52,27 +52,25 @@ export default function Contact() {
           </div>
 
           {/* Contact Information Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 mb-12 lg:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
             {/* Contact Details */}
-            <div className="space-y-6">
-              <div className="rounded-3xl p-5 lg:p-6" style={{
-                background: 'linear-gradient(135deg, rgba(216,159,48,0.10) 0%, rgba(115,73,24,0.06) 100%)',
-                border: '1px solid rgba(216,159,48,0.25)',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.35)'
-              }}>
-                <h2 className="luxury-nav text-[#D89F30] text-xl lg:text-2xl mb-4 tracking-wide">Contact Information</h2>
+            <div className="lg:col-span-1">
+              <div className="bg-gradient-to-br from-[#D89F30]/5 to-[#734918]/5 backdrop-blur-sm rounded-2xl p-8 border border-[#D89F30]/20 h-full flex flex-col">
+                <h2 className="text-[#D89F30] text-2xl font-bold mb-6">Get In Touch</h2>
                 
-                <div className="space-y-4">
+                <div className="space-y-6 flex-1">
                   {/* Visit Us */}
-                  <div className="flex items-start gap-4">
-                    <div className="text-xl">📍</div>
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#D89F30] to-[#734918] rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
+                      📍
+                    </div>
                     <div>
-                      <h3 className="luxury-nav text-[#D89F30] text-base font-semibold mb-1">Visit Us</h3>
+                      <h3 className="text-[#D89F30] font-semibold mb-1">Visit Us</h3>
                       <a 
                         href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-white/90 text-sm lg:text-base hover:text-[#D89F30] transition-colors underline"
+                        className="text-white/80 hover:text-[#D89F30] transition-colors text-sm"
                       >
                         View on Google Maps
                       </a>
@@ -80,31 +78,70 @@ export default function Contact() {
                   </div>
 
                   {/* Call / WhatsApp */}
-                  <div className="flex items-start gap-4">
-                    <div className="text-xl">📞</div>
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#D89F30] to-[#734918] rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
+                      📞
+                    </div>
                     <div>
-                      <h3 className="luxury-nav text-[#D89F30] text-base font-semibold mb-1">Call / WhatsApp</h3>
-                      <p className="text-white/90 text-sm lg:text-base">+971 54 5770967</p>
+                      <h3 className="text-[#D89F30] font-semibold mb-1">Call / WhatsApp</h3>
+                      <p className="text-white/80 text-sm">+971 54 5770967</p>
                     </div>
                   </div>
 
                   {/* Email */}
-                  <div className="flex items-start gap-4">
-                    <div className="text-xl">✉️</div>
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#D89F30] to-[#734918] rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
+                      ✉️
+                    </div>
                     <div>
-                      <h3 className="luxury-nav text-[#D89F30] text-base font-semibold mb-1">Email</h3>
-                      <p className="text-white/90 text-sm lg:text-base">info@fadedelegance.ae</p>
+                      <h3 className="text-[#D89F30] font-semibold mb-1">Email</h3>
+                      <p className="text-white/80 text-sm">info@fadedelegance.ae</p>
                     </div>
                   </div>
 
                   {/* Business Hours */}
-                  <div className="flex items-start gap-4">
-                    <div className="text-xl">🕒</div>
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#D89F30] to-[#734918] rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
+                      🕒
+                    </div>
                     <div>
-                      <h3 className="luxury-nav text-[#D89F30] text-base font-semibold mb-1">Business Hours</h3>
-                      <div className="text-white/90 text-sm lg:text-base space-y-0.5">
+                      <h3 className="text-[#D89F30] font-semibold mb-1">Business Hours</h3>
+                      <div className="text-white/80 text-sm space-y-0.5">
                         <p>Mon–Sat: 10:00 AM – 8:00 PM</p>
                         <p>Sunday: Closed</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Small Map below contact info */}
+                <div className="mt-auto pt-8">
+                  <div className="bg-gradient-to-br from-[#D89F30]/5 to-[#734918]/5 backdrop-blur-sm rounded-xl p-4 border border-[#D89F30]/20">
+                    <h3 className="text-[#D89F30] text-lg font-semibold mb-3 text-center">Find Us</h3>
+                    <div className="aspect-video w-full rounded-lg overflow-hidden relative bg-gradient-to-br from-slate-800 to-slate-900">
+                      <img 
+                        src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                        alt="Dubai Map"
+                        className="w-full h-full object-cover opacity-80"
+                      />
+                      
+                      {/* Location overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="bg-black/60 backdrop-blur-md rounded-lg p-3 mb-3 border border-[#D89F30]/30">
+                            <h4 className="text-[#D89F30] text-sm font-bold mb-1">Dubai, UAE</h4>
+                            <p className="text-white/90 text-xs">Premium services</p>
+                          </div>
+                          
+                          <a 
+                            href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-4 py-2 rounded-lg font-medium text-sm inline-block hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#D89F30]/25"
+                          >
+                            📍 View Map
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -113,139 +150,66 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="rounded-3xl p-5 lg:p-6" style={{
-              background: 'linear-gradient(135deg, rgba(216,159,48,0.10) 0%, rgba(115,73,24,0.06) 100%)',
-              border: '1px solid rgba(216,159,48,0.25)',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.35)'
-            }}>
-              <h2 className="luxury-nav text-[#D89F30] text-xl lg:text-2xl mb-4 tracking-wide">Contact Form</h2>
-              <p className="luxury-subtitle text-white/85 text-sm lg:text-base mb-4">
-                Or simply fill out our contact form and we'll get back to you shortly.
-              </p>
-              
-              <form className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-[#D89F30] text-sm font-semibold mb-1">First Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-2 bg-black/50 border border-[#D89F30]/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#D89F30] transition-colors"
-                      placeholder="Enter your first name"
-                    />
+            <div className="lg:col-span-2">
+              <div className="bg-gradient-to-br from-[#D89F30]/5 to-[#734918]/5 backdrop-blur-sm rounded-2xl p-8 border border-[#D89F30]/20 h-full flex flex-col">
+                <h2 className="text-[#D89F30] text-2xl font-bold mb-2">Send us a Message</h2>
+                <p className="text-white/70 mb-6">We'd love to hear from you. Fill out the form below and we'll get back to you shortly.</p>
+                
+                <form className="space-y-6 flex-1">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[#D89F30] text-sm font-medium mb-2">First Name</label>
+                      <input 
+                        type="text" 
+                        className="w-full px-4 py-3 bg-white/5 border border-[#D89F30]/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#D89F30] focus:bg-white/10 transition-all"
+                        placeholder="Enter your first name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[#D89F30] text-sm font-medium mb-2">Last Name</label>
+                      <input 
+                        type="text" 
+                        className="w-full px-4 py-3 bg-white/5 border border-[#D89F30]/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#D89F30] focus:bg-white/10 transition-all"
+                        placeholder="Enter your last name"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-[#D89F30] text-sm font-semibold mb-1">Last Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-2 bg-black/50 border border-[#D89F30]/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#D89F30] transition-colors"
-                      placeholder="Enter your last name"
-                    />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[#D89F30] text-sm font-medium mb-2">Email</label>
+                      <input 
+                        type="email" 
+                        className="w-full px-4 py-3 bg-white/5 border border-[#D89F30]/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#D89F30] focus:bg-white/10 transition-all"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[#D89F30] text-sm font-medium mb-2">Phone</label>
+                      <input 
+                        type="tel" 
+                        className="w-full px-4 py-3 bg-white/5 border border-[#D89F30]/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#D89F30] focus:bg-white/10 transition-all"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
                   </div>
-                </div>
-                
-                <div>
-                  <label className="block text-[#D89F30] text-sm font-semibold mb-1">Email</label>
-                  <input 
-                    type="email" 
-                    className="w-full px-3 py-2 bg-black/50 border border-[#D89F30]/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#D89F30] transition-colors"
-                    placeholder="Enter your email"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-[#D89F30] text-sm font-semibold mb-1">Phone</label>
-                  <input 
-                    type="tel" 
-                    className="w-full px-3 py-2 bg-black/50 border border-[#D89F30]/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#D89F30] transition-colors"
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-[#D89F30] text-sm font-semibold mb-1">Message</label>
-                  <textarea 
-                    rows="3"
-                    className="w-full px-3 py-2 bg-black/50 border border-[#D89F30]/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-[#D89F30] transition-colors resize-none"
-                    placeholder="Tell us about your inquiry..."
-                  ></textarea>
-                </div>
+                  
+                  <div>
+                    <label className="block text-[#D89F30] text-sm font-medium mb-2">Message</label>
+                    <textarea 
+                      rows="4"
+                      className="w-full px-4 py-3 bg-white/5 border border-[#D89F30]/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#D89F30] focus:bg-white/10 transition-all resize-none"
+                      placeholder="Tell us about your inquiry..."
+                    ></textarea>
+                  </div>
+                </form>
                 
                 <button 
                   type="submit" 
-                  className="w-full luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 py-3 rounded-full font-semibold text-base hover:scale-105 transition-all duration-300 shadow-lg"
+                  className="w-full bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#D89F30]/25 mt-auto"
                 >
-                  SEND MESSAGE
+                  Send Message
                 </button>
-              </form>
-            </div>
-          </div>
-
-          {/* Map Section */}
-          <div className="mb-12 lg:mb-16">
-            <div className="rounded-3xl overflow-hidden" style={{
-              background: 'linear-gradient(135deg, rgba(216,159,48,0.10) 0%, rgba(115,73,24,0.06) 100%)',
-              border: '1px solid rgba(216,159,48,0.25)',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.35)'
-            }}>
-              <div className="p-5 lg:p-6">
-                <h2 className="luxury-nav text-[#D89F30] text-xl lg:text-2xl mb-4 tracking-wide text-center">Find Us</h2>
-                                 <div className="aspect-video w-full rounded-2xl overflow-hidden relative">
-                   <div className="w-full h-full relative">
-                     {/* Map Image Background */}
-                     <img 
-                       src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-                       alt="Dubai Map"
-                       className="w-full h-full object-cover"
-                       onError={(e) => {
-                         e.target.style.display = 'none';
-                         e.target.nextSibling.style.display = 'flex';
-                       }}
-                     />
-                     
-                     {/* Fallback if image doesn't load */}
-                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center" style={{display: 'none'}}>
-                       <div className="text-center p-8">
-                         <div className="text-8xl mb-8 filter drop-shadow-lg">🗺️</div>
-                         <h3 className="luxury-nav text-[#D89F30] text-4xl mb-6 tracking-wide">Our Location</h3>
-                         <p className="text-white/90 text-2xl mb-8 font-light tracking-wide">Dubai, United Arab Emirates</p>
-                       </div>
-                     </div>
-                     
-                     {/* Overlay with location info */}
-                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                       <div className="text-center p-8 relative z-10">
-                         <div className="bg-gradient-to-r from-[#D89F30]/20 to-[#734918]/20 backdrop-blur-md rounded-2xl p-8 mb-8 border border-[#D89F30]/30 shadow-2xl">
-                           <div className="flex items-center justify-center gap-3 mb-4">
-                             <div className="w-3 h-3 bg-[#D89F30] rounded-full animate-pulse"></div>
-                             <p className="text-white text-lg font-medium tracking-wide">Premium Location</p>
-                             <div className="w-3 h-3 bg-[#D89F30] rounded-full animate-pulse"></div>
-                           </div>
-                           <h3 className="luxury-nav text-[#D89F30] text-3xl mb-4 tracking-wide">Dubai, UAE</h3>
-                           <p className="text-white/90 text-lg font-light">📍 Click below to discover our exact location</p>
-                         </div>
-                         
-                         <a 
-                           href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           className="luxury-button bg-gradient-to-r from-[#D89F30] via-[#F4B942] to-[#734918] text-white px-12 py-5 rounded-full font-semibold text-xl inline-block hover:scale-105 transition-all duration-300 shadow-2xl border border-[#D89F30]/30 hover:shadow-[#D89F30]/25 hover:shadow-2xl"
-                         >
-                           📍 EXPLORE LOCATION
-                         </a>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-                <div className="text-center mt-4">
-                  <a 
-                    href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 py-3 rounded-full font-semibold inline-block hover:scale-105 transition-all duration-300"
-                  >
-                    OPEN IN GOOGLE MAPS
-                  </a>
-                </div>
               </div>
             </div>
           </div>
