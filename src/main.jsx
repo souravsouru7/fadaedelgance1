@@ -10,7 +10,7 @@ import CompanyInfo from './pages/CompanyInfo.jsx'
 import RouteLoader from './components/RouteLoader.jsx'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
 import FloatingContact from './components/FloatingContact.jsx'
-import { HelmetProvider } from 'react-helmet-async'
+import { HelmetProvider } from '@dr.pogodin/react-helmet'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
