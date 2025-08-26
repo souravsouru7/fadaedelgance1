@@ -1,0 +1,27 @@
+{
+  "name": "Faded Elegance - Premium Furniture Restoration Dubai",
+  "short_name": "Faded Elegance",
+  "description": "Expert furniture restoration services in Dubai. Specializing in luxury furniture repair, antique restoration, and premium upholstery.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#D89F30",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Faded Elegance Logo Final-07.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Faded Elegance Logo Final-07.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "lifestyle", "shopping"],
+  "lang": "en",
+  "dir": "ltr"
+}

@@ -1,8 +1,46 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function FloatingContact() {
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show scroll to top button when user scrolls down 300px
+      setShowScrollTop(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div className="fixed right-4 bottom-4 lg:right-6 lg:bottom-6 z-[50] flex flex-col items-end gap-3 select-none">
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          className="group relative inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-full shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none"
+          style={{
+            background: 'linear-gradient(135deg, #D89F30, #734918)',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06)',
+            border: '1px solid rgba(216,159,48,0.35)'
+          }}
+        >
+          <svg viewBox="0 0 24 24" className="w-6 h-6 lg:w-7 lg:h-7 text-black" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M18 15l-6-6-6 6"/>
+          </svg>
+          <span className="sr-only">Scroll to top</span>
+        </button>
+      )}
+
       <a
         href="https://wa.me/971545770967"
         target="_blank"

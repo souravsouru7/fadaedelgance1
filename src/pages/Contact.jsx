@@ -1,10 +1,39 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
 
 export default function Contact() {
+  const contactStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Faded Elegance",
+    "description": "Get in touch with Faded Elegance for premium furniture restoration services in Dubai. Contact us for luxury furniture repair, antique restoration, and upholstery services.",
+    "url": "https://fadedelegance.ae/contact",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Faded Elegance",
+      "telephone": "+971545770967",
+      "email": "info@fadedelegance.ae",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dubai",
+        "addressCountry": "AE"
+      },
+      "openingHours": "Mo-Sa 10:00-20:00"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Contact Faded Elegance Dubai | Furniture Restoration Services"
+        description="Contact Faded Elegance for premium furniture restoration in Dubai. Expert luxury furniture repair, antique restoration, and upholstery services. Call +971 54 5770967 or visit our location."
+        keywords="contact furniture restoration dubai, luxury furniture repair contact, antique restoration dubai contact, upholstery services dubai, furniture repair contact"
+        url="https://fadedelegance.ae/contact"
+        image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
+        structuredData={contactStructuredData}
+      />
       <Navbar />
       <div className="relative overflow-hidden">
         {/* Ambient background accents */}
@@ -39,7 +68,14 @@ export default function Contact() {
                     <div className="text-xl">📍</div>
                     <div>
                       <h3 className="luxury-nav text-[#D89F30] text-base font-semibold mb-1">Visit Us</h3>
-                      <p className="text-white/90 text-sm lg:text-base">GMap</p>
+                      <a 
+                        href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-white/90 text-sm lg:text-base hover:text-[#D89F30] transition-colors underline"
+                      >
+                        View on Google Maps
+                      </a>
                     </div>
                   </div>
 
@@ -141,6 +177,76 @@ export default function Contact() {
                   SEND MESSAGE
                 </button>
               </form>
+            </div>
+          </div>
+
+          {/* Map Section */}
+          <div className="mb-12 lg:mb-16">
+            <div className="rounded-3xl overflow-hidden" style={{
+              background: 'linear-gradient(135deg, rgba(216,159,48,0.10) 0%, rgba(115,73,24,0.06) 100%)',
+              border: '1px solid rgba(216,159,48,0.25)',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.35)'
+            }}>
+              <div className="p-5 lg:p-6">
+                <h2 className="luxury-nav text-[#D89F30] text-xl lg:text-2xl mb-4 tracking-wide text-center">Find Us</h2>
+                                 <div className="aspect-video w-full rounded-2xl overflow-hidden relative">
+                   <div className="w-full h-full relative">
+                     {/* Map Image Background */}
+                     <img 
+                       src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                       alt="Dubai Map"
+                       className="w-full h-full object-cover"
+                       onError={(e) => {
+                         e.target.style.display = 'none';
+                         e.target.nextSibling.style.display = 'flex';
+                       }}
+                     />
+                     
+                     {/* Fallback if image doesn't load */}
+                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center" style={{display: 'none'}}>
+                       <div className="text-center p-8">
+                         <div className="text-8xl mb-8 filter drop-shadow-lg">🗺️</div>
+                         <h3 className="luxury-nav text-[#D89F30] text-4xl mb-6 tracking-wide">Our Location</h3>
+                         <p className="text-white/90 text-2xl mb-8 font-light tracking-wide">Dubai, United Arab Emirates</p>
+                       </div>
+                     </div>
+                     
+                     {/* Overlay with location info */}
+                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                       <div className="text-center p-8 relative z-10">
+                         <div className="bg-gradient-to-r from-[#D89F30]/20 to-[#734918]/20 backdrop-blur-md rounded-2xl p-8 mb-8 border border-[#D89F30]/30 shadow-2xl">
+                           <div className="flex items-center justify-center gap-3 mb-4">
+                             <div className="w-3 h-3 bg-[#D89F30] rounded-full animate-pulse"></div>
+                             <p className="text-white text-lg font-medium tracking-wide">Premium Location</p>
+                             <div className="w-3 h-3 bg-[#D89F30] rounded-full animate-pulse"></div>
+                           </div>
+                           <h3 className="luxury-nav text-[#D89F30] text-3xl mb-4 tracking-wide">Dubai, UAE</h3>
+                           <p className="text-white/90 text-lg font-light">📍 Click below to discover our exact location</p>
+                         </div>
+                         
+                         <a 
+                           href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           className="luxury-button bg-gradient-to-r from-[#D89F30] via-[#F4B942] to-[#734918] text-white px-12 py-5 rounded-full font-semibold text-xl inline-block hover:scale-105 transition-all duration-300 shadow-2xl border border-[#D89F30]/30 hover:shadow-[#D89F30]/25 hover:shadow-2xl"
+                         >
+                           📍 EXPLORE LOCATION
+                         </a>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                <div className="text-center mt-4">
+                  <a 
+                    href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 py-3 rounded-full font-semibold inline-block hover:scale-105 transition-all duration-300"
+                  >
+                    OPEN IN GOOGLE MAPS
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

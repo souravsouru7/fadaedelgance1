@@ -7,7 +7,7 @@ const servicesData = [
     tagline: 'Where your luxury items get a second life.',
     subcategories: [
       {
-        name: 'Handbag',
+        name: 'Handbag Restoration',
         items: [
           'Cleaning & Conditioning',
           'Color Restoration',
@@ -19,40 +19,38 @@ const servicesData = [
         ]
       },
       {
-        name: "Shoes (Women's & Men's)",
+        name: 'Shoes (Men & Women)',
         items: [
           'Cleaning & Conditioning',
           'Stitching',
           'Color Restoration',
           'Shoe Stretching',
-          'Heel Repair & Tips',
-          'Sole Repair & Sole Guard',
+          'Heel & Sole Repair',
           'Shoe Shine',
           'Custom Coloring & Patterns',
           'Customized Artwork'
         ]
       },
       {
-        name: 'Wallet',
+        name: 'Wallet Detailing',
         items: [
           'Cleaning & Conditioning',
           'Color Restoration',
           'Stitching & Edging',
           'Zipper Repair & Replacement',
-          'Hardware Repair & Replacement',
+          'Hardware Repair',
           'Custom Coloring & Patterns',
           'Customized Artwork'
         ]
       },
       {
-        name: 'Sandals',
+        name: 'Sandals Care',
         items: [
           'Cleaning & Conditioning',
           'Color Restoration',
-          'Stitching',
-          'Sole & Heel Repair',
-          'Custom Coloring & Patterns',
-          'Customized Artwork'
+          'Stitching & Sole Repair',
+          'Heel Tips',
+          'Custom Coloring & Artwork'
         ]
       }
     ]
@@ -62,7 +60,7 @@ const servicesData = [
     tagline: 'Personalized elegance, crafted for you.',
     subcategories: [
       {
-        name: 'Handbag',
+        name: 'Handbag Custom',
         items: [
           'Custom Coloring & Patterns',
           'Customized Artwork',
@@ -71,27 +69,27 @@ const servicesData = [
         ]
       },
       {
-        name: 'Shoes',
+        name: 'Bespoke Shoes',
         items: [
           'Bespoke Coloring & Patterns',
-          'Premium Shoe Shine',
+          'Luxury Shoe Shine',
           'Customized Artwork',
           'Unique Sole & Heel Finishing'
         ]
       },
       {
-        name: 'Wallet',
+        name: 'Wallet Personal',
         items: [
           'Signature Coloring Styles',
-          'Personalized Artwork',
-          'Hardware Detailing',
+          'Artistic Detailing',
+          'Hardware Upgrades',
           'Premium Stitch Craft'
         ]
       },
       {
-        name: 'Sandals',
+        name: 'Sandals Design',
         items: [
-          'Unique Pattern Coloring',
+          'Exclusive Coloring & Patterns',
           'Artistic Customization',
           'Sole Refinement',
           'Elegant Stitch Work'
@@ -101,17 +99,17 @@ const servicesData = [
   },
   {
     title: 'Kids',
-    tagline: 'Special care for little ones’ favorites.',
+    tagline: 'Special care for little ones\' favorites.',
     subcategories: [
       {
-        name: 'Shoes',
+        name: 'Kids Shoes',
         items: [
           'Custom Coloring & Patterns',
           'Customized Artwork'
         ]
       },
       {
-        name: 'Bags',
+        name: 'Kids Bags',
         items: [
           'Creative Coloring & Patterns',
           'Personalized Artwork'
@@ -133,6 +131,16 @@ export default function Navbar() {
   const navTextClass = isGoldenNavbar ? 'gold-text' : 'text-black'
   const navBorderClass = isGoldenNavbar ? 'border-[#D89F30]' : 'border-black'
   const navHoverClass = isGoldenNavbar ? 'hover:border-[#D89F30]/60' : 'hover:border-black/60'
+
+  // Function to handle service navigation
+  const handleServiceClick = (category, subcategory, service) => {
+    setServicesOpen(false)
+    setMobileServicesOpen(false)
+    setMobileOpen(false)
+    
+    // Navigate to services page with parameters
+    navigate(`/services?category=${category}&subcategory=${subcategory}&service=${encodeURIComponent(service)}`)
+  }
   
   return (
     <header className="relative flex items-center justify-between p-3 lg:p-6">
@@ -191,7 +199,11 @@ export default function Navbar() {
                           <ul className="space-y-1 pl-1">
                             {sub.items.map((svc) => (
                               <li key={svc}>
-                                <button type="button" className="w-full text-left flex items-start gap-2 text-white/90 hover:text-white hover:bg-white/10 rounded-md px-2 py-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D89F30]/60">
+                                <button 
+                                  type="button" 
+                                  className="w-full text-left flex items-start gap-2 text-white/90 hover:text-white hover:bg-white/10 rounded-md px-2 py-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D89F30]/60"
+                                  onClick={() => handleServiceClick(cat.title, sub.name, svc)}
+                                >
                                   <svg className="mt-1 w-3 h-3 text-[#F4B942] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M12 2.75l2.955 6.001 6.62.962-4.788 4.668 1.13 6.594L12 17.98l-5.917 3.0 1.13-6.594L2.425 9.713l6.62-.962L12 2.75z"/>
                                   </svg>
@@ -277,7 +289,15 @@ export default function Navbar() {
                           <div className="text-[12px] font-semibold">{sub.name}</div>
                           <ul className="pl-3 list-disc text-[12px] text-black/80">
                             {sub.items.map((svc) => (
-                              <li key={svc}>{svc}</li>
+                              <li key={svc}>
+                                <button 
+                                  type="button"
+                                  className="text-left hover:text-[#D89F30] transition-colors"
+                                  onClick={() => handleServiceClick(cat.title, sub.name, svc)}
+                                >
+                                  {svc}
+                                </button>
+                              </li>
                             ))}
                           </ul>
                         </div>

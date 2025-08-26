@@ -1,10 +1,34 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
 
 export default function About() {
+  const aboutStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Faded Elegance",
+    "description": "Learn about Faded Elegance's craftsmanship, care, and customization services for luxury furniture restoration in Dubai.",
+    "url": "https://fadedelegance.ae/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Faded Elegance",
+      "description": "Premium furniture restoration services in Dubai, specializing in luxury furniture repair, antique restoration, and premium upholstery.",
+      "foundingDate": "2020",
+      "areaServed": "Dubai, UAE"
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
+      <SEO 
+        title="About Faded Elegance Dubai | Premium Furniture Restoration Services"
+        description="Discover Faded Elegance's story of craftsmanship, care, and customization. Expert furniture restoration services in Dubai with years of experience in luxury furniture repair and antique restoration."
+        keywords="about furniture restoration dubai, luxury furniture repair about, antique restoration dubai, furniture restoration company dubai, premium upholstery dubai"
+        url="https://fadedelegance.ae/about"
+        image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
+        structuredData={aboutStructuredData}
+      />
       <Navbar />
 
       <main className="relative z-10 max-w-6xl mx-auto px-4 lg:px-8 py-12 lg:py-16">

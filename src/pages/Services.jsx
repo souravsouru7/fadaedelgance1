@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import SEO from '../components/SEO'
 
 // Reliable image with multiple fallbacks and skeleton
 const FallbackImage = ({ sources, alt, className = '' }) => {
@@ -46,8 +48,11 @@ const FallbackImage = ({ sources, alt, className = '' }) => {
 }
 
 // Image card component (premium)
-const ImageCard = ({ sources, title, subtitle, tags = [] }) => (
-  <div className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+const ImageCard = ({ sources, title, subtitle, tags = [], onClick }) => (
+  <div 
+    className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] cursor-pointer"
+    onClick={onClick}
+  >
     <FallbackImage sources={sources} alt={title} className="h-56 sm:h-64 lg:h-72 w-full" />
     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 text-white">
@@ -71,6 +76,860 @@ const ImageCard = ({ sources, title, subtitle, tags = [] }) => (
   </div>
 )
 
+// Service Detail Modal for individual services
+const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) => {
+  if (!isOpen || !serviceDetail) return null
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div 
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      
+      {/* Modal */}
+      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/10 backdrop-blur hover:bg-black/20 transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="flex flex-col lg:flex-row h-full">
+          {/* Image */}
+          <div className="w-full lg:w-1/2 h-64 lg:h-full">
+            <FallbackImage
+              sources={serviceDetail.images}
+              alt={serviceDetail.title}
+              className="w-full h-full"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="w-full lg:w-1/2 p-6 lg:p-8 overflow-y-auto">
+            <div className="text-xs text-neutral-500 mb-2">{parentService?.title}</div>
+            <h2 className="text-xl lg:text-2xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              {serviceDetail.title}
+            </h2>
+            <p className="text-sm text-neutral-600 mb-4">{serviceDetail.description}</p>
+            
+            {serviceDetail.process && (
+              <div className="mb-6">
+                <h3 className="font-medium text-sm mb-3">Our Process:</h3>
+                <div className="space-y-2">
+                  {serviceDetail.process.map((step, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <span className="mt-1 text-xs bg-black text-white rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0">
+                        {index + 1}
+                      </span>
+                      <div className="text-sm text-neutral-700">{step}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {serviceDetail.benefits && (
+              <div className="mb-6">
+                <h3 className="font-medium text-sm mb-3">Benefits:</h3>
+                <div className="space-y-2">
+                  {serviceDetail.benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <span className="mt-1 text-green-500">✓</span>
+                      <div className="text-sm text-neutral-700">{benefit}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {serviceDetail.additionalInfo && (
+              <div className="p-4 bg-neutral-50 rounded-lg">
+                <p className="text-sm text-neutral-700">{serviceDetail.additionalInfo}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Main Service Modal component
+const ServiceModal = ({ isOpen, onClose, service, onServiceClick }) => {
+  if (!isOpen || !service) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div 
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      
+      {/* Modal */}
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/10 backdrop-blur hover:bg-black/20 transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="flex flex-col lg:flex-row h-full">
+          {/* Image */}
+          <div className="w-full lg:w-1/2 h-64 lg:h-full">
+            <FallbackImage
+              sources={service.sources}
+              alt={service.title}
+              className="w-full h-full"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="w-full lg:w-1/2 p-6 lg:p-8 overflow-y-auto">
+            <h2 className="text-2xl lg:text-3xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              {service.title}
+            </h2>
+            <p className="text-sm text-neutral-600 mb-6">{service.subtitle}</p>
+            
+            <div className="space-y-3">
+              {service.details?.map((detail, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-start gap-3 p-3 rounded-lg hover:bg-neutral-50 cursor-pointer transition-colors"
+                  onClick={() => onServiceClick(detail)}
+                >
+                  <span className="mt-1 text-neutral-400">●</span>
+                  <div className="flex-1">
+                    <div className="font-medium text-sm">{detail.title}</div>
+                    <div className="text-sm text-neutral-600 mt-1">{detail.description}</div>
+                  </div>
+                  <svg className="w-4 h-4 text-neutral-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              ))}
+            </div>
+
+            {service.additionalInfo && (
+              <div className="mt-6 p-4 bg-neutral-50 rounded-lg">
+                <p className="text-sm text-neutral-700">{service.additionalInfo}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Service detail data
+const SERVICE_DETAILS = {
+  // Reborn Collection Services
+  'Cleaning & Conditioning': {
+    title: 'Cleaning & Conditioning',
+    description: 'Deep cleaning and moisturizing to refresh leather.',
+    images: [
+      'https://images.unsplash.com/photo-1581291518570-81c7d0f0b4b0?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/cleaning/1600/900'
+    ],
+    process: [
+      'Assessment of leather type and condition',
+      'Gentle surface cleaning with specialized products',
+      'Deep conditioning with premium leather oils',
+      'Buffing and polishing for natural shine',
+      'Final inspection and quality check'
+    ],
+    benefits: [
+      'Restores natural leather suppleness',
+      'Removes dirt and grime buildup',
+      'Prevents leather from drying and cracking',
+      'Enhances natural color and texture',
+      'Extends the life of your leather items'
+    ],
+    additionalInfo: 'Our cleaning process uses only premium, pH-balanced products that are safe for all types of leather, including exotic skins and vintage pieces.'
+  },
+  'Color Restoration': {
+    title: 'Color Restoration',
+    description: 'Reviving faded or discolored items to their original charm.',
+    images: [
+      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/color/1600/900'
+    ],
+    process: [
+      'Color analysis and matching',
+      'Surface preparation and cleaning',
+      'Application of color restoration products',
+      'Multiple layers for depth and richness',
+      'Sealing and protection treatment'
+    ],
+    benefits: [
+      'Brings back original color vibrancy',
+      'Covers scratches and scuffs',
+      'Uniform color distribution',
+      'Long-lasting color protection',
+      'Professional finish that looks natural'
+    ],
+    additionalInfo: 'We use advanced color-matching technology to ensure your item\'s restored color perfectly matches its original shade.'
+  },
+  'Stitching & Edging': {
+    title: 'Stitching & Edging',
+    description: 'Repairing loose stitches and edges for a refined finish.',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/stitching/1600/900'
+    ],
+    process: [
+      'Inspection of damaged areas',
+      'Thread matching and selection',
+      'Precise stitch repair or replacement',
+      'Edge refinishing and sealing',
+      'Quality testing and reinforcement'
+    ],
+    benefits: [
+      'Restores structural integrity',
+      'Prevents further damage',
+      'Maintains original design aesthetics',
+      'Extends item lifespan',
+      'Professional finish quality'
+    ],
+    additionalInfo: 'Our expert craftsmen use traditional techniques combined with modern tools to ensure every stitch matches the original quality.'
+  },
+  'Zipper Repair & Replacement': {
+    title: 'Zipper Repair & Replacement',
+    description: 'Fixing or replacing zippers for smooth use.',
+    images: [
+      'https://images.unsplash.com/photo-1592878904946-b3cd9e8f2c8f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/zipper/1600/900'
+    ],
+    process: [
+      'Zipper functionality assessment',
+      'Repair vs replacement decision',
+      'Precise removal of damaged zipper',
+      'Installation of new zipper',
+      'Testing and adjustment for smooth operation'
+    ],
+    benefits: [
+      'Restores full functionality',
+      'Prevents further damage',
+      'Smooth opening and closing',
+      'Durable and long-lasting',
+      'Maintains original appearance'
+    ],
+    additionalInfo: 'We source high-quality zippers that match your item\'s original specifications and ensure perfect installation.'
+  },
+  'Hardware Repair & Replacement': {
+    title: 'Hardware Repair & Replacement',
+    description: 'Restoring metal clasps, locks, and buckles.',
+    images: [
+      'https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/hardware/1600/900'
+    ],
+    process: [
+      'Hardware condition evaluation',
+      'Cleaning and restoration attempt',
+      'Replacement if necessary',
+      'Precise installation and alignment',
+      'Functionality testing'
+    ],
+    benefits: [
+      'Restores security and functionality',
+      'Maintains original design',
+      'Prevents further damage',
+      'Professional finish',
+      'Long-lasting durability'
+    ],
+    additionalInfo: 'We can restore most hardware to like-new condition or source authentic replacements when needed.'
+  },
+  'Custom Coloring & Patterns': {
+    title: 'Custom Coloring & Patterns',
+    description: 'Personalized colors or patterns for a unique style.',
+    images: [
+      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/custom/1600/900'
+    ],
+    process: [
+      'Design consultation and planning',
+      'Color and pattern selection',
+      'Surface preparation',
+      'Custom application process',
+      'Sealing and protection'
+    ],
+    benefits: [
+      'Unique personalized design',
+      'Reflects your style',
+      'High-quality finish',
+      'Long-lasting results',
+      'Professional execution'
+    ],
+    additionalInfo: 'Work with our design team to create a truly unique piece that reflects your personal style.'
+  },
+  'Customized Artwork': {
+    title: 'Customized Artwork',
+    description: 'Handcrafted designs to make your item one of a kind.',
+    images: [
+      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/artwork/1600/900'
+    ],
+    process: [
+      'Artwork concept development',
+      'Design approval and refinement',
+      'Surface preparation',
+      'Hand-painted application',
+      'Protective coating application'
+    ],
+    benefits: [
+      'Truly unique piece',
+      'Personalized design',
+      'Professional artwork quality',
+      'Protected and durable',
+      'Conversation starter'
+    ],
+    additionalInfo: 'Our artists can create anything from subtle monograms to elaborate custom artwork that tells your story.'
+  },
+  // Additional Reborn Services
+  'Stitching': {
+    title: 'Stitching',
+    description: 'Repairing seams for durability.',
+    images: [
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/stitching-shoes/1600/900'
+    ],
+    process: [
+      'Seam inspection and damage assessment',
+      'Thread selection and color matching',
+      'Precise stitch repair or reinforcement',
+      'Quality testing for durability',
+      'Final finishing and inspection'
+    ],
+    benefits: [
+      'Restores structural integrity',
+      'Prevents further seam damage',
+      'Maintains original appearance',
+      'Extends shoe lifespan',
+      'Professional repair quality'
+    ],
+    additionalInfo: 'We use industrial-grade thread and techniques to ensure your shoes maintain their original strength and appearance.'
+  },
+  'Shoe Stretching': {
+    title: 'Shoe Stretching',
+    description: 'Adjusting size for perfect comfort.',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/stretching/1600/900'
+    ],
+    process: [
+      'Foot measurement and analysis',
+      'Shoe material assessment',
+      'Gradual stretching process',
+      'Comfort testing and adjustment',
+      'Final fit verification'
+    ],
+    benefits: [
+      'Perfect fit for your feet',
+      'Eliminates discomfort',
+      'Preserves shoe integrity',
+      'Professional stretching technique',
+      'Long-lasting comfort'
+    ],
+    additionalInfo: 'Our stretching process is gentle and gradual, ensuring your shoes maintain their shape while achieving the perfect fit.'
+  },
+  'Heel & Sole Repair': {
+    title: 'Heel & Sole Repair',
+    description: 'Fixing worn heels, adding new soles, or sole guards.',
+    images: [
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/heel-repair/1600/900'
+    ],
+    process: [
+      'Heel and sole condition assessment',
+      'Repair vs replacement decision',
+      'Precise removal of damaged parts',
+      'Installation of new heels or soles',
+      'Quality testing and adjustment'
+    ],
+    benefits: [
+      'Restores full functionality',
+      'Extends shoe lifespan',
+      'Improves comfort and safety',
+      'Professional finish',
+      'Durable and long-lasting'
+    ],
+    additionalInfo: 'We use high-quality materials that match your shoes\' original specifications for seamless repair.'
+  },
+  'Shoe Shine': {
+    title: 'Shoe Shine',
+    description: 'A luxury shine to enhance elegance.',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/shoe-shine/1600/900'
+    ],
+    process: [
+      'Surface cleaning and preparation',
+      'Conditioning and moisturizing',
+      'Multiple polish applications',
+      'Buffing for mirror finish',
+      'Protective coating application'
+    ],
+    benefits: [
+      'Professional mirror shine',
+      'Protects leather surface',
+      'Enhances appearance',
+      'Long-lasting shine',
+      'Premium finish quality'
+    ],
+    additionalInfo: 'Our luxury shoe shine service creates a mirror-like finish that lasts and protects your shoes.'
+  },
+  'Hardware Repair': {
+    title: 'Hardware Repair',
+    description: 'Fixing clips, chains, and metallic details.',
+    images: [
+      'https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/wallet-hardware/1600/900'
+    ],
+    process: [
+      'Hardware condition evaluation',
+      'Cleaning and restoration attempt',
+      'Replacement if necessary',
+      'Precise installation and alignment',
+      'Functionality testing'
+    ],
+    benefits: [
+      'Restores functionality',
+      'Maintains original design',
+      'Prevents further damage',
+      'Professional finish',
+      'Long-lasting durability'
+    ],
+    additionalInfo: 'We can restore most wallet hardware to like-new condition or source authentic replacements.'
+  },
+  'Stitching & Sole Repair': {
+    title: 'Stitching & Sole Repair',
+    description: 'Fixing straps, edges, and soles.',
+    images: [
+      'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/sandal-repair/1600/900'
+    ],
+    process: [
+      'Damage assessment and planning',
+      'Strap and sole repair',
+      'Edge refinishing',
+      'Quality testing',
+      'Final inspection'
+    ],
+    benefits: [
+      'Restores functionality',
+      'Improves comfort',
+      'Extends lifespan',
+      'Professional finish',
+      'Maintains original design'
+    ],
+    additionalInfo: 'Our sandal repair service ensures your favorite sandals continue to provide comfort and style.'
+  },
+  'Heel Tips': {
+    title: 'Heel Tips',
+    description: 'Replacing worn-out tips for comfort.',
+    images: [
+      'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/heel-tips/1600/900'
+    ],
+    process: [
+      'Heel tip condition assessment',
+      'Removal of worn tips',
+      'Installation of new tips',
+      'Adjustment for comfort',
+      'Quality testing'
+    ],
+    benefits: [
+      'Restores comfort',
+      'Prevents further damage',
+      'Improves safety',
+      'Professional finish',
+      'Long-lasting durability'
+    ],
+    additionalInfo: 'We use high-quality heel tips that provide comfort and durability for your sandals.'
+  },
+  'Custom Coloring & Artwork': {
+    title: 'Custom Coloring & Artwork',
+    description: 'Personal touches to elevate your sandals.',
+    images: [
+      'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/sandal-art/1600/900'
+    ],
+    process: [
+      'Design consultation',
+      'Color and artwork selection',
+      'Surface preparation',
+      'Custom application',
+      'Protective coating'
+    ],
+    benefits: [
+      'Unique personalized design',
+      'Reflects your style',
+      'High-quality finish',
+      'Long-lasting results',
+      'Professional execution'
+    ],
+    additionalInfo: 'Transform your sandals into a unique piece that reflects your personal style and creativity.'
+  },
+  // Signature Collection Services
+  'Hardware & Zipper Upgrades': {
+    title: 'Hardware & Zipper Upgrades',
+    description: 'Luxury-level detailing.',
+    images: [
+      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/hardware-upgrade/1600/900'
+    ],
+    process: [
+      'Design consultation',
+      'Hardware selection and sourcing',
+      'Precise installation',
+      'Quality testing',
+      'Final inspection'
+    ],
+    benefits: [
+      'Enhanced functionality',
+      'Premium appearance',
+      'Long-lasting durability',
+      'Professional finish',
+      'Unique customization'
+    ],
+    additionalInfo: 'Upgrade your handbag with premium hardware that enhances both function and style.'
+  },
+  'Fine Stitch Detailing': {
+    title: 'Fine Stitch Detailing',
+    description: 'Elegant refinishing of seams.',
+    images: [
+      'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/fine-stitch/1600/900'
+    ],
+    process: [
+      'Seam inspection and planning',
+      'Thread selection and matching',
+      'Precise stitch application',
+      'Quality testing',
+      'Final finishing'
+    ],
+    benefits: [
+      'Enhanced aesthetics',
+      'Improved durability',
+      'Professional finish',
+      'Maintains design integrity',
+      'Long-lasting results'
+    ],
+    additionalInfo: 'Our fine stitch detailing adds elegance and durability to your handbag seams.'
+  },
+  'Bespoke Coloring & Patterns': {
+    title: 'Bespoke Coloring & Patterns',
+    description: 'Premium finishes that stand out.',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/bespoke-shoes/1600/900'
+    ],
+    process: [
+      'Design consultation',
+      'Pattern and color selection',
+      'Surface preparation',
+      'Custom application',
+      'Protective finishing'
+    ],
+    benefits: [
+      'Unique personalized design',
+      'Premium finish quality',
+      'Long-lasting results',
+      'Professional execution',
+      'Stand-out appearance'
+    ],
+    additionalInfo: 'Create shoes that are truly unique with our bespoke coloring and pattern services.'
+  },
+  'Luxury Shoe Shine': {
+    title: 'Luxury Shoe Shine',
+    description: 'A glossy, mirror-like shine for formal occasions.',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/luxury-shine/1600/900'
+    ],
+    process: [
+      'Deep cleaning and preparation',
+      'Multiple polish applications',
+      'Mirror finish buffing',
+      'Protective coating',
+      'Final inspection'
+    ],
+    benefits: [
+      'Mirror-like shine',
+      'Professional appearance',
+      'Long-lasting finish',
+      'Protects leather',
+      'Premium quality'
+    ],
+    additionalInfo: 'Our luxury shoe shine creates a mirror-like finish perfect for formal occasions.'
+  },
+  'Unique Sole & Heel Finishing': {
+    title: 'Unique Sole & Heel Finishing',
+    description: 'Special treatments for a refined touch.',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/unique-finish/1600/900'
+    ],
+    process: [
+      'Design consultation',
+      'Sole and heel treatment selection',
+      'Precise application',
+      'Quality testing',
+      'Final inspection'
+    ],
+    benefits: [
+      'Unique appearance',
+      'Enhanced comfort',
+      'Professional finish',
+      'Long-lasting results',
+      'Refined touch'
+    ],
+    additionalInfo: 'Add a unique touch to your shoes with our special sole and heel finishing treatments.'
+  },
+  'Signature Coloring Styles': {
+    title: 'Signature Coloring Styles',
+    description: 'Personalized tones.',
+    images: [
+      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/signature-color/1600/900'
+    ],
+    process: [
+      'Color consultation',
+      'Personalized tone selection',
+      'Surface preparation',
+      'Custom application',
+      'Protective coating'
+    ],
+    benefits: [
+      'Personalized appearance',
+      'Unique color tones',
+      'Professional finish',
+      'Long-lasting results',
+      'Reflects your style'
+    ],
+    additionalInfo: 'Create a wallet with colors that perfectly match your personal style and preferences.'
+  },
+  'Artistic Detailing': {
+    title: 'Artistic Detailing',
+    description: 'Handcrafted accents.',
+    images: [
+      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/artistic-detail/1600/900'
+    ],
+    process: [
+      'Design consultation',
+      'Artistic detail planning',
+      'Handcrafted application',
+      'Quality inspection',
+      'Protective finishing'
+    ],
+    benefits: [
+      'Unique artistic touches',
+      'Handcrafted quality',
+      'Personalized design',
+      'Professional finish',
+      'Conversation piece'
+    ],
+    additionalInfo: 'Add handcrafted artistic details that make your wallet truly unique and personal.'
+  },
+  'Hardware Upgrades': {
+    title: 'Hardware Upgrades',
+    description: 'Luxury metallic upgrades.',
+    images: [
+      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/wallet-hardware-upgrade/1600/900'
+    ],
+    process: [
+      'Hardware selection',
+      'Design consultation',
+      'Precise installation',
+      'Quality testing',
+      'Final inspection'
+    ],
+    benefits: [
+      'Enhanced functionality',
+      'Premium appearance',
+      'Long-lasting durability',
+      'Professional finish',
+      'Luxury upgrade'
+    ],
+    additionalInfo: 'Upgrade your wallet with premium metallic hardware for enhanced function and style.'
+  },
+  'Premium Stitch Craft': {
+    title: 'Premium Stitch Craft',
+    description: 'Precision for elegance.',
+    images: [
+      'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/premium-stitch/1600/900'
+    ],
+    process: [
+      'Stitch pattern planning',
+      'Thread selection',
+      'Precise stitch application',
+      'Quality testing',
+      'Final finishing'
+    ],
+    benefits: [
+      'Enhanced elegance',
+      'Improved durability',
+      'Professional finish',
+      'Precision quality',
+      'Long-lasting results'
+    ],
+    additionalInfo: 'Our premium stitch craft adds elegance and precision to your wallet construction.'
+  },
+  'Exclusive Coloring & Patterns': {
+    title: 'Exclusive Coloring & Patterns',
+    description: 'Distinctive customization.',
+    images: [
+      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/exclusive-sandals/1600/900'
+    ],
+    process: [
+      'Design consultation',
+      'Exclusive pattern creation',
+      'Color selection',
+      'Custom application',
+      'Protective finishing'
+    ],
+    benefits: [
+      'Exclusive design',
+      'Unique appearance',
+      'Professional finish',
+      'Long-lasting results',
+      'Distinctive style'
+    ],
+    additionalInfo: 'Create sandals with exclusive patterns and colors that set you apart.'
+  },
+  'Artistic Customization': {
+    title: 'Artistic Customization',
+    description: 'Elevating style with design work.',
+    images: [
+      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/artistic-sandals/1600/900'
+    ],
+    process: [
+      'Artistic design consultation',
+      'Custom artwork creation',
+      'Surface preparation',
+      'Artistic application',
+      'Protective coating'
+    ],
+    benefits: [
+      'Unique artistic design',
+      'Personalized style',
+      'Professional artwork',
+      'Long-lasting finish',
+      'Elevated appearance'
+    ],
+    additionalInfo: 'Transform your sandals with artistic customization that elevates your style.'
+  },
+  'Sole Refinement': {
+    title: 'Sole Refinement',
+    description: 'Comfortable yet stylish finishing.',
+    images: [
+      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/sole-refine/1600/900'
+    ],
+    process: [
+      'Sole condition assessment',
+      'Refinement planning',
+      'Precise application',
+      'Comfort testing',
+      'Final inspection'
+    ],
+    benefits: [
+      'Enhanced comfort',
+      'Improved style',
+      'Professional finish',
+      'Long-lasting results',
+      'Stylish appearance'
+    ],
+    additionalInfo: 'Our sole refinement ensures your sandals are both comfortable and stylish.'
+  },
+  'Elegant Stitch Work': {
+    title: 'Elegant Stitch Work',
+    description: 'Detailing for luxury feel.',
+    images: [
+      'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/elegant-stitch/1600/900'
+    ],
+    process: [
+      'Stitch pattern design',
+      'Thread selection',
+      'Elegant stitch application',
+      'Quality testing',
+      'Final finishing'
+    ],
+    benefits: [
+      'Luxury appearance',
+      'Enhanced durability',
+      'Professional finish',
+      'Elegant detailing',
+      'Long-lasting quality'
+    ],
+    additionalInfo: 'Add elegant stitch work that gives your sandals a luxury feel and appearance.'
+  },
+  // Kids Collection Services
+  'Creative Coloring & Patterns': {
+    title: 'Creative Coloring & Patterns',
+    description: 'Unique, playful looks.',
+    images: [
+      'https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/kids-patterns/1600/900'
+    ],
+    process: [
+      'Child-friendly design consultation',
+      'Color and pattern selection',
+      'Safe surface preparation',
+      'Creative application',
+      'Child-safe protective coating'
+    ],
+    benefits: [
+      'Fun and playful design',
+      'Child-safe materials',
+      'Unique appearance',
+      'Durable finish',
+      'Kid-approved style'
+    ],
+    additionalInfo: 'Create fun and playful bags that kids will love with our child-safe creative coloring and patterns.'
+  },
+  'Personalized Artwork': {
+    title: 'Personalized Artwork',
+    description: 'Fun artwork designed for children.',
+    images: [
+      'https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
+      'https://picsum.photos/seed/kids-art/1600/900'
+    ],
+    process: [
+      'Child-friendly artwork consultation',
+      'Personalized design creation',
+      'Safe surface preparation',
+      'Child-safe application',
+      'Protective finishing'
+    ],
+    benefits: [
+      'Personalized for your child',
+      'Fun and engaging design',
+      'Child-safe materials',
+      'Durable finish',
+      'Unique keepsake'
+    ],
+    additionalInfo: 'Create personalized artwork that makes your child\'s bag special and unique.'
+  }
+}
+
 const TABS = [
   {
     key: 'reborn',
@@ -84,7 +943,38 @@ const TABS = [
           'https://images.unsplash.com/photo-1592878904946-b3cd9e8f2c8f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/handbag/1600/900'
         ],
-        tags: ['Cleaning', 'Color', 'Stitching', 'Hardware']
+        tags: ['Cleaning', 'Color', 'Stitching', 'Hardware'],
+        details: [
+          {
+            title: 'Cleaning & Conditioning',
+            description: 'Deep cleaning and moisturizing to refresh leather.'
+          },
+          {
+            title: 'Color Restoration',
+            description: 'Reviving faded or discolored bags to their original charm.'
+          },
+          {
+            title: 'Stitching & Edging',
+            description: 'Repairing loose stitches and edges for a refined finish.'
+          },
+          {
+            title: 'Zipper Repair & Replacement',
+            description: 'Fixing or replacing zippers for smooth use.'
+          },
+          {
+            title: 'Hardware Repair & Replacement',
+            description: 'Restoring metal clasps, locks, and buckles.'
+          },
+          {
+            title: 'Custom Coloring & Patterns',
+            description: 'Personalized colors or patterns for a unique style.'
+          },
+          {
+            title: 'Customized Artwork',
+            description: 'Handcrafted designs to make your handbag one of a kind.'
+          }
+        ],
+        additionalInfo: 'Our handbag restoration process begins with a thorough assessment of your item\'s condition, followed by specialized treatments tailored to the specific leather type and damage.'
       },
       {
         title: 'Shoes (Men & Women)',
@@ -93,7 +983,41 @@ const TABS = [
           'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/shoes/1600/900'
         ],
-        tags: ['Sole', 'Heel', 'Stretch', 'Shine']
+        tags: ['Sole', 'Heel', 'Stretch', 'Shine'],
+        details: [
+          {
+            title: 'Cleaning & Conditioning',
+            description: 'Reviving shine and softness of leather.'
+          },
+          {
+            title: 'Stitching',
+            description: 'Repairing seams for durability.'
+          },
+          {
+            title: 'Color Restoration',
+            description: 'Restoring faded or worn-out shades.'
+          },
+          {
+            title: 'Shoe Stretching',
+            description: 'Adjusting size for perfect comfort.'
+          },
+          {
+            title: 'Heel & Sole Repair',
+            description: 'Fixing worn heels, adding new soles, or sole guards.'
+          },
+          {
+            title: 'Shoe Shine',
+            description: 'A luxury shine to enhance elegance.'
+          },
+          {
+            title: 'Custom Coloring & Patterns',
+            description: 'Transforming shoes with unique colors and designs.'
+          },
+          {
+            title: 'Customized Artwork',
+            description: 'Exclusive hand-painted detailing.'
+          }
+        ]
       },
       {
         title: 'Wallet Detailing',
@@ -102,7 +1026,37 @@ const TABS = [
           'https://images.unsplash.com/photo-1585386959984-a41552231658?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/wallet/1600/900'
         ],
-        tags: ['Edges', 'Zipper', 'Hardware', 'Color']
+        tags: ['Edges', 'Zipper', 'Hardware', 'Color'],
+        details: [
+          {
+            title: 'Cleaning & Conditioning',
+            description: 'Restoring suppleness and finish.'
+          },
+          {
+            title: 'Color Restoration',
+            description: 'Bringing back the wallet\'s true shade.'
+          },
+          {
+            title: 'Stitching & Edging',
+            description: 'Seam repairs and edge refinishing.'
+          },
+          {
+            title: 'Zipper Repair & Replacement',
+            description: 'Smooth zipper replacement when needed.'
+          },
+          {
+            title: 'Hardware Repair',
+            description: 'Fixing clips, chains, and metallic details.'
+          },
+          {
+            title: 'Custom Coloring & Patterns',
+            description: 'Adding unique touches.'
+          },
+          {
+            title: 'Customized Artwork',
+            description: 'Personal artwork for a standout wallet.'
+          }
+        ]
       },
       {
         title: 'Sandals Care',
@@ -111,7 +1065,29 @@ const TABS = [
           'https://images.unsplash.com/photo-1520975731276-1c7ed1f9e1f5?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/sandals/1600/900'
         ],
-        tags: ['Straps', 'Sole', 'Tips', 'Color']
+        tags: ['Straps', 'Sole', 'Tips', 'Color'],
+        details: [
+          {
+            title: 'Cleaning & Conditioning',
+            description: 'Refreshing leather straps and soles.'
+          },
+          {
+            title: 'Color Restoration',
+            description: 'Reviving faded tones.'
+          },
+          {
+            title: 'Stitching & Sole Repair',
+            description: 'Fixing straps, edges, and soles.'
+          },
+          {
+            title: 'Heel Tips',
+            description: 'Replacing worn-out tips for comfort.'
+          },
+          {
+            title: 'Custom Coloring & Artwork',
+            description: 'Personal touches to elevate your sandals.'
+          }
+        ]
       }
     ]
   },
@@ -127,7 +1103,25 @@ const TABS = [
           'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/handbag2/1600/900'
         ],
-        tags: ['Custom Color', 'Artwork', 'Upgrades']
+        tags: ['Custom Color', 'Artwork', 'Upgrades'],
+        details: [
+          {
+            title: 'Custom Coloring & Patterns',
+            description: 'Exclusive colors to match your personality.'
+          },
+          {
+            title: 'Customized Artwork',
+            description: 'Artistic hand designs for uniqueness.'
+          },
+          {
+            title: 'Hardware & Zipper Upgrades',
+            description: 'Luxury-level detailing.'
+          },
+          {
+            title: 'Fine Stitch Detailing',
+            description: 'Elegant refinishing of seams.'
+          }
+        ]
       },
       {
         title: 'Bespoke Shoes',
@@ -136,7 +1130,25 @@ const TABS = [
           'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/shoes2/1600/900'
         ],
-        tags: ['Patterns', 'Mirror Shine', 'Unique Finish']
+        tags: ['Patterns', 'Mirror Shine', 'Unique Finish'],
+        details: [
+          {
+            title: 'Bespoke Coloring & Patterns',
+            description: 'Premium finishes that stand out.'
+          },
+          {
+            title: 'Luxury Shoe Shine',
+            description: 'A glossy, mirror-like shine for formal occasions.'
+          },
+          {
+            title: 'Customized Artwork',
+            description: 'Exclusive hand-painted artistry.'
+          },
+          {
+            title: 'Unique Sole & Heel Finishing',
+            description: 'Special treatments for a refined touch.'
+          }
+        ]
       },
       {
         title: 'Wallet Personal',
@@ -145,7 +1157,25 @@ const TABS = [
           'https://images.unsplash.com/photo-1555529771-35a38f2345fd?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/wallet2/1600/900'
         ],
-        tags: ['Signature Tones', 'Accents', 'Hardware']
+        tags: ['Signature Tones', 'Accents', 'Hardware'],
+        details: [
+          {
+            title: 'Signature Coloring Styles',
+            description: 'Personalized tones.'
+          },
+          {
+            title: 'Artistic Detailing',
+            description: 'Handcrafted accents.'
+          },
+          {
+            title: 'Hardware Upgrades',
+            description: 'Luxury metallic upgrades.'
+          },
+          {
+            title: 'Premium Stitch Craft',
+            description: 'Precision for elegance.'
+          }
+        ]
       },
       {
         title: 'Sandals Design',
@@ -154,7 +1184,25 @@ const TABS = [
           'https://images.unsplash.com/photo-1520975855684-5cc8439b5f2b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/sandals2/1600/900'
         ],
-        tags: ['Exclusive', 'Artistic', 'Refined']
+        tags: ['Exclusive', 'Artistic', 'Refined'],
+        details: [
+          {
+            title: 'Exclusive Coloring & Patterns',
+            description: 'Distinctive customization.'
+          },
+          {
+            title: 'Artistic Customization',
+            description: 'Elevating style with design work.'
+          },
+          {
+            title: 'Sole Refinement',
+            description: 'Comfortable yet stylish finishing.'
+          },
+          {
+            title: 'Elegant Stitch Work',
+            description: 'Detailing for luxury feel.'
+          }
+        ]
       }
     ]
   },
@@ -170,7 +1218,17 @@ const TABS = [
           'https://images.unsplash.com/photo-1520975693411-6c7094a0d593?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/kids1/1600/900'
         ],
-        tags: ['Color', 'Artwork']
+        tags: ['Color', 'Artwork'],
+        details: [
+          {
+            title: 'Custom Coloring & Patterns',
+            description: 'Bright and creative designs kids love.'
+          },
+          {
+            title: 'Customized Artwork',
+            description: 'Personalized cartoon characters or patterns.'
+          }
+        ]
       },
       {
         title: 'Kids Bags',
@@ -179,15 +1237,64 @@ const TABS = [
           'https://images.unsplash.com/photo-1503342217505-b0a15cf70489?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
           'https://picsum.photos/seed/kids2/1600/900'
         ],
-        tags: ['Patterns', 'Artwork']
+        tags: ['Patterns', 'Artwork'],
+        details: [
+          {
+            title: 'Creative Coloring & Patterns',
+            description: 'Unique, playful looks.'
+          },
+          {
+            title: 'Personalized Artwork',
+            description: 'Fun artwork designed for children.'
+          }
+        ]
       }
     ]
   }
 ]
 
 export default function Services() {
+  const [searchParams] = useSearchParams()
   const [active, setActive] = useState('reborn')
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState(null)
+  const [detailModalOpen, setDetailModalOpen] = useState(false)
+  const [selectedDetail, setSelectedDetail] = useState(null)
   const current = TABS.find((t) => t.key === active) || TABS[0]
+
+  const servicesStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Furniture Restoration Services",
+    "description": "Comprehensive furniture restoration services including luxury furniture repair, antique restoration, upholstery, and custom design services in Dubai.",
+    "url": "https://fadedelegance.ae/services",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "position": 1,
+        "name": "Luxury Furniture Repair",
+        "description": "Expert repair services for high-end furniture pieces"
+      },
+      {
+        "@type": "Service",
+        "position": 2,
+        "name": "Antique Furniture Restoration",
+        "description": "Specialized restoration of antique and vintage furniture"
+      },
+      {
+        "@type": "Service",
+        "position": 3,
+        "name": "Premium Upholstery",
+        "description": "High-quality upholstery services for furniture"
+      },
+      {
+        "@type": "Service",
+        "position": 4,
+        "name": "Custom Furniture Design",
+        "description": "Bespoke furniture design and customization services"
+      }
+    ]
+  };
 
   // Page-scoped premium fonts (no global change)
   useEffect(() => {
@@ -198,11 +1305,108 @@ export default function Services() {
     return () => { document.head.removeChild(link) }
   }, [])
 
+  // Handle URL parameters for navbar navigation
+  useEffect(() => {
+    const category = searchParams.get('category')
+    const subcategory = searchParams.get('subcategory')
+    const service = searchParams.get('service')
+
+    if (category && subcategory && service) {
+      // Map navbar categories to tab keys
+      const categoryMap = {
+        'Reborn': 'reborn',
+        'Signature': 'signature',
+        'Kids': 'kids'
+      }
+
+      const tabKey = categoryMap[category]
+      if (tabKey) {
+        setActive(tabKey)
+        
+        // Find the matching service card
+        const tab = TABS.find(t => t.key === tabKey)
+        if (tab) {
+          const matchingCard = tab.cards.find(card => {
+            // Map subcategory names to card titles
+            const subcategoryMap = {
+              'Handbag': 'Handbag Restoration',
+              'Shoes (Women\'s & Men\'s)': 'Shoes (Men & Women)',
+              'Shoes': 'Shoes (Men & Women)',
+              'Wallet': 'Wallet Detailing',
+              'Sandals': 'Sandals Care',
+              'Handbag Custom': 'Handbag Custom',
+              'Bespoke Shoes': 'Bespoke Shoes',
+              'Wallet Personal': 'Wallet Personal',
+              'Sandals Design': 'Sandals Design',
+              'Kids Shoes': 'Kids Shoes',
+              'Bags': 'Kids Bags'
+            }
+            
+            const mappedTitle = subcategoryMap[subcategory]
+            return card.title === mappedTitle || card.title === subcategory
+          })
+
+          if (matchingCard) {
+            // Find the matching service detail
+            const matchingDetail = matchingCard.details?.find(detail => 
+              detail.title === service
+            )
+
+            if (matchingDetail) {
+              setSelectedService(matchingCard)
+              setModalOpen(true)
+              
+              // Also open the detail modal for the specific service
+              const detailData = SERVICE_DETAILS[service]
+              if (detailData) {
+                setTimeout(() => {
+                  setSelectedDetail({ ...detailData, parentService: matchingCard })
+                  setDetailModalOpen(true)
+                }, 100)
+              }
+            }
+          }
+        }
+      }
+    }
+  }, [searchParams])
+
   const pageFont = { fontFamily: 'Manrope, system-ui, Arial, sans-serif' }
   const displayFont = { fontFamily: 'Cormorant Garamond, serif' }
 
+  const handleCardClick = (service) => {
+    setSelectedService(service)
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+    setSelectedService(null)
+  }
+
+  const handleServiceClick = (serviceDetail) => {
+    const detail = SERVICE_DETAILS[serviceDetail.title]
+    if (detail) {
+      setSelectedDetail({ ...detail, parentService: selectedService })
+      setDetailModalOpen(true)
+    }
+  }
+
+  const closeDetailModal = () => {
+    setDetailModalOpen(false)
+    setSelectedDetail(null)
+  }
+
   return (
     <div className="min-h-screen bg-white text-black" style={pageFont}>
+      <SEO 
+        title="Furniture Restoration Services Dubai | Luxury Furniture Repair & Antique Restoration"
+        description="Premium furniture restoration services in Dubai. Expert luxury furniture repair, antique restoration, upholstery, and custom design. Transform your furniture with our master craftsmen."
+        keywords="furniture restoration services dubai, luxury furniture repair, antique furniture restoration, upholstery services dubai, custom furniture design, furniture refinishing dubai"
+        url="https://fadedelegance.ae/services"
+        image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
+        structuredData={servicesStructuredData}
+      />
       <Navbar />
 
       {/* Hero */}
@@ -264,7 +1468,11 @@ export default function Services() {
       <main className="max-w-[1120px] mx-auto px-4 sm:px-5 lg:px-8 pb-12 sm:pb-16 lg:pb-24">
         <section className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {current.cards.map((c) => (
-            <ImageCard key={c.title} {...c} />
+            <ImageCard 
+              key={c.title} 
+              {...c} 
+              onClick={() => handleCardClick(c)}
+            />
           ))}
         </section>
 
@@ -288,6 +1496,22 @@ export default function Services() {
           </div>
         </section>
       </main>
+
+      {/* Main Service Modal */}
+      <ServiceModal 
+        isOpen={modalOpen} 
+        onClose={closeModal} 
+        service={selectedService}
+        onServiceClick={handleServiceClick}
+      />
+
+      {/* Service Detail Modal */}
+      <ServiceDetailModal
+        isOpen={detailModalOpen}
+        onClose={closeDetailModal}
+        serviceDetail={selectedDetail}
+        parentService={selectedService}
+      />
 
       <Footer />
     </div>
