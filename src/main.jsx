@@ -90,6 +90,31 @@ createRoot(document.getElementById('root')).render(
                 </Motion.div>
               }
             />
+            <Route
+              path="*"
+              element={
+                <Motion.div
+                  key="not-found"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="min-h-screen bg-black text-white flex items-center justify-center">
+                    <div className="text-center">
+                      <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
+                      <p className="text-xl mb-8">The page you're looking for doesn't exist.</p>
+                      <a 
+                        href="/" 
+                        className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                      >
+                        Go Home
+                      </a>
+                    </div>
+                  </div>
+                </Motion.div>
+              }
+            />
           </Routes>
         </AnimatePresence>
       </RouteLoader>
