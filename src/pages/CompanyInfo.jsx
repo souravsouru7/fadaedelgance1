@@ -78,6 +78,79 @@ const CompanyInfo = () => {
     }
   }
 
+  const handleAddToContacts = () => {
+    const sanitizedPhone = (companyData.phone || '').replace(/\s+/g, '')
+    const httpsWebsite = companyData.website?.startsWith('http')
+      ? companyData.website
+      : `https://${companyData.website}`
+
+    // Build a richer vCard to maximize native contact autofill support on iOS/Android
+    const vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      // Company record
+      `N:;${companyData.companyName};;;`,
+      `FN:${companyData.companyName}`,
+      `ORG:${companyData.companyName}`,
+      'X-ABShowAs:COMPANY',
+      `TITLE:${companyData.companyService}`,
+      `TEL;TYPE=CELL,VOICE,WORK:${sanitizedPhone}`,
+      `EMAIL;TYPE=INTERNET,WORK:${companyData.email}`,
+      `URL:${httpsWebsite}`,
+      // ADR has 7 fields: PO Box;Extended;Street;City;Region;PostalCode;Country
+      'ADR;TYPE=WORK:; ; ;Dubai; ; ;AE',
+      `NOTE:${companyData.companySlogan}`,
+      'END:VCARD'
+    ].join('\r\n')
+
+    const fileName = `${companyData.companyName.replace(/\s+/g, '_')}.vcf`
+    const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' })
+
+    // Try Web Share API with files (best UX on modern mobile browsers)
+    const tryWebShare = async () => {
+      try {
+        const file = new File([blob], fileName, { type: 'text/vcard' })
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: 'Add contact' })
+          return true
+        }
+      } catch {
+        // Ignore and fall through
+      }
+      return false
+    }
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent || ''
+    )
+
+    const openOrDownloadVcf = async () => {
+      const objectUrl = URL.createObjectURL(blob)
+
+      // On mobile, opening the object URL directly usually triggers the native contacts app
+      if (isMobile) {
+        const shared = await tryWebShare()
+        if (!shared) {
+          // Direct open to prompt contacts app (iOS/Android)
+          window.location.href = objectUrl
+        }
+      } else {
+        // Desktop: download the file
+        const link = document.createElement('a')
+        link.href = objectUrl
+        link.download = fileName
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      }
+
+      // Revoke shortly after navigation/click
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 4000)
+    }
+
+    openOrDownloadVcf()
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
       <SEO 
@@ -251,6 +324,32 @@ const CompanyInfo = () => {
                       <div className="text-left">
                         <p className="text-gray-500 text-sm">Website</p>
                         <p className="text-gray-800 font-semibold group-hover:text-green-600 transition-colors">{companyData.website}</p>
+                      </div>
+                    </div>
+                  </button>
+
+                  <button 
+                    onClick={handleAddToContacts}
+                    onMouseEnter={() => setActiveCard('addcontact')}
+                    onMouseLeave={() => setActiveCard(null)}
+                    className={`w-full group relative overflow-hidden rounded-2xl p-4 transition-all duration-300 ${
+                      activeCard === 'addcontact' 
+                        ? 'bg-gradient-to-r from-amber-100 to-yellow-100 border border-amber-300' 
+                        : 'bg-white/50 hover:bg-white/80 border border-white/30'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                        activeCard === 'addcontact' ? 'bg-gradient-to-r from-amber-400 to-yellow-400 scale-110' : 'bg-amber-100'
+                      }`}>
+                        <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 11-4 0 2 2 0 014 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5m-2.5-2.5V22M5.121 17.804A7 7 0 1118 9m-7 12a7 7 0 01-5.879-3.196" />
+                        </svg>
+                      </div>
+                      <div className="text-left">
+                        <p className="text-gray-500 text-sm">Contacts</p>
+                        <p className="text-gray-800 font-semibold group-hover:text-amber-600 transition-colors">Add to Contacts</p>
                       </div>
                     </div>
                   </button>
