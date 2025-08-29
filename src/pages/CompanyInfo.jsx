@@ -127,12 +127,28 @@ const CompanyInfo = () => {
     const openOrDownloadVcf = async () => {
       const objectUrl = URL.createObjectURL(blob)
 
-      // On mobile, opening the object URL directly usually triggers the native contacts app
       if (isMobile) {
         const shared = await tryWebShare()
         if (!shared) {
-          // Direct open to prompt contacts app (iOS/Android)
-          window.location.href = objectUrl
+          // Create a temporary link element to trigger the contacts app
+          // This opens the contact form with pre-filled information
+          const tempLink = document.createElement('a')
+          tempLink.href = objectUrl
+          tempLink.style.display = 'none'
+          document.body.appendChild(tempLink)
+          
+          // Click the link to open contacts app with pre-filled form
+          tempLink.click()
+          
+          // Clean up
+          document.body.removeChild(tempLink)
+          
+          // Show a helpful message to the user
+          setTimeout(() => {
+            if (confirm('Contact form opened with pre-filled details!\n\nReview the information and choose:\n• "OK" to continue with the contact form\n• "Cancel" to close this message\n\nYou can then decide whether to save or cancel in the contacts app.')) {
+              // User acknowledged
+            }
+          }, 1000)
         }
       } else {
         // Desktop: download the file
@@ -349,7 +365,7 @@ const CompanyInfo = () => {
                       </div>
                       <div className="text-left">
                         <p className="text-gray-500 text-sm">Contacts</p>
-                        <p className="text-gray-800 font-semibold group-hover:text-amber-600 transition-colors">Add to Contacts</p>
+                        <p className="text-gray-800 font-semibold group-hover:text-amber-600 transition-colors">Auto-fill Contact Form</p>
                       </div>
                     </div>
                   </button>
