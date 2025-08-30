@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function WorkProcess() {
+  const navigate = useNavigate()
+  
   // Page-scoped premium fonts (match Services page)
   useEffect(() => {
     const link = document.createElement('link')
@@ -12,6 +15,18 @@ export default function WorkProcess() {
 
   const pageFont = { fontFamily: 'Manrope, system-ui, Arial, sans-serif' }
   const displayFont = { fontFamily: 'Cormorant Garamond, serif' }
+  
+  // Navigation functions
+  const handleBookConsultation = () => {
+    navigate('/contact')
+    window.scrollTo(0, 0)
+  }
+  
+  const handleLearnMore = () => {
+    navigate('/about')
+    window.scrollTo(0, 0)
+  }
+  
   const processSteps = [
     { number: '01', title: 'CONSULTATION', description: 'Tell us about your item and goal.', icon: '💬', color: 'from-[#D89F30] to-[#F4B942]' },
     { number: '02', title: 'ASSESSMENT', description: 'We review material and condition.', icon: '🔍', color: 'from-[#F4B942] to-[#D89F30]' },
@@ -22,7 +37,7 @@ export default function WorkProcess() {
   ]
 
   return (
-    <section className="relative py-10 lg:py-14 overflow-hidden bg-white text-black" style={pageFont}>
+    <section id="work" className="relative py-10 lg:py-14 overflow-hidden bg-white text-black" style={pageFont}>
       {/* Subtle background like Services */}
       <div className="pointer-events-none absolute inset-0" style={{
         background: 'radial-gradient(60% 50% at 20% -10%, rgba(0,0,0,0.05), transparent 60%), radial-gradient(50% 40% at 100% 120%, rgba(0,0,0,0.05), transparent 60%)'
@@ -106,10 +121,10 @@ export default function WorkProcess() {
               Begin with a consultation and let us transform your cherished items into timeless treasures.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <button className="px-5 lg:px-7 py-2 rounded-full text-xs lg:text-sm font-semibold text-white bg-black hover:bg-black/90 transition-colors">
+              <button onClick={handleBookConsultation} className="px-5 lg:px-7 py-2 rounded-full text-xs lg:text-sm font-semibold text-white bg-black hover:bg-black/90 transition-colors">
                 Book Consultation
               </button>
-              <button className="px-5 lg:px-7 py-2 rounded-full text-xs lg:text-sm font-semibold border border-black/20 hover:border-black">
+              <button onClick={handleLearnMore} className="px-5 lg:px-7 py-2 rounded-full text-xs lg:text-sm font-semibold border border-black/20 hover:border-black">
                 Learn More
               </button>
             </div>

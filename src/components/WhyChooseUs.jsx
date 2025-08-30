@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
   ]
 
   return (
-    <section className="relative py-10 lg:py-12 bg-white text-black" style={pageFont}>
+    <section id="services" className="relative py-10 lg:py-12 bg-white text-black" style={pageFont}>
       <div className="pointer-events-none absolute inset-0" style={{
         background: 'radial-gradient(60% 50% at 20% -10%, rgba(0,0,0,0.05), transparent 60%), radial-gradient(50% 40% at 100% 120%, rgba(0,0,0,0.05), transparent 60%)'
       }} />

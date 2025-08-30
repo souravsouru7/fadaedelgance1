@@ -1,7 +1,23 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const navigate = useNavigate()
+
+  // Function to scroll to sections on the home page
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  // Function to navigate to pages
+  const navigateToPage = (path) => {
+    navigate(path)
+    window.scrollTo(0, 0)
+  }
 
   return (
     <footer className="relative overflow-hidden">
@@ -67,10 +83,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-medium mb-4" style={{ fontFamily: '"Cormorant Garamond", serif' }}>Services</h4>
             <ul className="space-y-3 text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
-              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Handbag Restoration</a></li>
-              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Footwear Care</a></li>
-              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Color Refinishing</a></li>
-              <li><a href="#services" className="link text-gray-300 hover:text-white transition-colors">Deep Cleaning</a></li>
+              <li><button onClick={() => navigateToPage('/services')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Handbag Restoration</button></li>
+              <li><button onClick={() => navigateToPage('/services')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Footwear Care</button></li>
+              <li><button onClick={() => navigateToPage('/services')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Color Refinishing</button></li>
+              <li><button onClick={() => navigateToPage('/services')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Deep Cleaning</button></li>
             </ul>
           </div>
 
@@ -78,10 +94,11 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-medium mb-4" style={{ fontFamily: '"Cormorant Garamond", serif' }}>Company</h4>
             <ul className="space-y-3 text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
-              <li><a href="#about" className="link text-gray-300 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#contact" className="link text-gray-300 hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#faq" className="link text-gray-300 hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="#work" className="link text-gray-300 hover:text-white transition-colors">Our Process</a></li>
+              <li><button onClick={() => navigateToPage('/about')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">About Us</button></li>
+              <li><button onClick={() => navigateToPage('/contact')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Contact</button></li>
+              <li><button onClick={() => navigateToPage('/company-info')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Company Info</button></li>
+              <li><button onClick={() => scrollToSection('faq')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">FAQ</button></li>
+              <li><button onClick={() => scrollToSection('work')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Our Process</button></li>
             </ul>
           </div>
 
@@ -92,11 +109,11 @@ export default function Footer() {
               <a href="https://wa.me/971545770967" target="_blank" rel="noreferrer" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
                 <svg className="h-5 w-5 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.9 11.9 0 0012.06 0C5.53.03.27 5.29.3 11.82a11.77 11.77 0 001.62 6.05L0 24l6.31-1.65a11.85 11.85 0 005.69 1.47h.01c6.53 0 11.79-5.26 11.82-11.79a11.75 11.75 0 00-3.31-8.55zM12 21.17h-.01a9.8 9.8 0 01-5.01-1.37l-.36-.21-3.74.98 1-3.65-.24-.37A9.73 9.73 0 012.2 11.8C2.18 6.47 6.55 2.1 11.88 2.08a9.7 9.7 0 016.93 2.86 9.66 9.66 0 012.83 6.95c-.02 5.33-4.39 9.68-9.64 9.68zm5.53-7.26c-.3-.15-1.77-.88-2.04-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.94 1.18-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47a9.01 9.01 0 01-1.67-2.06c-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.53.08-.81.38-.27.3-1.06 1.04-1.06 2.54s1.08 2.94 1.23 3.14c.15.2 2.13 3.24 5.16 4.54.72.31 1.29.49 1.73.63.73.23 1.4.2 1.93.12.59-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35z"/></svg>
               </a>
-              <a href="#" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
-                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 001.88-2.36 8.55 8.55 0 01-2.71 1.04 4.27 4.27 0 00-7.27 3.89A12.12 12.12 0 013 4.89a4.26 4.26 0 001.32 5.69 4.24 4.24 0 01-1.94-.54v.06a4.27 4.27 0 003.43 4.18 4.3 4.3 0 01-1.93.07 4.27 4.27 0 003.98 2.96A8.57 8.57 0 012 19.54a12.08 12.08 0 006.56 1.92c7.87 0 12.18-6.52 12.18-12.18 0-.19 0-.39-.01-.58A8.7 8.7 0 0024 5.5c-.7.31-1.46.52-2.26.6z"/></svg>
+              <a href="https://instagram.com/fadedelegance" target="_blank" rel="noreferrer" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
+                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </a>
-              <a href="#" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
-                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 2.86 8.15 6.83 9.48.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.16-3.37-1.16-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.61.07-.61 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.33 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.02-2.68-.1-.25-.44-1.28.1-2.67 0 0 .83-.27 2.74 1.02A9.55 9.55 0 0112 6.8c.85 0 1.7.11 2.5.33 1.9-1.3 2.73-1.02 2.73-1.02.54 1.39.2 2.42.1 2.67.63.7 1.02 1.59 1.02 2.68 0 3.83-2.34 4.67-4.57 4.92.36.31.68.93.68 1.88 0 1.36-.01 2.46-.01 2.79 0 .26.18.58.69.48A10 10 0 0022 12c0-5.5-4.46-9.96-9.96-9.96z"/></svg>
+              <a href="https://facebook.com/fadedelegance" target="_blank" rel="noreferrer" className="h-10 w-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-colors">
+                <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </a>
             </div>
           </div>
@@ -107,8 +124,8 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-xs lg:text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>© {currentYear} Faded Elegance. All rights reserved.</p>
             <div className="flex items-center gap-6 text-xs lg:text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
+              <button onClick={() => window.open('/privacy-policy', '_blank')} className="text-gray-300 hover:text-white transition-colors">Privacy Policy</button>
+              <button onClick={() => window.open('/terms-of-service', '_blank')} className="text-gray-300 hover:text-white transition-colors">Terms of Service</button>
             </div>
           </div>
         </div>

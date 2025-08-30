@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 const servicesData = [
   {
@@ -121,16 +121,14 @@ const servicesData = [
 
 export default function Navbar() {
   const navigate = useNavigate()
-  const location = useLocation()
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   
-  // Check if current page should use golden navbar
-  const isGoldenNavbar = location.pathname === '/about' || location.pathname === '/contact'
-  const navTextClass = isGoldenNavbar ? 'gold-text' : 'text-black'
-  const navBorderClass = isGoldenNavbar ? 'border-[#D89F30]' : 'border-black'
-  const navHoverClass = isGoldenNavbar ? 'hover:border-[#D89F30]/60' : 'hover:border-black/60'
+  // Use black color for navbar on all pages
+  const navTextClass = 'text-black'
+  const navBorderClass = 'border-black'
+  const navHoverClass = 'hover:border-black/60'
 
   // Function to handle service navigation
   const handleServiceClick = (category, subcategory, service) => {
@@ -139,7 +137,7 @@ export default function Navbar() {
     setMobileOpen(false)
     
     // Navigate to services page with parameters
-    navigate(`/services?category=${category}&subcategory=${subcategory}&service=${encodeURIComponent(service)}`)
+    navigate(`/services?category=${category}&subcategory=${encodeURIComponent(subcategory)}&service=${encodeURIComponent(service)}`)
   }
   
   return (
@@ -150,7 +148,7 @@ export default function Navbar() {
           <img 
             src="/fenav.png" 
             alt="Faded Elegance Logo" 
-            className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
+            className="w-20 h-20 lg:w-24 lg:h-24 object-contain"
           />
         </Link>
       </div>
@@ -230,9 +228,12 @@ export default function Navbar() {
           </div>
         </div>
         <span className="text-black/30 text-sm lg:text-base font-bold">|</span>
-        <a href="#" className={`luxury-nav ${navTextClass} hover:opacity-90 transition-opacity duration-300 font-bold text-xs lg:text-sm tracking-wide`}>
+        <NavLink
+          to="/gallery"
+          className={({ isActive }) => `luxury-nav ${navTextClass} hover:opacity-90 transition-opacity duration-300 pb-0.5 font-bold text-xs lg:text-sm tracking-wide ${isActive ? `border-b-2 ${navBorderClass}` : `border-b-2 border-transparent ${navHoverClass}`}`}
+        >
           GALLERY
-        </a>
+        </NavLink>
         <span className="text-black/30 text-sm lg:text-base font-bold">|</span>
         <NavLink
           to="/contact"
@@ -272,8 +273,30 @@ export default function Navbar() {
 
       {/* Mobile panel */}
       {mobileOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur border-t border-[#D89F30]/30 shadow-xl z-40">
-          <div className="p-4 space-y-2">
+        <div className="lg:hidden fixed inset-0 top-0 left-0 right-0 bottom-0 bg-white/95 backdrop-blur z-50">
+          <div className="flex flex-col h-full">
+            {/* Header with close button */}
+            <div className="flex justify-between items-center p-4 border-b border-[#D89F30]/30">
+              <div className="flex items-center">
+                <img 
+                  src="/fenav.png" 
+                  alt="Faded Elegance Logo" 
+                  className="w-16 h-16 object-contain"
+                />
+              </div>
+              <button
+                className="text-[#D89F30] p-2"
+                aria-label="Close menu"
+                onClick={() => setMobileOpen(false)}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Navigation content */}
+            <div className="flex-1 p-4 space-y-2 overflow-y-auto">
             <NavLink to="/" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Home</NavLink>
             <NavLink to="/about" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>About</NavLink>
             <button
@@ -316,9 +339,10 @@ export default function Navbar() {
                 ))}
               </div>
             )}
-            <a href="#" className="block luxury-nav text-black text-sm py-2">Gallery</a>
+            <NavLink to="/gallery" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Gallery</NavLink>
             <NavLink to="/contact" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Contact Us</NavLink>
             <a href="tel:+971000000000" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D89F30] text-black font-semibold shadow-sm mt-2">Quick Call</a>
+            </div>
           </div>
         </div>
       )}

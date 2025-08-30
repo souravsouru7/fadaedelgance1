@@ -68,7 +68,7 @@ export default function About() {
             </div>
             <div>
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
-                <p className="text-neutral-800 text-sm lg:text-base leading-relaxed">
+                <p className="text-neutral-800 text-[13px] sm:text-[14px] leading-relaxed">
                   At Faded Elegance, we believe every luxury item deserves a second chance to shine. Our mission is to bring your treasured
                   pieces back to life with care, precision, and creativity.
                 </p>
@@ -80,7 +80,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
-                <p className="text-neutral-800 text-sm lg:text-base leading-relaxed">
+                <p className="text-neutral-800 text-[13px] sm:text-[14px] leading-relaxed">
                   With years of expertise in leather care, color restoration, stitching, and custom artistry, we offer a unique blend of craftsmanship and passion.
                 </p>
               </div>
@@ -111,7 +111,7 @@ export default function About() {
             </div>
             <div>
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
-                <p className="text-neutral-800 text-sm lg:text-base leading-relaxed">
+                <p className="text-neutral-800 text-[13px] sm:text-[14px] leading-relaxed">
                   Designer shoes, or adding custom patterns to your sneakers — we do it with the same dedication as if it were our own.
                 </p>
               </div>
@@ -130,19 +130,19 @@ export default function About() {
               <div className="h-px w-10 bg-black/10 mb-3"></div>
               <div className="text-2xl">✅</div>
               <h3 className="text-black text-base lg:text-lg mt-3 mb-2">Restore beauty without compromising quality</h3>
-              <p className="text-neutral-700 text-xs lg:text-sm">Every restoration honors the original craftsmanship while elevating finish and feel.</p>
+              <p className="text-neutral-700 text-[12px] sm:text-[13px]">Every restoration honors the original craftsmanship while elevating finish and feel.</p>
             </div>
             <div className="rounded-2xl p-6 lg:p-8 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-black/20">
               <div className="h-px w-10 bg-black/10 mb-3"></div>
               <div className="text-2xl">🧴</div>
               <h3 className="text-black text-base lg:text-lg mt-3 mb-2">Use safe, premium-grade materials</h3>
-              <p className="text-neutral-700 text-xs lg:text-sm">We source professional, material-safe solutions trusted by luxury houses.</p>
+              <p className="text-neutral-700 text-[12px] sm:text-[13px]">We source professional, material-safe solutions trusted by luxury houses.</p>
             </div>
             <div className="rounded-2xl p-6 lg:p-8 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-black/20">
               <div className="h-px w-10 bg-black/10 mb-3"></div>
               <div className="text-2xl">🌟</div>
               <h3 className="text-black text-base lg:text-lg mt-3 mb-2">Deliver results that exceed expectations</h3>
-              <p className="text-neutral-700 text-xs lg:text-sm">Meticulous checks ensure color, texture, and finish look stunning and last.</p>
+              <p className="text-neutral-700 text-[12px] sm:text-[13px]">Meticulous checks ensure color, texture, and finish look stunning and last.</p>
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function About() {
         <div className="text-center">
           <div className="inline-block px-10 py-10 lg:px-12 lg:py-12 rounded-2xl border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.10)] transition-transform duration-300 hover:scale-[1.01] hover:border-black/20">
             <h3 className="text-xl lg:text-2xl mb-6 font-light" style={displayFont}>Ready to restore your favorite piece?</h3>
-            <p className="text-neutral-700 mb-8 max-w-2xl mx-auto text-sm lg:text-base">Start with a quick consultation and let our artisans guide you through the best options.</p>
+            <p className="text-neutral-700 mb-8 max-w-2xl mx-auto text-[13px] sm:text-[14px]">Start with a quick consultation and let our artisans guide you through the best options.</p>
             <a href="#contact" className="bg-black text-white px-8 py-3 rounded-full font-medium inline-block text-sm lg:text-base border border-black hover:bg-white hover:text-black transition-colors">
               ENQUIRE NOW
             </a>

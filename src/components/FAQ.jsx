@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function FAQ() {
+  const navigate = useNavigate()
   const [openIndex, setOpenIndex] = useState(null)
 
   // Page-scoped premium fonts (match Services page)
@@ -15,6 +17,12 @@ export default function FAQ() {
   const pageFont = { fontFamily: 'Manrope, system-ui, Arial, sans-serif' }
   const displayFont = { fontFamily: 'Cormorant Garamond, serif' }
 
+  // Navigation function
+  const handleContactUs = () => {
+    navigate('/contact')
+    window.scrollTo(0, 0)
+  }
+
   const faqs = [
     { question: 'How long does the repair or restoration take?', answer: "Depending on the service, it usually takes 3–7 working days. We'll confirm the exact time after assessment." },
     { question: 'Can you restore all types of leather?', answer: 'Yes, we work on most types of leather and similar materials, ensuring proper care for each.' },
@@ -28,7 +36,7 @@ export default function FAQ() {
   }
 
   return (
-    <section className="relative py-10 lg:py-14 overflow-hidden bg-white text-black" style={pageFont}>
+    <section id="faq" className="relative py-10 lg:py-14 overflow-hidden bg-white text-black" style={pageFont}>
       {/* Subtle background like Services */}
       <div className="pointer-events-none absolute inset-0" style={{
         background: 'radial-gradient(60% 50% at 20% -10%, rgba(0,0,0,0.05), transparent 60%), radial-gradient(50% 40% at 100% 120%, rgba(0,0,0,0.05), transparent 60%)'
@@ -102,11 +110,8 @@ export default function FAQ() {
               Our expert team is here to help. Contact us for personalized assistance.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <button className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold text-white bg-black hover:bg-black/90 transition-colors">
+              <button onClick={handleContactUs} className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold text-white bg-black hover:bg-black/90 transition-colors">
                 Contact Us
-              </button>
-              <button className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold border border-black/20 hover:border-black">
-                WhatsApp Us
               </button>
             </div>
           </div>

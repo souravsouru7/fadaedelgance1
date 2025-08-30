@@ -7,9 +7,11 @@ import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
 import Contact from './pages/Contact.jsx'
 import CompanyInfo from './pages/CompanyInfo.jsx'
+import Gallery from './pages/Gallery.jsx'
 import RouteLoader from './components/RouteLoader.jsx'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
 import FloatingContact from './components/FloatingContact.jsx'
+import Watermark from './components/Watermark.jsx'
 import { HelmetProvider } from '@dr.pogodin/react-helmet'
 
 createRoot(document.getElementById('root')).render(
@@ -17,6 +19,7 @@ createRoot(document.getElementById('root')).render(
     <HelmetProvider>
       <BrowserRouter>
         <RouteLoader>
+          <Watermark />
           <FloatingContact />
           <AnimatePresence mode="wait">
           <Routes>
@@ -73,6 +76,20 @@ createRoot(document.getElementById('root')).render(
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Contact />
+                </Motion.div>
+              }
+            />
+            <Route
+              path="/gallery"
+              element={
+                <Motion.div
+                  key="gallery"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Gallery />
                 </Motion.div>
               }
             />

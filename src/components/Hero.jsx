@@ -1,7 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 
 export default function Hero() {
+  const navigate = useNavigate()
+
+  const handleWhoWeAre = () => {
+    navigate('/about')
+  }
+
+  const handleEnquireNow = () => {
+    navigate('/contact')
+  }
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Video Background */}
@@ -30,21 +41,33 @@ export default function Hero() {
               <img 
                 src="/fetext.png" 
                 alt="Faded Elegance" 
-                className="w-full max-w-md lg:max-w-xl h-auto object-contain mx-auto lg:mx-0"
+                className="w-full max-w-lg lg:max-w-2xl h-auto object-contain mx-auto lg:mx-0"
               />
             </div>
 
             {/* Subtitle */}
-            <p className="luxury-subtitle text-lg lg:text-xl mb-6 lg:mb-8 text-white px-4 lg:px-0 text-center max-w-md lg:max-w-xl mx-auto lg:mx-0">
-              WHERE LUXURY IS REBORN
-            </p>
+            <div className="mb-6 lg:mb-8">
+              <p className="luxury-subtitle text-lg lg:text-xl mb-2 text-white px-4 lg:px-0 text-center max-w-md lg:max-w-xl mx-auto lg:mx-0">
+                WHERE LUXURY IS REBORN
+              </p>
+              
+              <p className="luxury-subtitle text-base lg:text-lg text-white px-4 lg:px-0 text-center max-w-md lg:max-w-xl mx-auto lg:mx-0 opacity-90">
+                premium luther restoation
+              </p>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center px-4 lg:px-0 max-w-md lg:max-w-xl mx-auto lg:mx-0">
-              <button className="luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 text-sm lg:text-base font-semibold">
+              <button 
+                onClick={handleWhoWeAre}
+                className="luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 text-sm lg:text-base font-semibold cursor-pointer"
+              >
                 WHO WE ARE
               </button>
-              <button className="luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 text-sm lg:text-base font-semibold">
+              <button 
+                onClick={handleEnquireNow}
+                className="luxury-button bg-gradient-to-r from-[#D89F30] to-[#734918] text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 text-sm lg:text-base font-semibold cursor-pointer"
+              >
                 ENQUIRE NOW
               </button>
             </div>

@@ -1311,6 +1311,8 @@ export default function Services() {
     const subcategory = searchParams.get('subcategory')
     const service = searchParams.get('service')
 
+    console.log('URL Parameters:', { category, subcategory, service })
+
     if (category && subcategory && service) {
       // Map navbar categories to tab keys
       const categoryMap = {
@@ -1320,31 +1322,23 @@ export default function Services() {
       }
 
       const tabKey = categoryMap[category]
+      console.log('Tab Key:', tabKey)
+      
       if (tabKey) {
         setActive(tabKey)
         
         // Find the matching service card
         const tab = TABS.find(t => t.key === tabKey)
         if (tab) {
+          console.log('Available cards:', tab.cards.map(c => c.title))
           const matchingCard = tab.cards.find(card => {
-            // Map subcategory names to card titles
-            const subcategoryMap = {
-              'Handbag': 'Handbag Restoration',
-              'Shoes (Women\'s & Men\'s)': 'Shoes (Men & Women)',
-              'Shoes': 'Shoes (Men & Women)',
-              'Wallet': 'Wallet Detailing',
-              'Sandals': 'Sandals Care',
-              'Handbag Custom': 'Handbag Custom',
-              'Bespoke Shoes': 'Bespoke Shoes',
-              'Wallet Personal': 'Wallet Personal',
-              'Sandals Design': 'Sandals Design',
-              'Kids Shoes': 'Kids Shoes',
-              'Bags': 'Kids Bags'
-            }
-            
-            const mappedTitle = subcategoryMap[subcategory]
-            return card.title === mappedTitle || card.title === subcategory
+            // Direct comparison with decoded subcategory
+            const matches = card.title === subcategory
+            console.log(`Comparing "${card.title}" with "${subcategory}": ${matches}`)
+            return matches
           })
+
+          console.log('Matching card:', matchingCard)
 
           if (matchingCard) {
             // Find the matching service detail
@@ -1352,18 +1346,33 @@ export default function Services() {
               detail.title === service
             )
 
+            console.log('Matching detail:', matchingDetail)
+
             if (matchingDetail) {
-              setSelectedService(matchingCard)
-              setModalOpen(true)
-              
-              // Also open the detail modal for the specific service
+              // Check if the service detail exists in SERVICE_DETAILS
               const detailData = SERVICE_DETAILS[service]
+              
               if (detailData) {
+                // Use a timeout to ensure proper state management
                 setTimeout(() => {
+                  setSelectedService(matchingCard)
                   setSelectedDetail({ ...detailData, parentService: matchingCard })
                   setDetailModalOpen(true)
+                  setModalOpen(false) // Close service modal since we're opening detail directly
+                }, 100)
+              } else {
+                // Fallback: just open the service modal
+                setTimeout(() => {
+                  setSelectedService(matchingCard)
+                  setModalOpen(true)
                 }, 100)
               }
+            } else {
+              // If no specific service detail found, just open the service card
+              setTimeout(() => {
+                setSelectedService(matchingCard)
+                setModalOpen(true)
+              }, 100)
             }
           }
         }
@@ -1421,7 +1430,7 @@ export default function Services() {
                 Care. Restore. Customize.
               </h1>
               <p className="mt-3 sm:mt-4 max-w-xl text-[13px] sm:text-[14px] text-neutral-700">
-                Premium restoration and bespoke customization for handbags, shoes, wallets, and more.
+                Premium leather restoration and bespoke customization for handbags, shoes, wallets, and more.
               </p>
 
               {/* Tabs */}
