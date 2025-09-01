@@ -152,7 +152,7 @@ export default function About() {
           <div className="inline-block px-10 py-10 lg:px-12 lg:py-12 rounded-2xl border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.10)] transition-transform duration-300 hover:scale-[1.01] hover:border-black/20">
             <h3 className="text-xl lg:text-2xl mb-6 font-light" style={displayFont}>Ready to restore your favorite piece?</h3>
             <p className="text-neutral-700 mb-8 max-w-2xl mx-auto text-[13px] sm:text-[14px]">Start with a quick consultation and let our artisans guide you through the best options.</p>
-            <a href="#contact" className="bg-black text-white px-8 py-3 rounded-full font-medium inline-block text-sm lg:text-base border border-black hover:bg-white hover:text-black transition-colors">
+            <a href="/contact" className="bg-black text-white px-8 py-3 rounded-full font-medium inline-block text-sm lg:text-base border border-black hover:bg-white hover:text-black transition-colors">
               ENQUIRE NOW
             </a>
           </div>
