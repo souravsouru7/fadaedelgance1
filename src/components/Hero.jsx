@@ -52,7 +52,7 @@ export default function Hero() {
               </p>
               
               <p className="luxury-subtitle text-base lg:text-lg text-white px-4 lg:px-0 text-center max-w-md lg:max-w-xl mx-auto lg:mx-0 opacity-90">
-                premium luther restoation
+                premium leather restoation
               </p>
             </div>
 

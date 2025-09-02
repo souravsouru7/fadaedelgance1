@@ -73,7 +73,7 @@ export default function Contact() {
                   {/* Visit Us */}
                   <div className="flex items-center gap-4 group">
                     <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
-                      🏛️
+                      📍
                     </div>
                     <div>
                       <h3 className="text-black font-medium mb-1">Visit Us</h3>
@@ -91,7 +91,7 @@ export default function Contact() {
                   {/* Call / WhatsApp */}
                   <div className="flex items-center gap-4 group">
                     <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
-                      💎
+                      📞
                     </div>
                     <div>
                       <h3 className="text-black font-medium mb-1">Call / WhatsApp</h3>
@@ -102,7 +102,7 @@ export default function Contact() {
                   {/* Email */}
                   <div className="flex items-center gap-4 group">
                     <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
-                      ✨
+                      ✉️
                     </div>
                     <div>
                       <h3 className="text-black font-medium mb-1">Email</h3>
@@ -113,7 +113,7 @@ export default function Contact() {
                   {/* Business Hours */}
                   <div className="flex items-center gap-4 group">
                     <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform">
-                      ⏰
+                      🕒
                     </div>
                     <div>
                       <h3 className="text-black font-medium mb-1">Business Hours</h3>
@@ -129,27 +129,27 @@ export default function Contact() {
                 <div className="mt-auto pt-8">
                   <div className="bg-white rounded-xl p-4 border border-black/10 shadow-sm">
                     <h3 className="text-lg font-medium mb-3 text-center" style={displayFont}>Find Us</h3>
-                    <div className="aspect-video w-full rounded-lg overflow-hidden relative bg-gradient-to-br from-neutral-100 to-neutral-200">
-                      <img 
-                        src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-                        alt="Dubai Map"
-                        className="w-full h-full object-cover opacity-90"
-                      />
-                      
-                      {/* Location overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center">
-                          <a 
-                            href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="bg-black text-white px-4 py-2 rounded-lg font-medium text-sm inline-block hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-black/25"
-                          >
-                            🏛️ View Map
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+                                         <div className="aspect-video w-full rounded-lg overflow-hidden relative bg-gradient-to-br from-neutral-100 to-neutral-200">
+                                               <img 
+                          src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                          alt="Dubai Map"
+                          className="w-full h-full object-cover opacity-90"
+                        />
+                       
+                       {/* Location overlay */}
+                       <div className="absolute inset-0 flex items-center justify-center">
+                         <div className="text-center">
+                           <a 
+                             href="https://maps.app.goo.gl/zFidmBYZ8mU5ytB69" 
+                             target="_blank" 
+                             rel="noopener noreferrer"
+                             className="bg-black text-white px-4 py-2 rounded-lg font-medium text-sm inline-block hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-black/25"
+                           >
+                             📍 View Map
+                           </a>
+                         </div>
+                       </div>
+                     </div>
                   </div>
                 </div>
               </div>
