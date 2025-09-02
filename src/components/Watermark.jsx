@@ -7,68 +7,95 @@ const Watermark = () => {
       <div 
         className="absolute inset-0 flex items-center justify-center opacity-[0.04] transform -rotate-45 scale-150"
         style={{
-          fontSize: 'clamp(8rem, 20vw, 20rem)',
-          fontWeight: 100,
-          letterSpacing: '0.1em',
-          color: '#000000',
-          fontFamily: 'Cormorant Garamond, serif'
+          width: '100%',
+          height: '100%'
         }}
       >
-        Faded Elegance
+        <img
+          src="/bck.png"
+          alt="Faded Elegance watermark"
+          className="max-w-none select-none"
+          style={{
+            width: 'clamp(30rem, 60vw, 80rem)',
+            height: 'auto',
+            filter: 'grayscale(100%)',
+            opacity: 1
+          }}
+        />
       </div>
       
       {/* Additional smaller watermarks for coverage */}
       <div 
         className="absolute top-1/4 left-1/4 opacity-[0.03] transform rotate-12 scale-75"
         style={{
-          fontSize: 'clamp(4rem, 10vw, 10rem)',
-          fontWeight: 100,
-          letterSpacing: '0.1em',
-          color: '#000000',
-          fontFamily: 'Cormorant Garamond, serif'
+          width: 'clamp(12rem, 25vw, 28rem)'
         }}
       >
-        Faded Elegance
+        <img
+          src="/bck.png"
+          alt="Faded Elegance watermark"
+          className="max-w-none select-none"
+          style={{
+            width: '100%',
+            height: 'auto',
+            filter: 'grayscale(100%)'
+          }}
+        />
       </div>
       
       <div 
         className="absolute bottom-1/4 right-1/4 opacity-[0.03] transform -rotate-12 scale-75"
         style={{
-          fontSize: 'clamp(4rem, 10vw, 10rem)',
-          fontWeight: 100,
-          letterSpacing: '0.1em',
-          color: '#000000',
-          fontFamily: 'Cormorant Garamond, serif'
+          width: 'clamp(12rem, 25vw, 28rem)'
         }}
       >
-        Faded Elegance
+        <img
+          src="/bck.png"
+          alt="Faded Elegance watermark"
+          className="max-w-none select-none"
+          style={{
+            width: '100%',
+            height: 'auto',
+            filter: 'grayscale(100%)'
+          }}
+        />
       </div>
       
       {/* Corner watermarks */}
       <div 
         className="absolute top-8 left-8 opacity-[0.025] transform rotate-45 scale-50"
         style={{
-          fontSize: 'clamp(2rem, 5vw, 5rem)',
-          fontWeight: 100,
-          letterSpacing: '0.1em',
-          color: '#000000',
-          fontFamily: 'Cormorant Garamond, serif'
+          width: 'clamp(8rem, 15vw, 16rem)'
         }}
       >
-        Faded Elegance
+        <img
+          src="/bck.png"
+          alt="Faded Elegance watermark"
+          className="max-w-none select-none"
+          style={{
+            width: '100%',
+            height: 'auto',
+            filter: 'grayscale(100%)'
+          }}
+        />
       </div>
       
       <div 
         className="absolute bottom-8 right-8 opacity-[0.025] transform -rotate-45 scale-50"
         style={{
-          fontSize: 'clamp(2rem, 5vw, 5rem)',
-          fontWeight: 100,
-          letterSpacing: '0.1em',
-          color: '#000000',
-          fontFamily: 'Cormorant Garamond, serif'
+          width: 'clamp(8rem, 15vw, 16rem)'
         }}
       >
-        Faded Elegance
+        <img
+          src="/bck.png"
+          alt="Faded Elegance watermark"
+          className="max-w-none select-none"
+          style={{
+            width: '100%',
+            height: 'auto',
+            filter: 'grayscale(100%)'
+          }}
+        />
       </div>
     </div>
   )

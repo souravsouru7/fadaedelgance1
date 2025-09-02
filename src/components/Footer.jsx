@@ -5,14 +5,6 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   const navigate = useNavigate()
 
-  // Function to scroll to sections on the home page
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   // Function to navigate to pages
   const navigateToPage = (path) => {
     navigate(path)
@@ -96,9 +88,8 @@ export default function Footer() {
             <ul className="space-y-3 text-sm" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
               <li><button onClick={() => navigateToPage('/about')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">About Us</button></li>
               <li><button onClick={() => navigateToPage('/contact')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Contact</button></li>
-              <li><button onClick={() => navigateToPage('/company-info')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Company Info</button></li>
-              <li><button onClick={() => scrollToSection('faq')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">FAQ</button></li>
-              <li><button onClick={() => scrollToSection('work')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Our Process</button></li>
+              <li><button onClick={() => navigateToPage('/services')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Services</button></li>
+              <li><button onClick={() => navigateToPage('/gallery')} className="link text-gray-300 hover:text-white transition-colors text-left w-full">Gallery</button></li>
             </ul>
           </div>
 

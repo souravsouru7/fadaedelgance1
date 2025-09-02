@@ -8,6 +8,7 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import SEO from './components/SEO'
 import SEOOptimizer from './components/SEOOptimizer'
+import Watermark from './components/Watermark'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -65,10 +66,11 @@ function App() {
           <Loading />
         </div>
       )}
-      
-    
+      {/* Background watermark */}
+      <Watermark />
+
       <div 
-        className={`transition-opacity duration-700 ${
+        className={`relative z-10 transition-opacity duration-700 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
       >
