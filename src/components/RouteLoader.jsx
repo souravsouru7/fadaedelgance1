@@ -12,6 +12,16 @@ export default function RouteLoader({ children }) {
     return () => clearTimeout(timer)
   }, [location.pathname])
 
+  // Ensure each navigation starts at the top of the page
+  useEffect(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    } catch {
+      // Fallback for older browsers
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname])
+
   return (
     <div className="relative">
       <AnimatePresence>

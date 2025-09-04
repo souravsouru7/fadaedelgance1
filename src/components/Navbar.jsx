@@ -7,42 +7,28 @@ const servicesData = [
     tagline: 'Where your luxury items get a second life.',
     subcategories: [
       {
-        name: 'Handbag Restoration',
+        name: 'Handbag & Wallet',
         items: [
           'Cleaning & Conditioning',
           'Color Restoration',
           'Stitching & Edging',
           'Zipper Repair & Replacement',
           'Hardware Repair & Replacement',
-          'Custom Coloring & Patterns',
-          'Customized Artwork'
+          
         ]
       },
       {
-        name: 'Shoes (Men & Women)',
+        name: 'Shoes & Sandals',
         items: [
           'Cleaning & Conditioning',
           'Stitching',
           'Color Restoration',
           'Shoe Stretching',
           'Heel & Sole Repair',
-          'Shoe Shine',
-          'Custom Coloring & Patterns',
-          'Customized Artwork'
+          
         ]
       },
-      {
-        name: 'Wallet Detailing',
-        items: [
-          'Cleaning & Conditioning',
-          'Color Restoration',
-          'Stitching & Edging',
-          'Zipper Repair & Replacement',
-          'Hardware Repair',
-          'Custom Coloring & Patterns',
-          'Customized Artwork'
-        ]
-      },
+     
       {
         name: 'Sandals Care',
         items: [
@@ -60,7 +46,7 @@ const servicesData = [
     tagline: 'Personalized elegance, crafted for you.',
     subcategories: [
       {
-        name: 'Handbag Custom',
+        name: 'Handbag & Wallet',
         items: [
           'Custom Coloring & Patterns',
           'Customized Artwork',
@@ -69,32 +55,15 @@ const servicesData = [
         ]
       },
       {
-        name: 'Bespoke Shoes',
+        name: 'Shoes & Sandals',
         items: [
           'Bespoke Coloring & Patterns',
-          'Luxury Shoe Shine',
           'Customized Artwork',
-          'Unique Sole & Heel Finishing'
+          
         ]
       },
-      {
-        name: 'Wallet Personal',
-        items: [
-          'Signature Coloring Styles',
-          'Artistic Detailing',
-          'Hardware Upgrades',
-          'Premium Stitch Craft'
-        ]
-      },
-      {
-        name: 'Sandals Design',
-        items: [
-          'Exclusive Coloring & Patterns',
-          'Artistic Customization',
-          'Sole Refinement',
-          'Elegant Stitch Work'
-        ]
-      }
+     
+      
     ]
   },
   {
@@ -246,7 +215,7 @@ export default function Navbar() {
       {/* Right actions */}
       <div className="flex items-center gap-3">
         <a
-          href="tel:+971000000000"
+          href="tel:+971545770967"
           className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D89F30] text-black font-semibold shadow-sm hover:bg-[#eab75a] transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -341,7 +310,7 @@ export default function Navbar() {
             )}
             <NavLink to="/gallery" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Gallery</NavLink>
             <NavLink to="/contact" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Contact Us</NavLink>
-            <a href="tel:+971000000000" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D89F30] text-black font-semibold shadow-sm mt-2">Quick Call</a>
+            <a href="tel:+971545770967" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D89F30] text-black font-semibold shadow-sm mt-2">Quick Call</a>
             </div>
           </div>
         </div>

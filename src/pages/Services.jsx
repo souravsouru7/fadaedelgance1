@@ -4,6 +4,39 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 
+// Helpers to make URL param matching resilient to label edits
+const normalize = (str) => (str || '')
+  .toString()
+  .toLowerCase()
+  .normalize('NFKD')
+  .replace(/\p{Diacritic}/gu, '')
+  .replace(/[^a-z0-9]+/g, ' ')
+  .trim()
+
+// Map navbar subcategory labels to card titles
+const aliasMap = {
+  reborn: {
+    'handbag wallet': 'Handbag Restoration',
+    'handbag & wallet': 'Handbag Restoration',
+    'shoes sandals': 'Shoes (Men & Women)',
+    'shoes & sandals': 'Shoes (Men & Women)',
+    'wallet detailing': 'Wallet Detailing',
+    'sandals care': 'Sandals Care'
+  },
+  signature: {
+    'handbag wallet': 'Handbag Custom',
+    'handbag & wallet': 'Handbag Custom',
+    'shoes sandals': 'Bespoke Shoes',
+    'shoes & sandals': 'Bespoke Shoes',
+    'wallet personal': 'Wallet Personal',
+    'sandals design': 'Sandals Design'
+  },
+  kids: {
+    'kids shoes': 'Kids Shoes',
+    'kids bags': 'Kids Bags'
+  }
+}
+
 // Reliable image with multiple fallbacks and skeleton
 const FallbackImage = ({ sources, alt, className = '' }) => {
   const sourceList = Array.isArray(sources) ? sources : [sources]
@@ -279,7 +312,7 @@ const SERVICE_DETAILS = {
       'Long-lasting color protection',
       'Professional finish that looks natural'
     ],
-    additionalInfo: 'We use advanced color-matching technology to ensure your item\'s restored color perfectly matches its original shade.'
+    additionalInfo: 'Our skilled artists use expert color matching and multi-tone shading techniques to recreate the authentic look and feel of your leather item—ensuring seamless restoration and flawless texture.'
   },
   'Stitching & Edging': {
     title: 'Stitching & Edging',
@@ -1331,26 +1364,31 @@ export default function Services() {
         const tab = TABS.find(t => t.key === tabKey)
         if (tab) {
           console.log('Available cards:', tab.cards.map(c => c.title))
+          const normSub = normalize(subcategory)
+          const aliasedTitle = aliasMap[tabKey]?.[normSub]
+
+          // Try alias first, then fallback to fuzzy normalization match
           const matchingCard = tab.cards.find(card => {
-            // Direct comparison with decoded subcategory
-            const matches = card.title === subcategory
-            console.log(`Comparing "${card.title}" with "${subcategory}": ${matches}`)
-            return matches
+            if (aliasedTitle && card.title === aliasedTitle) return true
+            const nTitle = normalize(card.title)
+            return nTitle === normSub || nTitle.includes(normSub) || normSub.includes(nTitle)
           })
 
           console.log('Matching card:', matchingCard)
 
           if (matchingCard) {
             // Find the matching service detail
-            const matchingDetail = matchingCard.details?.find(detail => 
-              detail.title === service
-            )
+            const normSvc = normalize(service)
+            const matchingDetail = matchingCard.details?.find(detail => {
+              const n = normalize(detail.title)
+              return n === normSvc || n.includes(normSvc) || normSvc.includes(n)
+            })
 
             console.log('Matching detail:', matchingDetail)
 
             if (matchingDetail) {
               // Check if the service detail exists in SERVICE_DETAILS
-              const detailData = SERVICE_DETAILS[service]
+              const detailData = SERVICE_DETAILS[matchingDetail.title] || SERVICE_DETAILS[service] || SERVICE_DETAILS[aliasedTitle]
               
               if (detailData) {
                 // Use a timeout to ensure proper state management

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function WhyChooseUs() {
   // Page-scoped premium fonts (match Services page)
@@ -35,13 +36,13 @@ export default function WhyChooseUs() {
     },
     {
       icon: "🛡️",
-      title: "LIFETIME WARRANTY",
-      description: "Complete confidence in our work with comprehensive warranty coverage on all restoration services."
+      title: "6-Month Warranty",
+      description: "We stand behind our work. Every restoration is supported by a 6-month warranty, reflecting our commitment to excellence."
     },
     {
       icon: "🌟",
       title: "EXCLUSIVE SERVICE",
-      description: "VIP treatment with dedicated consultation, progress updates, and white-glove delivery service."
+      description: "From initial consultation to final delivery, enjoy a concierge-level experience designed for comfort, clarity, and complete satisfaction."
     }
   ]
 
@@ -112,12 +113,12 @@ export default function WhyChooseUs() {
               Experience the difference that true craftsmanship makes. Your luxury items deserve nothing less than perfection.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-              <button className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold text-white bg-black hover:bg-black/90 transition-colors">
+              <Link to="/services" className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold text-white bg-black hover:bg-black/90 transition-colors">
                 Start Your Project
-              </button>
-              <button className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold border border-black/20 hover:border-black">
+              </Link>
+              <Link to="/gallery" className="px-5 lg:px-6 py-2 rounded-full text-xs lg:text-sm font-semibold border border-black/20 hover:border-black">
                 View Portfolio
-              </button>
+              </Link>
             </div>
           </div>
         </div>
