@@ -16,20 +16,18 @@ const normalize = (str) => (str || '')
 // Map navbar subcategory labels to card titles
 const aliasMap = {
   reborn: {
-    'handbag wallet': 'Handbag Restoration',
-    'handbag & wallet': 'Handbag Restoration',
-    'shoes sandals': 'Shoes (Men & Women)',
-    'shoes & sandals': 'Shoes (Men & Women)',
-    'wallet detailing': 'Wallet Detailing',
-    'sandals care': 'Sandals Care'
+    'handbag wallet': 'Handbag & Wallet',
+    'handbag & wallet': 'Handbag & Wallet',
+    'shoes sandals': 'Shoes & Sandals (Men & Women)',
+    'shoes & sandals': 'Shoes & Sandals (Men & Women)',
+    'shoes & sandals (men & women)': 'Shoes & Sandals (Men & Women)'
   },
   signature: {
-    'handbag wallet': 'Handbag Custom',
-    'handbag & wallet': 'Handbag Custom',
-    'shoes sandals': 'Bespoke Shoes',
-    'shoes & sandals': 'Bespoke Shoes',
-    'wallet personal': 'Wallet Personal',
-    'sandals design': 'Sandals Design'
+    'handbag wallet': 'Handbag & Wallet',
+    'handbag & wallet': 'Handbag & Wallet',
+    'shoes sandals': 'Shoes & Sandals (Men & Women)',
+    'shoes & sandals': 'Shoes & Sandals (Men & Women)',
+    'shoes & sandals (men & women)': 'Shoes & Sandals (Men & Women)'
   },
   kids: {
     'kids shoes': 'Kids Shoes',
@@ -265,7 +263,7 @@ const ServiceModal = ({ isOpen, onClose, service, onServiceClick }) => {
   )
 }
 
-// Service detail data
+// Service detail data - only services that are in navbar
 const SERVICE_DETAILS = {
   // Reborn Collection Services
   'Cleaning & Conditioning': {
@@ -383,53 +381,6 @@ const SERVICE_DETAILS = {
     ],
     additionalInfo: 'We can restore most hardware to like-new condition or source authentic replacements when needed.'
   },
-  'Custom Coloring & Patterns': {
-    title: 'Custom Coloring & Patterns',
-    description: 'Personalized colors or patterns for a unique style.',
-    images: [
-      '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
-      '/FE%20JPEG/pexels-karolina-grabowska-5713293.jpg'
-    ],
-    process: [
-      'Design consultation and planning',
-      'Color and pattern selection',
-      'Surface preparation',
-      'Custom application process',
-      'Sealing and protection'
-    ],
-    benefits: [
-      'Unique personalized design',
-      'Reflects your style',
-      'High-quality finish',
-      'Long-lasting results',
-      'Professional execution'
-    ],
-    additionalInfo: 'Work with our design team to create a truly unique piece that reflects your personal style.'
-  },
-  'Customized Artwork': {
-    title: 'Customized Artwork',
-    description: 'Handcrafted designs to make your item one of a kind.',
-    images: [
-      '/FE%20JPEG/pexels-karolina-grabowska-5713781.jpg',
-      '/FE%20JPEG/pexels-matt-hatchett-982360-2599270.jpg'
-    ],
-    process: [
-      'Artwork concept development',
-      'Design approval and refinement',
-      'Surface preparation',
-      'Hand-painted application',
-      'Protective coating application'
-    ],
-    benefits: [
-      'Truly unique piece',
-      'Personalized design',
-      'Professional artwork quality',
-      'Protected and durable',
-      'Conversation starter'
-    ],
-    additionalInfo: 'Our artists can create anything from subtle monograms to elaborate custom artwork that tells your story.'
-  },
-  // Additional Reborn Services
   'Stitching': {
     title: 'Stitching',
     description: 'Repairing seams for durability.',
@@ -499,111 +450,20 @@ const SERVICE_DETAILS = {
     ],
     additionalInfo: 'We use high-quality materials that match your shoes\' original specifications for seamless repair.'
   },
-  'Shoe Shine': {
-    title: 'Shoe Shine',
-    description: 'A luxury shine to enhance elegance.',
+  // Signature Collection Services
+  'Custom Coloring & Patterns': {
+    title: 'Custom Coloring & Patterns',
+    description: 'Exclusive colors to match your personality.',
     images: [
-      '/FE%20JPEG/pexels-pedrofurtadoo-31451028.jpg',
-      '/FE%20JPEG/pexels-dhanno-23223837.jpg'
+      '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
+      '/FE%20JPEG/pexels-karolina-grabowska-5713293.jpg'
     ],
     process: [
-      'Surface cleaning and preparation',
-      'Conditioning and moisturizing',
-      'Multiple polish applications',
-      'Buffing for mirror finish',
-      'Protective coating application'
-    ],
-    benefits: [
-      'Professional mirror shine',
-      'Protects leather surface',
-      'Enhances appearance',
-      'Long-lasting shine',
-      'Premium finish quality'
-    ],
-    additionalInfo: 'Our luxury shoe shine service creates a mirror-like finish that lasts and protects your shoes.'
-  },
-  'Hardware Repair': {
-    title: 'Hardware Repair',
-    description: 'Fixing clips, chains, and metallic details.',
-    images: [
-      '/FE%20JPEG/pexels-scottwebb-137603.jpg',
-      '/FE%20JPEG/pexels-geyonk-1152077.jpg'
-    ],
-    process: [
-      'Hardware condition evaluation',
-      'Cleaning and restoration attempt',
-      'Replacement if necessary',
-      'Precise installation and alignment',
-      'Functionality testing'
-    ],
-    benefits: [
-      'Restores functionality',
-      'Maintains original design',
-      'Prevents further damage',
-      'Professional finish',
-      'Long-lasting durability'
-    ],
-    additionalInfo: 'We can restore most wallet hardware to like-new condition or source authentic replacements.'
-  },
-  'Stitching & Sole Repair': {
-    title: 'Stitching & Sole Repair',
-    description: 'Fixing straps, edges, and soles.',
-    images: [
-      '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
-      '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
-    ],
-    process: [
-      'Damage assessment and planning',
-      'Strap and sole repair',
-      'Edge refinishing',
-      'Quality testing',
-      'Final inspection'
-    ],
-    benefits: [
-      'Restores functionality',
-      'Improves comfort',
-      'Extends lifespan',
-      'Professional finish',
-      'Maintains original design'
-    ],
-    additionalInfo: 'Our sandal repair service ensures your favorite sandals continue to provide comfort and style.'
-  },
-  'Heel Tips': {
-    title: 'Heel Tips',
-    description: 'Replacing worn-out tips for comfort.',
-    images: [
-      '/FE%20JPEG/pexels-vlada-karpovich-4452502.jpg',
-      '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
-    ],
-    process: [
-      'Heel tip condition assessment',
-      'Removal of worn tips',
-      'Installation of new tips',
-      'Adjustment for comfort',
-      'Quality testing'
-    ],
-    benefits: [
-      'Restores comfort',
-      'Prevents further damage',
-      'Improves safety',
-      'Professional finish',
-      'Long-lasting durability'
-    ],
-    additionalInfo: 'We use high-quality heel tips that provide comfort and durability for your sandals.'
-  },
-  'Custom Coloring & Artwork': {
-    title: 'Custom Coloring & Artwork',
-    description: 'Personal touches to elevate your sandals.',
-    images: [
-      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450735.jpg',
-      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450738.jpg'
-    ],
-    process: [
-      'Design consultation',
-      'Color and artwork selection',
+      'Design consultation and planning',
+      'Color and pattern selection',
       'Surface preparation',
-      'Custom application',
-      'Protective coating'
+      'Custom application process',
+      'Sealing and protection'
     ],
     benefits: [
       'Unique personalized design',
@@ -612,9 +472,31 @@ const SERVICE_DETAILS = {
       'Long-lasting results',
       'Professional execution'
     ],
-    additionalInfo: 'Transform your sandals into a unique piece that reflects your personal style and creativity.'
+    additionalInfo: 'Work with our design team to create a truly unique piece that reflects your personal style.'
   },
-  // Signature Collection Services
+  'Customized Artwork': {
+    title: 'Customized Artwork',
+    description: 'Artistic hand designs for uniqueness.',
+    images: [
+      '/FE%20JPEG/pexels-karolina-grabowska-5713781.jpg',
+      '/FE%20JPEG/pexels-matt-hatchett-982360-2599270.jpg'
+    ],
+    process: [
+      'Artwork concept development',
+      'Design approval and refinement',
+      'Surface preparation',
+      'Hand-painted application',
+      'Protective coating application'
+    ],
+    benefits: [
+      'Truly unique piece',
+      'Personalized design',
+      'Professional artwork quality',
+      'Protected and durable',
+      'Conversation starter'
+    ],
+    additionalInfo: 'Our artists can create anything from subtle monograms to elaborate custom artwork that tells your story.'
+  },
   'Hardware & Zipper Upgrades': {
     title: 'Hardware & Zipper Upgrades',
     description: 'Luxury-level detailing.',
@@ -684,236 +566,6 @@ const SERVICE_DETAILS = {
     ],
     additionalInfo: 'Create shoes that are truly unique with our bespoke coloring and pattern services.'
   },
-  'Luxury Shoe Shine': {
-    title: 'Luxury Shoe Shine',
-    description: 'A glossy, mirror-like shine for formal occasions.',
-    images: [
-      '/FE%20JPEG/pexels-scottwebb-137603.jpg',
-      '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
-    ],
-    process: [
-      'Deep cleaning and preparation',
-      'Multiple polish applications',
-      'Mirror finish buffing',
-      'Protective coating',
-      'Final inspection'
-    ],
-    benefits: [
-      'Mirror-like shine',
-      'Professional appearance',
-      'Long-lasting finish',
-      'Protects leather',
-      'Premium quality'
-    ],
-    additionalInfo: 'Our luxury shoe shine creates a mirror-like finish perfect for formal occasions.'
-  },
-  'Unique Sole & Heel Finishing': {
-    title: 'Unique Sole & Heel Finishing',
-    description: 'Special treatments for a refined touch.',
-    images: [
-      '/FE%20JPEG/pexels-geyonk-1152077.jpg',
-      '/FE%20JPEG/pexels-monicore-134064.jpg'
-    ],
-    process: [
-      'Design consultation',
-      'Sole and heel treatment selection',
-      'Precise application',
-      'Quality testing',
-      'Final inspection'
-    ],
-    benefits: [
-      'Unique appearance',
-      'Enhanced comfort',
-      'Professional finish',
-      'Long-lasting results',
-      'Refined touch'
-    ],
-    additionalInfo: 'Add a unique touch to your shoes with our special sole and heel finishing treatments.'
-  },
-  'Signature Coloring Styles': {
-    title: 'Signature Coloring Styles',
-    description: 'Personalized tones.',
-    images: [
-      '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg',
-      '/FE%20JPEG/pexels-bellazhong-3076787.jpg'
-    ],
-    process: [
-      'Color consultation',
-      'Personalized tone selection',
-      'Surface preparation',
-      'Custom application',
-      'Protective coating'
-    ],
-    benefits: [
-      'Personalized appearance',
-      'Unique color tones',
-      'Professional finish',
-      'Long-lasting results',
-      'Reflects your style'
-    ],
-    additionalInfo: 'Create a wallet with colors that perfectly match your personal style and preferences.'
-  },
-  'Artistic Detailing': {
-    title: 'Artistic Detailing',
-    description: 'Handcrafted accents.',
-    images: [
-      '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
-      '/FE%20JPEG/pexels-scottwebb-137603.jpg'
-    ],
-    process: [
-      'Design consultation',
-      'Artistic detail planning',
-      'Handcrafted application',
-      'Quality inspection',
-      'Protective finishing'
-    ],
-    benefits: [
-      'Unique artistic touches',
-      'Handcrafted quality',
-      'Personalized design',
-      'Professional finish',
-      'Conversation piece'
-    ],
-    additionalInfo: 'Add handcrafted artistic details that make your wallet truly unique and personal.'
-  },
-  'Hardware Upgrades': {
-    title: 'Hardware Upgrades',
-    description: 'Luxury metallic upgrades.',
-    images: [
-      '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
-      '/FE%20JPEG/pexels-monicore-134064.jpg'
-    ],
-    process: [
-      'Hardware selection',
-      'Design consultation',
-      'Precise installation',
-      'Quality testing',
-      'Final inspection'
-    ],
-    benefits: [
-      'Enhanced functionality',
-      'Premium appearance',
-      'Long-lasting durability',
-      'Professional finish',
-      'Luxury upgrade'
-    ],
-    additionalInfo: 'Upgrade your wallet with premium metallic hardware for enhanced function and style.'
-  },
-  'Premium Stitch Craft': {
-    title: 'Premium Stitch Craft',
-    description: 'Precision for elegance.',
-    images: [
-      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
-      '/FE%20JPEG/pexels-geyonk-1152077.jpg'
-    ],
-    process: [
-      'Stitch pattern planning',
-      'Thread selection',
-      'Precise stitch application',
-      'Quality testing',
-      'Final finishing'
-    ],
-    benefits: [
-      'Enhanced elegance',
-      'Improved durability',
-      'Professional finish',
-      'Precision quality',
-      'Long-lasting results'
-    ],
-    additionalInfo: 'Our premium stitch craft adds elegance and precision to your wallet construction.'
-  },
-  'Exclusive Coloring & Patterns': {
-    title: 'Exclusive Coloring & Patterns',
-    description: 'Distinctive customization.',
-    images: [
-      '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
-      '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
-    ],
-    process: [
-      'Design consultation',
-      'Exclusive pattern creation',
-      'Color selection',
-      'Custom application',
-      'Protective finishing'
-    ],
-    benefits: [
-      'Exclusive design',
-      'Unique appearance',
-      'Professional finish',
-      'Long-lasting results',
-      'Distinctive style'
-    ],
-    additionalInfo: 'Create sandals with exclusive patterns and colors that set you apart.'
-  },
-  'Artistic Customization': {
-    title: 'Artistic Customization',
-    description: 'Elevating style with design work.',
-    images: [
-      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450745.jpg',
-      '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450738.jpg'
-    ],
-    process: [
-      'Artistic design consultation',
-      'Custom artwork creation',
-      'Surface preparation',
-      'Artistic application',
-      'Protective coating'
-    ],
-    benefits: [
-      'Unique artistic design',
-      'Personalized style',
-      'Professional artwork',
-      'Long-lasting finish',
-      'Elevated appearance'
-    ],
-    additionalInfo: 'Transform your sandals with artistic customization that elevates your style.'
-  },
-  'Sole Refinement': {
-    title: 'Sole Refinement',
-    description: 'Comfortable yet stylish finishing.',
-    images: [
-      '/FE%20JPEG/pexels-lum3n-44775-167703.jpg',
-      '/FE%20JPEG/pexels-scottwebb-137603.jpg'
-    ],
-    process: [
-      'Sole condition assessment',
-      'Refinement planning',
-      'Precise application',
-      'Comfort testing',
-      'Final inspection'
-    ],
-    benefits: [
-      'Enhanced comfort',
-      'Improved style',
-      'Professional finish',
-      'Long-lasting results',
-      'Stylish appearance'
-    ],
-    additionalInfo: 'Our sole refinement ensures your sandals are both comfortable and stylish.'
-  },
-  'Elegant Stitch Work': {
-    title: 'Elegant Stitch Work',
-    description: 'Detailing for luxury feel.',
-    images: [
-      '/FE%20JPEG/pexels-geyonk-1152077.jpg',
-      '/FE%20JPEG/pexels-monicore-134064.jpg'
-    ],
-    process: [
-      'Stitch pattern design',
-      'Thread selection',
-      'Elegant stitch application',
-      'Quality testing',
-      'Final finishing'
-    ],
-    benefits: [
-      'Luxury appearance',
-      'Enhanced durability',
-      'Professional finish',
-      'Elegant detailing',
-      'Long-lasting quality'
-    ],
-    additionalInfo: 'Add elegant stitch work that gives your sandals a luxury feel and appearance.'
-  },
   // Kids Collection Services
   'Creative Coloring & Patterns': {
     title: 'Creative Coloring & Patterns',
@@ -970,7 +622,7 @@ const TABS = [
     blurb: 'Where timeless pieces are renewed with expert care.',
     cards: [
       {
-        title: 'Handbag Restoration',
+        title: 'Handbag & Wallet',
         subtitle: 'Clean • Restore • Detail',
         sources: [
           '/FE%20JPEG/pexels-monicore-134064.jpg',
@@ -984,7 +636,7 @@ const TABS = [
           },
           {
             title: 'Color Restoration',
-            description: 'Reviving faded or discolored bags to their original charm.'
+            description: 'Reviving faded or discolored items to their original charm.'
           },
           {
             title: 'Stitching & Edging',
@@ -997,20 +649,12 @@ const TABS = [
           {
             title: 'Hardware Repair & Replacement',
             description: 'Restoring metal clasps, locks, and buckles.'
-          },
-          {
-            title: 'Custom Coloring & Patterns',
-            description: 'Personalized colors or patterns for a unique style.'
-          },
-          {
-            title: 'Customized Artwork',
-            description: 'Handcrafted designs to make your handbag one of a kind.'
           }
         ],
-        additionalInfo: 'Our handbag restoration process begins with a thorough assessment of your item\'s condition, followed by specialized treatments tailored to the specific leather type and damage.'
+        additionalInfo: 'Our handbag and wallet restoration process begins with a thorough assessment of your item\'s condition, followed by specialized treatments tailored to the specific leather type and damage.'
       },
       {
-        title: 'Shoes (Men & Women)',
+        title: 'Shoes & Sandals (Men & Women)',
         subtitle: 'Shine • Repair • Comfort',
         sources: [
           '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
@@ -1037,88 +681,6 @@ const TABS = [
           {
             title: 'Heel & Sole Repair',
             description: 'Fixing worn heels, adding new soles, or sole guards.'
-          },
-          {
-            title: 'Shoe Shine',
-            description: 'A luxury shine to enhance elegance.'
-          },
-          {
-            title: 'Custom Coloring & Patterns',
-            description: 'Transforming shoes with unique colors and designs.'
-          },
-          {
-            title: 'Customized Artwork',
-            description: 'Exclusive hand-painted detailing.'
-          }
-        ]
-      },
-      {
-        title: 'Wallet Detailing',
-        subtitle: 'Refinish • Repair • Personalize',
-        sources: [
-          '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
-          '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg'
-        ],
-        tags: ['Edges', 'Zipper', 'Hardware', 'Color'],
-        details: [
-          {
-            title: 'Cleaning & Conditioning',
-            description: 'Restoring suppleness and finish.'
-          },
-          {
-            title: 'Color Restoration',
-            description: 'Bringing back the wallet\'s true shade.'
-          },
-          {
-            title: 'Stitching & Edging',
-            description: 'Seam repairs and edge refinishing.'
-          },
-          {
-            title: 'Zipper Repair & Replacement',
-            description: 'Smooth zipper replacement when needed.'
-          },
-          {
-            title: 'Hardware Repair',
-            description: 'Fixing clips, chains, and metallic details.'
-          },
-          {
-            title: 'Custom Coloring & Patterns',
-            description: 'Adding unique touches.'
-          },
-          {
-            title: 'Customized Artwork',
-            description: 'Personal artwork for a standout wallet.'
-          }
-        ]
-      },
-      {
-        title: 'Sandals Care',
-        subtitle: 'Refresh • Repair • Refine',
-        sources: [
-          '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
-          '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
-        ],
-        tags: ['Straps', 'Sole', 'Tips', 'Color'],
-        details: [
-          {
-            title: 'Cleaning & Conditioning',
-            description: 'Refreshing leather straps and soles.'
-          },
-          {
-            title: 'Color Restoration',
-            description: 'Reviving faded tones.'
-          },
-          {
-            title: 'Stitching & Sole Repair',
-            description: 'Fixing straps, edges, and soles.'
-          },
-          {
-            title: 'Heel Tips',
-            description: 'Replacing worn-out tips for comfort.'
-          },
-          {
-            title: 'Custom Coloring & Artwork',
-            description: 'Personal touches to elevate your sandals.'
           }
         ]
       }
@@ -1130,7 +692,7 @@ const TABS = [
     blurb: 'Luxury personalization with your unique style.',
     cards: [
       {
-        title: 'Handbag Custom',
+        title: 'Handbag & Wallet',
         subtitle: 'Color • Artwork • Hardware',
         sources: [
           '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
@@ -1157,7 +719,7 @@ const TABS = [
         ]
       },
       {
-        title: 'Bespoke Shoes',
+        title: 'Shoes & Sandals (Men & Women)',
         subtitle: 'Patterns • Shine • Finish',
         sources: [
           '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
@@ -1170,70 +732,8 @@ const TABS = [
             description: 'Premium finishes that stand out.'
           },
           {
-            title: 'Luxury Shoe Shine',
-            description: 'A glossy, mirror-like shine for formal occasions.'
-          },
-          {
             title: 'Customized Artwork',
             description: 'Exclusive hand-painted artistry.'
-          },
-          {
-            title: 'Unique Sole & Heel Finishing',
-            description: 'Special treatments for a refined touch.'
-          }
-        ]
-      },
-      {
-        title: 'Wallet Personal',
-        subtitle: 'Tones • Detailing • Premium',
-        sources: [
-          '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg',
-          '/FE%20JPEG/pexels-bellazhong-3076787.jpg'
-        ],
-        tags: ['Signature Tones', 'Accents', 'Hardware'],
-        details: [
-          {
-            title: 'Signature Coloring Styles',
-            description: 'Personalized tones.'
-          },
-          {
-            title: 'Artistic Detailing',
-            description: 'Handcrafted accents.'
-          },
-          {
-            title: 'Hardware Upgrades',
-            description: 'Luxury metallic upgrades.'
-          },
-          {
-            title: 'Premium Stitch Craft',
-            description: 'Precision for elegance.'
-          }
-        ]
-      },
-      {
-        title: 'Sandals Design',
-        subtitle: 'Exclusive • Artistic • Refined',
-        sources: [
-          '/FE%20JPEG/pexels-alexakeiart-6809887.jpg',
-          '/FE%20JPEG/pexels-ihsanaditya-1445696.jpg'
-        ],
-        tags: ['Exclusive', 'Artistic', 'Refined'],
-        details: [
-          {
-            title: 'Exclusive Coloring & Patterns',
-            description: 'Distinctive customization.'
-          },
-          {
-            title: 'Artistic Customization',
-            description: 'Elevating style with design work.'
-          },
-          {
-            title: 'Sole Refinement',
-            description: 'Comfortable yet stylish finishing.'
-          },
-          {
-            title: 'Elegant Stitch Work',
-            description: 'Detailing for luxury feel.'
           }
         ]
       }

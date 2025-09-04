@@ -18,7 +18,7 @@ const servicesData = [
         ]
       },
       {
-        name: 'Shoes & Sandals',
+        name: 'Shoes & Sandals (Men & Women)',
         items: [
           'Cleaning & Conditioning',
           'Stitching',
@@ -29,16 +29,7 @@ const servicesData = [
         ]
       },
      
-      {
-        name: 'Sandals Care',
-        items: [
-          'Cleaning & Conditioning',
-          'Color Restoration',
-          'Stitching & Sole Repair',
-          'Heel Tips',
-          'Custom Coloring & Artwork'
-        ]
-      }
+     
     ]
   },
   {
@@ -55,7 +46,7 @@ const servicesData = [
         ]
       },
       {
-        name: 'Shoes & Sandals',
+        name: 'Shoes & Sandals (Men & Women)',
         items: [
           'Bespoke Coloring & Patterns',
           'Customized Artwork',
@@ -242,75 +233,213 @@ export default function Navbar() {
 
       {/* Mobile panel */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-0 left-0 right-0 bottom-0 bg-white/95 backdrop-blur z-50">
-          <div className="flex flex-col h-full">
-            {/* Header with close button */}
-            <div className="flex justify-between items-center p-4 border-b border-[#D89F30]/30">
-              <div className="flex items-center">
-                <img 
-                  src="/fenav.png" 
-                  alt="Faded Elegance Logo" 
-                  className="w-16 h-16 object-contain"
-                />
-              </div>
-              <button
-                className="text-[#D89F30] p-2"
-                aria-label="Close menu"
-                onClick={() => setMobileOpen(false)}
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            
-            {/* Navigation content */}
-            <div className="flex-1 p-4 space-y-2 overflow-y-auto">
-            <NavLink to="/" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Home</NavLink>
-            <NavLink to="/about" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>About</NavLink>
-            <button
-              type="button"
-              className="w-full text-left luxury-nav text-black text-sm py-2 flex items-center justify-between"
-              onClick={() => setMobileServicesOpen((v) => !v)}
-              aria-expanded={mobileServicesOpen}
-            >
-              <span>Services</span>
-              <svg className={`w-4 h-4 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
-            {mobileServicesOpen && (
-              <div className="pl-3 space-y-3">
-                {servicesData.map((cat) => (
-                  <div key={cat.title}>
-                    <div className="luxury-nav text-[#D89F30] text-xs mb-1">{cat.title}</div>
-                    <div className="grid grid-cols-1 gap-1">
-                      {cat.subcategories?.map((sub) => (
-                        <div key={sub.name} className="">
-                          <div className="text-[12px] font-semibold">{sub.name}</div>
-                          <ul className="pl-3 list-disc text-[12px] text-black/80">
-                            {sub.items.map((svc) => (
-                              <li key={svc}>
-                                <button 
-                                  type="button"
-                                  className="text-left hover:text-[#D89F30] transition-colors"
-                                  onClick={() => handleServiceClick(cat.title, sub.name, svc)}
-                                >
-                                  {svc}
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+        <div className="lg:hidden fixed inset-0 z-50">
+          {/* Backdrop with blur effect */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            onClick={() => setMobileOpen(false)}
+          />
+          
+          {/* Slide-in panel */}
+          <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-gradient-to-br from-white via-white to-gray-50 shadow-2xl transform transition-transform duration-300 ease-out">
+            <div className="flex flex-col h-full">
+              {/* Modern header with gradient */}
+              <div className="relative p-6 bg-gradient-to-r from-[#D89F30] to-[#F4B942]">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                      <img 
+                        src="/fenav.png" 
+                        alt="Faded Elegance Logo" 
+                        className="w-8 h-8 object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h2 className="text-white font-bold text-lg">Menu</h2>
+                      <p className="text-white/80 text-xs">Navigate with elegance</p>
                     </div>
                   </div>
-                ))}
+                  <button
+                    className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-all duration-200"
+                    aria-label="Close menu"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
               </div>
-            )}
-            <NavLink to="/gallery" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Gallery</NavLink>
-            <NavLink to="/contact" className={({ isActive }) => `block luxury-nav ${isActive ? 'text-[#D89F30]' : 'text-black'} text-sm py-2`}>Contact Us</NavLink>
-            <a href="tel:+971545770967" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D89F30] text-black font-semibold shadow-sm mt-2">Quick Call</a>
+              
+              {/* Navigation content with modern cards */}
+              <div className="flex-1 p-6 space-y-4 overflow-y-auto">
+                {/* Main navigation items */}
+                <div className="space-y-2">
+                  <NavLink 
+                    to="/" 
+                    className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
+                      isActive 
+                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-white/20' : 'bg-[#D89F30]/10'
+                        }`}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold">Home</span>
+                      </>
+                    )}
+                  </NavLink>
+
+                  <NavLink 
+                    to="/about" 
+                    className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
+                      isActive 
+                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-white/20' : 'bg-[#D89F30]/10'
+                        }`}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold">About</span>
+                      </>
+                    )}
+                  </NavLink>
+
+                  {/* Services with modern accordion */}
+                  <div className="bg-white/50 rounded-2xl backdrop-blur-sm overflow-hidden">
+                    <button
+                      type="button"
+                      className="w-full flex items-center justify-between p-4 hover:bg-white/60 transition-all duration-200"
+                      onClick={() => setMobileServicesOpen((v) => !v)}
+                      aria-expanded={mobileServicesOpen}
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="w-10 h-10 rounded-xl bg-[#D89F30]/10 flex items-center justify-center">
+                          <svg className="w-5 h-5 text-[#D89F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold text-gray-800">Services</span>
+                      </div>
+                      <svg className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </button>
+                    
+                    {mobileServicesOpen && (
+                      <div className="px-4 pb-4 space-y-3 animate-in slide-in-from-top-2 duration-200">
+                        {servicesData.map((cat) => (
+                          <div key={cat.title} className="bg-white/30 rounded-xl p-4 backdrop-blur-sm">
+                            <div className="flex items-center space-x-2 mb-3">
+                              <div className="w-2 h-2 bg-[#D89F30] rounded-full"></div>
+                              <h4 className="font-bold text-[#D89F30] text-sm">{cat.title}</h4>
+                            </div>
+                            {cat.tagline && (
+                              <p className="text-gray-600 text-xs mb-3 italic">{cat.tagline}</p>
+                            )}
+                            <div className="space-y-2">
+                              {cat.subcategories?.map((sub) => (
+                                <div key={sub.name}>
+                                  <h5 className="text-gray-800 font-semibold text-xs mb-2">{sub.name}</h5>
+                                  <div className="grid grid-cols-1 gap-1">
+                                    {sub.items.map((svc) => (
+                                      <button 
+                                        key={svc}
+                                        type="button"
+                                        className="w-full text-left p-2 rounded-lg hover:bg-[#D89F30]/10 hover:text-[#D89F30] transition-all duration-200 text-xs text-gray-700 flex items-center space-x-2"
+                                        onClick={() => handleServiceClick(cat.title, sub.name, svc)}
+                                      >
+                                        <div className="w-1.5 h-1.5 bg-[#D89F30]/60 rounded-full flex-shrink-0"></div>
+                                        <span>{svc}</span>
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <NavLink 
+                    to="/gallery" 
+                    className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
+                      isActive 
+                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-white/20' : 'bg-[#D89F30]/10'
+                        }`}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold">Gallery</span>
+                      </>
+                    )}
+                  </NavLink>
+
+                  <NavLink 
+                    to="/contact" 
+                    className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
+                      isActive 
+                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
+                    }`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          isActive ? 'bg-white/20' : 'bg-[#D89F30]/10'
+                        }`}>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <span className="font-semibold">Contact Us</span>
+                      </>
+                    )}
+                  </NavLink>
+                </div>
+
+                {/* Call to action */}
+                <div className="pt-4">
+                  <a 
+                    href="tel:+971545770967" 
+                    className="w-full flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span>Quick Call</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

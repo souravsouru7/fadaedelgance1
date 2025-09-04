@@ -69,8 +69,9 @@ export default function About() {
             <div>
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
                 <p className="text-neutral-800 text-[13px] sm:text-[14px] leading-relaxed">
-                  At Faded Elegance, we believe every piece of premium leather deserves a second chance to shine.
-                  Our mission is to revive your treasured items with care, precision, and crea ve cra smanship.
+              At Faded Elegance, we believe every piece of premium leather deserves a second chance to shine.
+Our mission is to revive your treasured items with care, precision, and creative craftsmanship.
+
                 </p>
               </div>
             </div>
@@ -81,8 +82,8 @@ export default function About() {
             <div className="order-2 lg:order-1">
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
                 <p className="text-neutral-800 text-[13px] sm:text-[14px] leading-relaxed">
-                  Cra smanship in leather care, color restora on, s tching, and custom ar stry—brought to life by
-                  crea ve ar sts who treat every piece as a work of art.
+                 Craftsmanship in leather care, color restoration, stitching, and custom artistry—brought to life by
+creative artists who treat every piece as a work of art.
                 </p>
               </div>
             </div>
@@ -113,9 +114,9 @@ export default function About() {
             <div>
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
                 <p className="text-neutral-800 text-[13px] sm:text-[14px] leading-relaxed">
-                  Signature Style, Your Way
-                  We transform your favorite pieces into one-of-a-kind expressions. From sneakers to handbags, our
-                  crea ve customiza on lets your personality shine through every detail.
+                Signature Style, Your Way
+We transform your favorite pieces into one-of-a-kind expressions. From sneakers to handbags, our
+creative customization lets your personality shine through every detail.
                 </p>
               </div>
             </div>
