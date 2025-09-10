@@ -84,6 +84,7 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [mobileSubcategoryOpen, setMobileSubcategoryOpen] = useState({})
   
   // Use black color for navbar on all pages
   const navTextClass = 'text-black'
@@ -243,31 +244,41 @@ export default function Navbar() {
           {/* Slide-in panel */}
           <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-gradient-to-br from-white via-white to-gray-50 shadow-2xl transform transition-transform duration-300 ease-out">
             <div className="flex flex-col h-full">
-              {/* Modern header with gradient */}
-              <div className="relative p-6 bg-gradient-to-r from-[#D89F30] to-[#F4B942]">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                      <img 
-                        src="/fenav.png" 
-                        alt="Faded Elegance Logo" 
-                        className="w-8 h-8 object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h2 className="text-white font-bold text-lg">Menu</h2>
-                      <p className="text-white/80 text-xs">Navigate with elegance</p>
-                    </div>
-                  </div>
+              {/* Elegant header with centered logo */}
+              <div className="relative p-6 bg-white border-b border-gray-100">
+                <div className="flex flex-col items-center space-y-4">
+                  {/* Close button positioned absolutely */}
                   <button
-                    className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-all duration-200"
+                    className="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-all duration-200"
                     aria-label="Close menu"
                     onClick={() => setMobileOpen(false)}
                   >
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
+                  
+                  {/* Centered logo with elegant styling */}
+                  <div className="flex flex-col items-center space-y-3">
+                    <div className="relative">
+                      {/* Elegant shadow effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#D89F30]/20 to-[#F4B942]/20 rounded-2xl blur-sm scale-110"></div>
+                      {/* Logo container */}
+                      <div className="relative w-20 h-20 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg flex items-center justify-center border border-gray-100">
+                        <img 
+                          src="/fenav.png" 
+                          alt="Faded Elegance Logo" 
+                          className="w-14 h-14 object-contain drop-shadow-sm"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Brand text */}
+                    <div className="text-center">
+                      <h2 className="text-gray-800 font-bold text-xl tracking-wide">Faded Elegance</h2>
+                      <p className="text-gray-500 text-sm font-medium">Navigate with elegance</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -354,24 +365,52 @@ export default function Navbar() {
                               <p className="text-gray-600 text-xs mb-3 italic">{cat.tagline}</p>
                             )}
                             <div className="space-y-2">
-                              {cat.subcategories?.map((sub) => (
-                                <div key={sub.name}>
-                                  <h5 className="text-gray-800 font-semibold text-xs mb-2">{sub.name}</h5>
-                                  <div className="grid grid-cols-1 gap-1">
-                                    {sub.items.map((svc) => (
-                                      <button 
-                                        key={svc}
-                                        type="button"
-                                        className="w-full text-left p-2 rounded-lg hover:bg-[#D89F30]/10 hover:text-[#D89F30] transition-all duration-200 text-xs text-gray-700 flex items-center space-x-2"
-                                        onClick={() => handleServiceClick(cat.title, sub.name, svc)}
-                                      >
-                                        <div className="w-1.5 h-1.5 bg-[#D89F30]/60 rounded-full flex-shrink-0"></div>
-                                        <span>{svc}</span>
-                                      </button>
-                                    ))}
+                              {cat.subcategories?.map((sub) => {
+                                const subcategoryKey = `${cat.title}-${sub.name}`
+                                const isSubcategoryOpen = mobileSubcategoryOpen[subcategoryKey]
+                                
+                                return (
+                                  <div key={sub.name} className="bg-white/20 rounded-lg overflow-hidden">
+                                    <button
+                                      type="button"
+                                      className="w-full flex items-center justify-between p-3 hover:bg-white/30 transition-all duration-200"
+                                      onClick={() => setMobileSubcategoryOpen(prev => ({
+                                        ...prev,
+                                        [subcategoryKey]: !prev[subcategoryKey]
+                                      }))}
+                                      aria-expanded={isSubcategoryOpen}
+                                    >
+                                      <div className="flex items-center space-x-3">
+                                        <div className="w-8 h-8 rounded-lg bg-[#D89F30]/20 flex items-center justify-center">
+                                          <svg className="w-4 h-4 text-[#D89F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                          </svg>
+                                        </div>
+                                        <span className="text-gray-800 font-semibold text-sm">{sub.name}</span>
+                                      </div>
+                                      <svg className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${isSubcategoryOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                      </svg>
+                                    </button>
+                                    
+                                    {isSubcategoryOpen && (
+                                      <div className="px-3 pb-3 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                                        {sub.items.map((svc) => (
+                                          <button 
+                                            key={svc}
+                                            type="button"
+                                            className="w-full text-left p-2 rounded-lg hover:bg-[#D89F30]/10 hover:text-[#D89F30] transition-all duration-200 text-xs text-gray-700 flex items-center space-x-2"
+                                            onClick={() => handleServiceClick(cat.title, sub.name, svc)}
+                                          >
+                                            <div className="w-1.5 h-1.5 bg-[#D89F30]/60 rounded-full flex-shrink-0"></div>
+                                            <span>{svc}</span>
+                                          </button>
+                                        ))}
+                                      </div>
+                                    )}
                                   </div>
-                                </div>
-                              ))}
+                                )
+                              })}
                             </div>
                           </div>
                         ))}

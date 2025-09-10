@@ -270,8 +270,8 @@ const SERVICE_DETAILS = {
     title: 'Cleaning & Conditioning',
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
-      '/FE%20JPEG/pexels-monicore-134064.jpg',
-      '/FE%20JPEG/pexels-scottwebb-137603.jpg'
+      '/nowimages/Cleaning & Conditioning.jpg',
+      '/nowimages/1000048222.jpg'
     ],
     process: [
       'Assessment of leather type and condition',
@@ -293,8 +293,8 @@ const SERVICE_DETAILS = {
     title: 'Color Restoration',
     description: 'Reviving faded or discolored items to their original charm.',
     images: [
-      '/FE%20JPEG/pexels-polina-kovaleva-5828577.jpg',
-      '/FE%20JPEG/pexels-bellazhong-3076787.jpg'
+      '/nowimages/Color Restoration.jpg',
+      '/nowimages/Color Restoration(for men adn women).jpg'
     ],
     process: [
       'Color analysis and matching',
@@ -385,8 +385,8 @@ const SERVICE_DETAILS = {
     title: 'Stitching',
     description: 'Repairing seams for durability.',
     images: [
-      '/FE%20JPEG/pexels-kristian-bogh-141442255-10340652.jpg',
-      '/FE%20JPEG/pexels-kristian-bogh-141442255-10340652 (1).jpg'
+      '/nowimages/Stitching.jpg',
+      '/nowimages/1000048234.jpg'
     ],
     process: [
       'Seam inspection and damage assessment',
@@ -408,8 +408,8 @@ const SERVICE_DETAILS = {
     title: 'Shoe Stretching',
     description: 'Adjusting size for perfect comfort.',
     images: [
-      '/FE%20JPEG/pexels-josh-dago-377312171-30050886.jpg',
-      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg'
+      '/nowimages/Shoe Stretching.jpg',
+      '/nowimages/s.jpg'
     ],
     process: [
       'Foot measurement and analysis',
@@ -455,8 +455,8 @@ const SERVICE_DETAILS = {
     title: 'Custom Coloring & Patterns',
     description: 'Exclusive colors to match your personality.',
     images: [
-      '/FE%20JPEG/pexels-conojeghuo-175689.jpg',
-      '/FE%20JPEG/pexels-karolina-grabowska-5713293.jpg'
+      '/nowimages/Custom Coloring & Patterns .jpg',
+      '/nowimages/1000048222.jpg'
     ],
     process: [
       'Design consultation and planning',
@@ -478,8 +478,8 @@ const SERVICE_DETAILS = {
     title: 'Customized Artwork',
     description: 'Artistic hand designs for uniqueness.',
     images: [
-      '/FE%20JPEG/pexels-karolina-grabowska-5713781.jpg',
-      '/FE%20JPEG/pexels-matt-hatchett-982360-2599270.jpg'
+      '/nowimages/Customized Artwork.jpg',
+      '/nowimages/1000048234.jpg'
     ],
     process: [
       'Artwork concept development',
@@ -524,8 +524,8 @@ const SERVICE_DETAILS = {
     title: 'Fine Stitch Detailing',
     description: 'Elegant refinishing of seams.',
     images: [
-      '/FE%20JPEG/pexels-castorlystock-3682292.jpg',
-      '/FE%20JPEG/pexels-monicore-134064.jpg'
+      '/nowimages/Fine Stitch Detailing.jpg',
+      '/nowimages/Stitching.jpg'
     ],
     process: [
       'Seam inspection and planning',
@@ -625,8 +625,8 @@ const TABS = [
         title: 'Handbag & Wallet',
         subtitle: 'Clean • Restore • Detail',
         sources: [
-          '/FE%20JPEG/pexels-monicore-134064.jpg',
-          '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
+          '/nowimages/Cleaning & Conditioning.jpg',
+          '/nowimages/1000048222.jpg'
         ],
         tags: ['Cleaning', 'Color', 'Stitching', 'Hardware'],
         details: [
@@ -657,8 +657,8 @@ const TABS = [
         title: 'Shoes & Sandals (Men & Women)',
         subtitle: 'Shine • Repair • Comfort',
         sources: [
-          '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
-          '/FE%20JPEG/pexels-scottwebb-137603.jpg'
+          '/nowimages/Shoe Stretching.jpg',
+          '/nowimages/Stitching.jpg'
         ],
         tags: ['Sole', 'Heel', 'Stretch', 'Shine'],
         details: [
@@ -695,8 +695,8 @@ const TABS = [
         title: 'Handbag & Wallet',
         subtitle: 'Color • Artwork • Hardware',
         sources: [
-          '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
-          '/FE%20JPEG/pexels-monicore-134064.jpg'
+          '/nowimages/Custom Coloring & Patterns .jpg',
+          '/nowimages/Customized Artwork.jpg'
         ],
         tags: ['Custom Color', 'Artwork', 'Upgrades'],
         details: [
@@ -722,8 +722,8 @@ const TABS = [
         title: 'Shoes & Sandals (Men & Women)',
         subtitle: 'Patterns • Shine • Finish',
         sources: [
-          '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
-          '/FE%20JPEG/pexels-lum3n-44775-167703.jpg'
+          '/nowimages/Color Restoration.jpg',
+          '/nowimages/Fine Stitch Detailing.jpg'
         ],
         tags: ['Patterns', 'Mirror Shine', 'Unique Finish'],
         details: [
@@ -748,8 +748,8 @@ const TABS = [
         title: 'Kids Shoes',
         subtitle: 'Bright • Playful • Personalized',
         sources: [
-          '/FE%20JPEG/pexels-746807869-18576107.jpg',
-          '/FE%20JPEG/pexels-ron-lach-9595289.jpg'
+          '/nowimages/1000048234.jpg',
+          '/nowimages/s.jpg'
         ],
         tags: ['Color', 'Artwork'],
         details: [
@@ -767,8 +767,8 @@ const TABS = [
         title: 'Kids Bags',
         subtitle: 'Creative • Unique • Personal',
         sources: [
-          '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450735.jpg',
-          '/FE%20JPEG/pexels-pedro-furtado-2149998739-31450738.jpg'
+          '/nowimages/watch.jpg',
+          '/nowimages/1000048222.jpg'
         ],
         tags: ['Patterns', 'Artwork'],
         details: [
