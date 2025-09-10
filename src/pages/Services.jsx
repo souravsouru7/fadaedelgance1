@@ -1024,24 +1024,7 @@ export default function Services() {
         </section>
 
         {/* CTA strip */}
-        <section className="mt-12 sm:mt-16">
-          <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-black">
-            <FallbackImage
-              sources={[
-                '/nowimages/1000048222.jpg',
-                '/nowimages/1000048234.jpg'
-              ]}
-              alt="craft"
-              className="absolute inset-0 w-full h-full opacity-20"
-            />
-            <div className="relative px-5 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-              <h3 className="text-[20px] sm:text-[24px] lg:text-[32px] font-light" style={displayFont}>Luxury deserves to last</h3>
-              <p className="mt-2 text-[12px] sm:text-[13px] max-w-2xl opacity-90">
-                Every item receives meticulous attention to detail—from restoration to personalization—so it looks as elegant as the day you first owned it.
-              </p>
-            </div>
-          </div>
-        </section>
+       
       </main>
 
       {/* Main Service Modal */}
