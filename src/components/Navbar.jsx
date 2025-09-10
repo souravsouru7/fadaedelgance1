@@ -84,6 +84,7 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [mobileCategoryOpen, setMobileCategoryOpen] = useState({})
   const [mobileSubcategoryOpen, setMobileSubcategoryOpen] = useState({})
   
   // Use black color for navbar on all pages
@@ -245,7 +246,12 @@ export default function Navbar() {
           <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-gradient-to-br from-white via-white to-gray-50 shadow-2xl transform transition-transform duration-300 ease-out">
             <div className="flex flex-col h-full">
               {/* Elegant header with centered logo */}
-              <div className="relative p-6 bg-white border-b border-gray-100">
+              <div className="relative p-6 border-b border-white/20"
+                   style={{
+                     background: 'rgba(255,255,255,0.1)',
+                     backdropFilter: 'blur(10px)',
+                     WebkitBackdropFilter: 'blur(10px)'
+                   }}>
                 <div className="flex flex-col items-center space-y-4">
                   {/* Close button positioned absolutely */}
                   <button
@@ -290,9 +296,14 @@ export default function Navbar() {
                     to="/" 
                     className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
                       isActive 
-                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        ? 'text-white shadow-lg' 
                         : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
                     }`}
+                    style={({ isActive }) => isActive ? {
+                      background: 'linear-gradient(135deg, #D89F30, #734918)',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(216,159,48,0.35)'
+                    } : {}}
                     onClick={() => setMobileOpen(false)}
                   >
                     {({ isActive }) => (
@@ -313,9 +324,14 @@ export default function Navbar() {
                     to="/about" 
                     className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
                       isActive 
-                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        ? 'text-white shadow-lg' 
                         : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
                     }`}
+                    style={({ isActive }) => isActive ? {
+                      background: 'linear-gradient(135deg, #D89F30, #734918)',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(216,159,48,0.35)'
+                    } : {}}
                     onClick={() => setMobileOpen(false)}
                   >
                     {({ isActive }) => (
@@ -341,8 +357,12 @@ export default function Navbar() {
                       aria-expanded={mobileServicesOpen}
                     >
                       <div className="flex items-center space-x-4">
-                        <div className="w-10 h-10 rounded-xl bg-[#D89F30]/10 flex items-center justify-center">
-                          <svg className="w-5 h-5 text-[#D89F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                             style={{
+                               background: 'linear-gradient(135deg, #D89F30, #734918)',
+                               boxShadow: '0 4px 15px rgba(216,159,48,0.3)'
+                             }}>
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                           </svg>
                         </div>
@@ -354,66 +374,96 @@ export default function Navbar() {
                     </button>
                     
                     {mobileServicesOpen && (
-                      <div className="px-4 pb-4 space-y-3 animate-in slide-in-from-top-2 duration-200">
-                        {servicesData.map((cat) => (
-                          <div key={cat.title} className="bg-white/30 rounded-xl p-4 backdrop-blur-sm">
-                            <div className="flex items-center space-x-2 mb-3">
-                              <div className="w-2 h-2 bg-[#D89F30] rounded-full"></div>
-                              <h4 className="font-bold text-[#D89F30] text-sm">{cat.title}</h4>
-                            </div>
-                            {cat.tagline && (
-                              <p className="text-gray-600 text-xs mb-3 italic">{cat.tagline}</p>
-                            )}
-                            <div className="space-y-2">
-                              {cat.subcategories?.map((sub) => {
-                                const subcategoryKey = `${cat.title}-${sub.name}`
-                                const isSubcategoryOpen = mobileSubcategoryOpen[subcategoryKey]
-                                
-                                return (
-                                  <div key={sub.name} className="bg-white/20 rounded-lg overflow-hidden">
-                                    <button
-                                      type="button"
-                                      className="w-full flex items-center justify-between p-3 hover:bg-white/30 transition-all duration-200"
-                                      onClick={() => setMobileSubcategoryOpen(prev => ({
-                                        ...prev,
-                                        [subcategoryKey]: !prev[subcategoryKey]
-                                      }))}
-                                      aria-expanded={isSubcategoryOpen}
-                                    >
-                                      <div className="flex items-center space-x-3">
-                                        <div className="w-8 h-8 rounded-lg bg-[#D89F30]/20 flex items-center justify-center">
-                                          <svg className="w-4 h-4 text-[#D89F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                                          </svg>
-                                        </div>
-                                        <span className="text-gray-800 font-semibold text-sm">{sub.name}</span>
-                                      </div>
-                                      <svg className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${isSubcategoryOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M6 9l6 6 6-6" />
-                                      </svg>
-                                    </button>
-                                    
-                                    {isSubcategoryOpen && (
-                                      <div className="px-3 pb-3 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                                        {sub.items.map((svc) => (
-                                          <button 
-                                            key={svc}
-                                            type="button"
-                                            className="w-full text-left p-2 rounded-lg hover:bg-[#D89F30]/10 hover:text-[#D89F30] transition-all duration-200 text-xs text-gray-700 flex items-center space-x-2"
-                                            onClick={() => handleServiceClick(cat.title, sub.name, svc)}
-                                          >
-                                            <div className="w-1.5 h-1.5 bg-[#D89F30]/60 rounded-full flex-shrink-0"></div>
-                                            <span>{svc}</span>
-                                          </button>
-                                        ))}
-                                      </div>
+                      <div className="px-4 pb-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+                        {servicesData.map((cat) => {
+                          const categoryKey = cat.title
+                          const isCategoryOpen = mobileCategoryOpen[categoryKey]
+                          
+                          return (
+                            <div key={cat.title} className="bg-white/30 rounded-xl overflow-hidden backdrop-blur-sm">
+                              {/* Main Category Button */}
+                              <button
+                                type="button"
+                                className="w-full flex items-center justify-between p-4 hover:bg-white/40 transition-all duration-200"
+                                onClick={() => setMobileCategoryOpen(prev => ({
+                                  ...prev,
+                                  [categoryKey]: !prev[categoryKey]
+                                }))}
+                                aria-expanded={isCategoryOpen}
+                              >
+                                <div className="flex items-center space-x-3">
+                                  <div className="w-10 h-10 rounded-xl bg-[#D89F30]/20 flex items-center justify-center">
+                                    <svg className="w-5 h-5 text-[#D89F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                    </svg>
+                                  </div>
+                                  <div className="text-left">
+                                    <h4 className="font-bold text-[#D89F30] text-sm">{cat.title}</h4>
+                                    {cat.tagline && (
+                                      <p className="text-gray-600 text-xs italic">{cat.tagline}</p>
                                     )}
                                   </div>
-                                )
-                              })}
+                                </div>
+                                <svg className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${isCategoryOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M6 9l6 6 6-6" />
+                                </svg>
+                              </button>
+                              
+                              {/* Subcategories */}
+                              {isCategoryOpen && (
+                                <div className="px-4 pb-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+                                  {cat.subcategories?.map((sub) => {
+                                    const subcategoryKey = `${cat.title}-${sub.name}`
+                                    const isSubcategoryOpen = mobileSubcategoryOpen[subcategoryKey]
+                                    
+                                    return (
+                                      <div key={sub.name} className="bg-white/20 rounded-lg overflow-hidden">
+                                        <button
+                                          type="button"
+                                          className="w-full flex items-center justify-between p-3 hover:bg-white/30 transition-all duration-200"
+                                          onClick={() => setMobileSubcategoryOpen(prev => ({
+                                            ...prev,
+                                            [subcategoryKey]: !prev[subcategoryKey]
+                                          }))}
+                                          aria-expanded={isSubcategoryOpen}
+                                        >
+                                          <div className="flex items-center space-x-3">
+                                            <div className="w-8 h-8 rounded-lg bg-[#D89F30]/20 flex items-center justify-center">
+                                              <svg className="w-4 h-4 text-[#D89F30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                              </svg>
+                                            </div>
+                                            <span className="text-gray-800 font-semibold text-sm">{sub.name}</span>
+                                          </div>
+                                          <svg className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${isSubcategoryOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M6 9l6 6 6-6" />
+                                          </svg>
+                                        </button>
+                                        
+                                        {/* Individual Services */}
+                                        {isSubcategoryOpen && (
+                                          <div className="px-3 pb-3 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                                            {sub.items.map((svc) => (
+                                              <button 
+                                                key={svc}
+                                                type="button"
+                                                className="w-full text-left p-2 rounded-lg hover:bg-[#D89F30]/10 hover:text-[#D89F30] transition-all duration-200 text-xs text-gray-700 flex items-center space-x-2"
+                                                onClick={() => handleServiceClick(cat.title, sub.name, svc)}
+                                              >
+                                                <div className="w-1.5 h-1.5 bg-[#D89F30]/60 rounded-full flex-shrink-0"></div>
+                                                <span>{svc}</span>
+                                              </button>
+                                            ))}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                              )}
                             </div>
-                          </div>
-                        ))}
+                          )
+                        })}
                       </div>
                     )}
                   </div>
@@ -422,9 +472,14 @@ export default function Navbar() {
                     to="/gallery" 
                     className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
                       isActive 
-                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        ? 'text-white shadow-lg' 
                         : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
                     }`}
+                    style={({ isActive }) => isActive ? {
+                      background: 'linear-gradient(135deg, #D89F30, #734918)',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(216,159,48,0.35)'
+                    } : {}}
                     onClick={() => setMobileOpen(false)}
                   >
                     {({ isActive }) => (
@@ -445,9 +500,14 @@ export default function Navbar() {
                     to="/contact" 
                     className={({ isActive }) => `group flex items-center space-x-4 p-4 rounded-2xl transition-all duration-200 ${
                       isActive 
-                        ? 'bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white shadow-lg' 
+                        ? 'text-white shadow-lg' 
                         : 'bg-white/50 hover:bg-white/80 text-gray-800 hover:shadow-md backdrop-blur-sm'
                     }`}
+                    style={({ isActive }) => isActive ? {
+                      background: 'linear-gradient(135deg, #D89F30, #734918)',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(216,159,48,0.35)'
+                    } : {}}
                     onClick={() => setMobileOpen(false)}
                   >
                     {({ isActive }) => (
@@ -469,7 +529,12 @@ export default function Navbar() {
                 <div className="pt-4">
                   <a 
                     href="tel:+971545770967" 
-                    className="w-full flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gradient-to-r from-[#D89F30] to-[#F4B942] text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                    className="w-full flex items-center justify-center space-x-3 p-4 rounded-2xl text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                    style={{
+                      background: 'linear-gradient(135deg, #D89F30, #734918)',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.06)',
+                      border: '1px solid rgba(216,159,48,0.35)'
+                    }}
                     onClick={() => setMobileOpen(false)}
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -486,5 +551,4 @@ export default function Navbar() {
     </header>
   )
 }
-
 
