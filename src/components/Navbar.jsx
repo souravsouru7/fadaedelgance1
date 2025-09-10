@@ -236,22 +236,11 @@ export default function Navbar() {
       {/* Mobile panel */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50">
-          {/* Backdrop with blur effect */}
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-md"
-            onClick={() => setMobileOpen(false)}
-          />
-          
-          {/* Slide-in panel */}
-          <div className="absolute right-0 top-0 h-full w-full max-w-sm bg-gradient-to-br from-white via-white to-gray-50 shadow-2xl transform transition-transform duration-300 ease-out">
+          {/* Full screen panel */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 transform transition-transform duration-300 ease-out">
             <div className="flex flex-col h-full">
               {/* Elegant header with centered logo */}
-              <div className="relative p-6 border-b border-white/20"
-                   style={{
-                     background: 'rgba(255,255,255,0.1)',
-                     backdropFilter: 'blur(10px)',
-                     WebkitBackdropFilter: 'blur(10px)'
-                   }}>
+              <div className="relative p-6 bg-white border-b border-gray-100">
                 <div className="flex flex-col items-center space-y-4">
                   {/* Close button positioned absolutely */}
                   <button
