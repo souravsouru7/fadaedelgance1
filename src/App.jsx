@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import SEO from './components/SEO'
 import SEOOptimizer from './components/SEOOptimizer'
 import Watermark from './components/Watermark'
+import LogoSlider from './components/LogoSlider'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -75,6 +76,7 @@ function App() {
         }`}
       >
         <Hero />
+        <LogoSlider />
         <WhyChooseUs />
         <WorkProcess />
         <FAQ />

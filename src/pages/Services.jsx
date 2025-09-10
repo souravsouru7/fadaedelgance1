@@ -1028,8 +1028,8 @@ export default function Services() {
           <div className="relative overflow-hidden rounded-2xl border border-black/10 bg-black">
             <FallbackImage
               sources={[
-                'https://images.unsplash.com/photo-1549575810-39f0ebd28fe3?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3',
-                'https://picsum.photos/seed/cta/1600/900'
+                '/nowimages/1000048222.jpg',
+                '/nowimages/1000048234.jpg'
               ]}
               alt="craft"
               className="absolute inset-0 w-full h-full opacity-20"
