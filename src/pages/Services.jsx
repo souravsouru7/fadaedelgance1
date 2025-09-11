@@ -625,8 +625,8 @@ const TABS = [
         title: 'Handbag & Wallet',
         subtitle: 'Clean • Restore • Detail',
         sources: [
-          '/nowimages/Cleaning & Conditioning.jpg',
-          '/nowimages/1000048222.jpg'
+          '/nowimages/repair.jpg',
+          '/nowimages/repair.jpg'
         ],
         tags: ['Cleaning', 'Color', 'Stitching', 'Hardware'],
         details: [
@@ -722,8 +722,8 @@ const TABS = [
         title: 'Shoes & Sandals (Men & Women)',
         subtitle: 'Patterns • Shine • Finish',
         sources: [
-          '/nowimages/Color Restoration.jpg',
-          '/nowimages/Fine Stitch Detailing.jpg'
+          '/nowimages/Cleaning & Conditioning.jpg',
+          '/nowimages/Cleaning & Conditioning.jpg'
         ],
         tags: ['Patterns', 'Mirror Shine', 'Unique Finish'],
         details: [
@@ -748,8 +748,8 @@ const TABS = [
         title: 'Kids Shoes',
         subtitle: 'Bright • Playful • Personalized',
         sources: [
-          '/nowimages/1000048222.jpg',
-          '/nowimages/s.jpg'
+          '/nowimages/Customized Artwork.jpg',
+          '/nowimages/Customized Artwork.jpg'
         ],
         tags: ['Color', 'Artwork'],
         details: [
@@ -767,8 +767,8 @@ const TABS = [
         title: 'Kids Bags',
         subtitle: 'Creative • Unique • Personal',
         sources: [
-          '/nowimages/watch.jpg',
-          '/nowimages/1000048222.jpg'
+          '/nowimages/nice.jpg',
+          '/nowimages/nice.jpg'
         ],
         tags: ['Patterns', 'Artwork'],
         details: [
