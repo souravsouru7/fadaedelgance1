@@ -190,12 +190,7 @@ export default function Navbar() {
           </div>
         </div>
         <span className="text-black/30 text-sm lg:text-base font-bold">|</span>
-        <NavLink
-          to="/gallery"
-          className={({ isActive }) => `luxury-nav ${navTextClass} hover:opacity-90 transition-opacity duration-300 pb-0.5 font-bold text-xs lg:text-sm tracking-wide ${isActive ? `border-b-2 ${navBorderClass}` : `border-b-2 border-transparent ${navHoverClass}`}`}
-        >
-          GALLERY
-        </NavLink>
+       
         <span className="text-black/30 text-sm lg:text-base font-bold">|</span>
         <NavLink
           to="/contact"
