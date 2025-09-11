@@ -36,7 +36,7 @@ function LogoSlider() {
               <img
                 src={`/companylogo/${fileName}`}
                 alt={`Company logo ${idx + 1}`}
-                className="h-12 md:h-16 object-contain"
+                className="h-20 md:h-16 object-contain"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
