@@ -37,7 +37,7 @@ export default function Hero() {
         {/* Main Content */}
         <main className="flex flex-col lg:flex-row items-center min-h-[70vh] lg:min-h-[80vh] px-4 lg:px-10 pt-2 lg:pt-0">
           {/* Left Content */}
-          <div className="flex-1 max-w-2xl fade-in-up text-center lg:text-left mb-2 lg:mb-0 mt-8 lg:-mt-36">
+          <div className="flex-1 max-w-2xl fade-in-up text-center lg:text-left mb-2 lg:mb-0 mt-20 lg:-mt-48">
             {/* Main Title */}
             <div className="mb-1 lg:mb-1">
               <img 
