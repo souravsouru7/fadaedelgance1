@@ -80,7 +80,7 @@ export default function Hero() {
         </main>
 
         {/* Full-width Brand Logos outside inner container */}
-        <div className="absolute left-1/2 -translate-x-1/2 w-screen bottom-56 md:bottom-16 lg:bottom-20" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+        <div className="absolute left-1/2 -translate-x-1/2 w-screen bottom-32 md:bottom-16 lg:bottom-20" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
           <Suspense fallback={null}>
             <LogoSlider />
           </Suspense>
