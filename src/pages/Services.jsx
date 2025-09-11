@@ -270,8 +270,8 @@ const SERVICE_DETAILS = {
     title: 'Cleaning & Conditioning',
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
-      '/nowimages/1000048222.jpg',
-      '/nowimages/1000048222.jpg'
+      '/nowimages/Cleaning & Conditioning.jpg',
+      '/nowimages/Cleaning & Conditioning.jpg'
     ],
     process: [
       'Assessment of leather type and condition',
@@ -293,8 +293,8 @@ const SERVICE_DETAILS = {
     title: 'Color Restoration',
     description: 'Reviving faded or discolored items to their original charm.',
     images: [
-      '/nowimages/Color Restoration.jpg',
-      '/nowimages/Color Restoration.jpg'
+      '/nowimages/Cleaning & Conditioning.jpg',
+      '/nowimages/Cleaning & Conditioning.jpg'
     ],
     process: [
       'Color analysis and matching',
@@ -455,8 +455,8 @@ const SERVICE_DETAILS = {
     title: 'Custom Coloring & Patterns',
     description: 'Exclusive colors to match your personality.',
     images: [
-      '/nowimages/Customized Artwork.jpg',
-      '/nowimages/Custom Coloring & Patterns .jpg'
+      '/nowimages/1000048222.jpg',
+      '/nowimages/1000048222.jpg'
     ],
     process: [
       'Design consultation and planning',
@@ -478,8 +478,8 @@ const SERVICE_DETAILS = {
     title: 'Customized Artwork',
     description: 'Artistic hand designs for uniqueness.',
     images: [
-      '/nowimages/Customized Artwork.jpg',
-      '/nowimages/Customized Artwork.jpg'
+      '/nowimages/Color Restoration.jpg',
+      '/nowimages/Color Restoration.jpg'
     ],
     process: [
       'Artwork concept development',
