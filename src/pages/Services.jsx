@@ -134,11 +134,24 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
         <div className="flex flex-col lg:flex-row h-full">
           {/* Image */}
           <div className="w-full lg:w-1/2 h-full min-h-[280px]">
-            <FallbackImage
-              sources={serviceDetail.images}
-              alt={serviceDetail.title}
-              className="w-full h-full"
-            />
+            {(() => {
+              const isShoesCleaning =
+                serviceDetail?.title === 'Cleaning & Conditioning' &&
+                parentService?.title === 'Shoes & Sandals (Men & Women)'
+              const isShoesColorRestoration =
+                serviceDetail?.title === 'Color Restoration' &&
+                parentService?.title === 'Shoes & Sandals (Men & Women)'
+              const imagesToShow = isShoesCleaning || isShoesColorRestoration
+                ? ['/nowimages/Cleaning & Conditioning.jpg', '/nowimages/Cleaning & Conditioning.jpg']
+                : serviceDetail.images
+              return (
+                <FallbackImage
+                  sources={imagesToShow}
+                  alt={serviceDetail.title}
+                  className="w-full h-full"
+                />
+              )
+            })()}
           </div>
 
           {/* Content */}
@@ -271,7 +284,7 @@ const SERVICE_DETAILS = {
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
       '/nowimages/1000048222.jpg',
-      '/nowimages/Cleaning & Conditioning.jpg'
+      '/nowimages/1000048222.jpg'
     ],
     process: [
       'Assessment of leather type and condition',
