@@ -270,8 +270,8 @@ const SERVICE_DETAILS = {
     title: 'Cleaning & Conditioning',
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
-      '/nowimages/Cleaning & Conditioning.jpg',
-      '/nowimages/Cleaning & Conditioning.jpg'
+      '/nowimages/1000048222.jpg',
+      '/nowimages/1000048222.jpg'
     ],
     process: [
       'Assessment of leather type and condition',
@@ -293,8 +293,8 @@ const SERVICE_DETAILS = {
     title: 'Color Restoration',
     description: 'Reviving faded or discolored items to their original charm.',
     images: [
-      '/nowimages/Color Restoration(for men adn women).jpg',
-      '/nowimages/Color Restoration(for men adn women).jpg'
+      '/nowimages/Color Restoration.jpg',
+      '/nowimages/Color Restoration.jpg'
     ],
     process: [
       'Color analysis and matching',

@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetContactState, submitContact } from '../slices/contactSlice.js'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
@@ -15,6 +17,15 @@ export default function Contact() {
 
   const pageFont = { fontFamily: 'Manrope, system-ui, Arial, sans-serif' }
   const displayFont = { fontFamily: 'Cormorant Garamond, serif' }
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [error, setError] = useState('')
+  const contactState = useSelector((s) => s.contact)
+  const dispatch = useDispatch()
   const contactStructuredData = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -161,7 +172,20 @@ export default function Contact() {
                 <h2 className="text-2xl font-light mb-2" style={displayFont}>Send us a Message</h2>
                 <p className="text-black/70 mb-6">We'd love to hear from you. Fill out the form below and we'll get back to you shortly.</p>
                 
-                <form className="space-y-6 flex-1">
+                <form className="space-y-6 flex-1" onSubmit={async (e) => {
+                  e.preventDefault()
+                  setStatus('submitting')
+                  setError('')
+                  const action = await dispatch(submitContact({ firstName, lastName, email, phone, message }))
+                  if (submitContact.fulfilled.match(action)) {
+                    setStatus('success')
+                    setFirstName(''); setLastName(''); setEmail(''); setPhone(''); setMessage('')
+                    setTimeout(() => dispatch(resetContactState()), 0)
+                  } else if (submitContact.rejected.match(action)) {
+                    setStatus('error')
+                    setError(action.error?.message || 'Failed to send message')
+                  }
+                }}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-black text-sm font-medium mb-2">First Name</label>
@@ -169,6 +193,9 @@ export default function Contact() {
                         type="text" 
                         className="w-full px-4 py-3 bg-white border border-black/20 rounded-xl text-black placeholder-black/40 focus:outline-none focus:border-black focus:bg-white transition-all"
                         placeholder="Enter your first name"
+                        required
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
                     </div>
                     <div>
@@ -177,6 +204,8 @@ export default function Contact() {
                         type="text" 
                         className="w-full px-4 py-3 bg-white border border-black/20 rounded-xl text-black placeholder-black/40 focus:outline-none focus:border-black focus:bg-white transition-all"
                         placeholder="Enter your last name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                     </div>
                   </div>
@@ -188,6 +217,9 @@ export default function Contact() {
                         type="email" 
                         className="w-full px-4 py-3 bg-white border border-black/20 rounded-xl text-black placeholder-black/40 focus:outline-none focus:border-black focus:bg-white transition-all"
                         placeholder="Enter your email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div>
@@ -196,6 +228,8 @@ export default function Contact() {
                         type="tel" 
                         className="w-full px-4 py-3 bg-white border border-black/20 rounded-xl text-black placeholder-black/40 focus:outline-none focus:border-black focus:bg-white transition-all"
                         placeholder="Enter your phone number"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
                   </div>
@@ -206,16 +240,25 @@ export default function Contact() {
                       rows="4"
                       className="w-full px-4 py-3 bg-white border border-black/20 rounded-xl text-black placeholder-black/40 focus:outline-none focus:border-black focus:bg-white transition-all resize-none"
                       placeholder="Tell us about your inquiry..."
+                      required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     ></textarea>
                   </div>
+                  {status === 'error' && (
+                    <div className="text-red-600 text-sm">{error || contactState.error}</div>
+                  )}
+                  {status === 'success' && (
+                    <div className="text-green-700 text-sm">Thanks! Your message has been sent.</div>
+                  )}
+                  <button 
+                    type="submit" 
+                    className="w-full bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-black/25 mt-2"
+                    disabled={status === 'submitting' || contactState.status === 'loading'}
+                  >
+                    {status === 'submitting' || contactState.status === 'loading' ? 'Sending…' : 'Send Message'}
+                  </button>
                 </form>
-                
-                <button 
-                  type="submit" 
-                  className="w-full bg-black text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-black/25 mt-auto"
-                >
-                  Send Message
-                </button>
               </div>
             </div>
           </div>

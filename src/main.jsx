@@ -2,7 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { adminStore } from './store/adminStore.js'
 import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
 import Contact from './pages/Contact.jsx'
@@ -13,14 +15,30 @@ import { AnimatePresence, motion as Motion } from 'framer-motion'
 import FloatingContact from './components/FloatingContact.jsx'
 import Watermark from './components/Watermark.jsx'
 import { HelmetProvider } from '@dr.pogodin/react-helmet'
+import AdminLogin from './pages/AdminLogin.jsx'
+import AdminDashboard from './pages/AdminDashboard.jsx'
+import AdminRoute from './components/AdminRoute.jsx'
+import AdminGallery from './pages/AdminGallery.jsx'
+import AdminContacts from './pages/AdminContacts.jsx'
+
+function CommonOverlays() {
+  const location = useLocation()
+  const isAdmin = location.pathname.startsWith('/admin')
+  return (
+    <>
+      {!isAdmin && <FloatingContact />}
+    </>
+  )
+}
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
+      <Provider store={adminStore}>
       <BrowserRouter>
         <RouteLoader>
           <Watermark />
-          <FloatingContact />
+          <CommonOverlays />
           <AnimatePresence mode="wait">
           <Routes>
             <Route
@@ -93,6 +111,69 @@ createRoot(document.getElementById('root')).render(
                 </Motion.div>
               }
             />
+            {/* Admin routes */}
+            <Route
+              path="/admin/login"
+              element={
+                <Motion.div
+                  key="admin-login"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <AdminLogin />
+                </Motion.div>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <Motion.div
+                  key="admin"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                </Motion.div>
+              }
+            />
+            <Route
+              path="/admin/contacts"
+              element={
+                <Motion.div
+                  key="admin-contacts"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <AdminRoute>
+                    <AdminContacts />
+                  </AdminRoute>
+                </Motion.div>
+              }
+            />
+            <Route
+              path="/admin/gallery"
+              element={
+                <Motion.div
+                  key="admin-gallery"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <AdminRoute>
+                    <AdminGallery />
+                  </AdminRoute>
+                </Motion.div>
+              }
+            />
             <Route
               path="/company-info"
               element={
@@ -136,6 +217,7 @@ createRoot(document.getElementById('root')).render(
         </AnimatePresence>
       </RouteLoader>
     </BrowserRouter>
+    </Provider>
     </HelmetProvider>
   </StrictMode>,
 )
