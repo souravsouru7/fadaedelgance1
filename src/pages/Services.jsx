@@ -270,8 +270,8 @@ const SERVICE_DETAILS = {
     title: 'Cleaning & Conditioning',
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
-      '/nowimages/1000048222.jpg',
-      '/nowimages/1000048222.jpg'
+      '/nowimages/Cleaning & Conditioning.jpg',
+      '/nowimages/Cleaning & Conditioning.jpg'
     ],
     process: [
       'Assessment of leather type and condition',
@@ -293,7 +293,7 @@ const SERVICE_DETAILS = {
     title: 'Color Restoration',
     description: 'Reviving faded or discolored items to their original charm.',
     images: [
-      '/nowimages/Color Restoration.jpg',
+      '/nowimages/Color Restoration(for men adn women).jpg',
       '/nowimages/Color Restoration(for men adn women).jpg'
     ],
     process: [
@@ -478,8 +478,8 @@ const SERVICE_DETAILS = {
     title: 'Customized Artwork',
     description: 'Artistic hand designs for uniqueness.',
     images: [
-      '/nowimages/Color Restoration.jpg',
-      '/nowimages/Color Restoration.jpg'
+      '/nowimages/Customized Artwork.jpg',
+      '/nowimages/Customized Artwork.jpg'
     ],
     process: [
       'Artwork concept development',
@@ -501,8 +501,8 @@ const SERVICE_DETAILS = {
     title: 'Hardware & Zipper Upgrades',
     description: 'Luxury-level detailing.',
     images: [
-      '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
-      '/FE%20JPEG/pexels-monicore-134064.jpg'
+      '/nowimages/zip.jpg',
+      '/nowimages/zip.jpg'
     ],
     process: [
       'Design consultation',

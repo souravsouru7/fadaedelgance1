@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 
 const logos = [
   'Brands Logo-01.png',
@@ -22,20 +22,28 @@ const logos = [
 ]
 
 function LogoSlider() {
-  const allLogos = [...logos, ...logos]
+  const [loadedCount, setLoadedCount] = useState(0)
+  const isReady = loadedCount >= 6
+
+  const visibleLogos = useMemo(() => (isReady ? [...logos, ...logos] : logos), [isReady])
 
   return (
     <div className="w-full py-4 md:py-5 select-none">
       <div className="overflow-hidden w-full px-0">
-        <div className="logo-marquee flex items-center gap-12 w-full">
-          {allLogos.map((fileName, idx) => (
-            <div key={idx} className="shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200">
+        <div className="logo-marquee flex items-center gap-12 w-full" style={{ willChange: 'transform' }}>
+          {visibleLogos.map((fileName, idx) => (
+            <div key={`${fileName}-${idx}`} className="shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200">
               <img
                 src={`/companylogo/${fileName}`}
                 alt={`Company logo ${idx + 1}`}
                 className="h-12 md:h-16 object-contain"
                 loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                width="128"
+                height="64"
                 draggable="false"
+                onLoad={() => setLoadedCount((c) => c + 1)}
               />
             </div>
           ))}
