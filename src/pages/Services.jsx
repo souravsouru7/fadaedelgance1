@@ -144,10 +144,24 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
               const isKidsCustomColoring =
                 serviceDetail?.title === 'Custom Coloring & Patterns' &&
                 parentService?.title === 'Kids Shoes'
+              const isKidsCustomizedArtwork =
+                serviceDetail?.title === 'Customized Artwork' &&
+                parentService?.title === 'Kids Shoes'
+              const isSignatureShoesCustomizedArtwork =
+                serviceDetail?.title === 'Customized Artwork' &&
+                parentService?.title === 'Shoes & Sandals (Men & Women)'
+              const isRebornShoesColorRestoration =
+                serviceDetail?.title === 'Color Restoration' &&
+                parentService?.title === 'Shoes & Sandals (Men & Women)' &&
+                serviceDetail?.parentTabKey === 'reborn'
               const imagesToShow = isShoesCleaning || isShoesColorRestoration
                 ? ['/nowimages/Cleaning & Conditioning.jpg', '/nowimages/Cleaning & Conditioning.jpg']
-                : isKidsCustomColoring
+                : isKidsCustomColoring || isKidsCustomizedArtwork
                 ? ['/nowimages/Customized Artwork.jpg', '/nowimages/Customized Artwork.jpg']
+                : isSignatureShoesCustomizedArtwork
+                ? ['/nowimages/Customized Artwork.jpg', '/nowimages/Customized Artwork.jpg']
+                : isRebornShoesColorRestoration
+                ? ['/nowimages/Color Restoration(for men adn women).jpg', '/nowimages/Color Restoration(for men adn women).jpg']
                 : serviceDetail.images
               return (
                 <FallbackImage
@@ -912,7 +926,7 @@ export default function Services() {
                 // Use a timeout to ensure proper state management
                 setTimeout(() => {
                   setSelectedService(matchingCard)
-                  setSelectedDetail({ ...detailData, parentService: matchingCard })
+                  setSelectedDetail({ ...detailData, parentService: matchingCard, parentTabKey: tabKey })
                   setDetailModalOpen(true)
                   setModalOpen(false) // Close service modal since we're opening detail directly
                 }, 100)
@@ -952,7 +966,7 @@ export default function Services() {
   const handleServiceClick = (serviceDetail) => {
     const detail = SERVICE_DETAILS[serviceDetail.title]
     if (detail) {
-      setSelectedDetail({ ...detail, parentService: selectedService })
+      setSelectedDetail({ ...detail, parentService: selectedService, parentTabKey: active })
       setDetailModalOpen(true)
     }
   }
