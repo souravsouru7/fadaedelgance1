@@ -141,8 +141,13 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
               const isShoesColorRestoration =
                 serviceDetail?.title === 'Color Restoration' &&
                 parentService?.title === 'Shoes & Sandals (Men & Women)'
+              const isKidsCustomColoring =
+                serviceDetail?.title === 'Custom Coloring & Patterns' &&
+                parentService?.title === 'Kids Shoes'
               const imagesToShow = isShoesCleaning || isShoesColorRestoration
                 ? ['/nowimages/Cleaning & Conditioning.jpg', '/nowimages/Cleaning & Conditioning.jpg']
+                : isKidsCustomColoring
+                ? ['/nowimages/Customized Artwork.jpg', '/nowimages/Customized Artwork.jpg']
                 : serviceDetail.images
               return (
                 <FallbackImage
@@ -638,8 +643,8 @@ const TABS = [
         title: 'Handbag & Wallet',
         subtitle: 'Clean • Restore • Detail',
         sources: [
-          '/nowimages/repair.jpg',
-          '/nowimages/repair.jpg'
+          '/nowimages/1000048222.jpg',
+          '/nowimages/1000048222.jpg'
         ],
         tags: ['Cleaning', 'Color', 'Stitching', 'Hardware'],
         details: [
