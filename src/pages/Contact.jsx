@@ -38,9 +38,9 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white text-black" style={pageFont}>
       <SEO 
-        title="Contact Faded Elegance Dubai | Furniture Restoration Services"
-        description="Contact Faded Elegance for premium furniture restoration in Dubai. Expert luxury furniture repair, antique restoration, and upholstery services. Call +971 54 5770967 or visit our location."
-        keywords="contact furniture restoration dubai, luxury furniture repair contact, antique restoration dubai contact, upholstery services dubai, furniture repair contact"
+        title="Contact Faded Elegance Dubai | Luxury Leather Restoration"
+        description="Contact Faded Elegance for premium luxury leather restoration in Dubai. Handbag, shoe, wallet and jacket repair, cleaning & conditioning, color restoration, stitching and hardware services. Call +971 54 5770967."
+        keywords="contact leather restoration dubai, handbag repair dubai contact, shoe restoration dubai contact, leather recoloring dubai, leather cleaning conditioning contact"
         url="https://fadedelegance.ae/contact"
         image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
         structuredData={contactStructuredData}

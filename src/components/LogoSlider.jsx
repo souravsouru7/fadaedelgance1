@@ -25,9 +25,9 @@ function LogoSlider() {
   const allLogos = [...logos, ...logos]
 
   return (
-    <div className="w-full py-8 select-none">
-      <div className="overflow-hidden">
-        <div className="logo-marquee flex items-center gap-12">
+    <div className="w-full py-4 md:py-5 select-none">
+      <div className="overflow-hidden w-full px-0">
+        <div className="logo-marquee flex items-center gap-12 w-full">
           {allLogos.map((fileName, idx) => (
             <div key={idx} className="shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200">
               <img

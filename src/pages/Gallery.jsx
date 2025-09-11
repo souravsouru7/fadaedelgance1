@@ -142,9 +142,9 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-white text-black" style={pageFont}>
       <SEO 
-        title="Gallery - Faded Elegance Dubai | Luxury Furniture Restoration Portfolio"
-        description="Explore our gallery of luxury furniture restoration work. See before and after transformations of handbags, shoes, wallets, and sandals. Premium restoration services in Dubai."
-        keywords="furniture restoration gallery dubai, luxury furniture repair portfolio, before after restoration, leather restoration gallery, furniture repair examples"
+        title="Gallery - Faded Elegance Dubai | Luxury Leather Restoration Portfolio"
+        description="Explore our gallery of luxury leather restoration work. See before and after transformations of handbags, shoes, wallets and jackets. Premium restoration services in Dubai."
+        keywords="leather restoration gallery dubai, luxury leather repair portfolio, before after leather restoration, handbag restoration examples, shoe restoration dubai"
         url="https://fadedelegance.ae/gallery"
         image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
         structuredData={galleryStructuredData}

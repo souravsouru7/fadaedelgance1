@@ -170,9 +170,9 @@ const CompanyInfo = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 relative overflow-hidden">
       <SEO 
-        title="Company Information - Faded Elegance Dubai | Furniture Restoration Services"
-        description="Learn about Faded Elegance, Dubai's premier furniture restoration company. Expert luxury furniture repair, antique restoration, and premium upholstery services."
-        keywords="faded elegance company dubai, furniture restoration company, luxury furniture repair dubai, antique restoration company, upholstery services dubai"
+        title="Company Information - Faded Elegance Dubai | Luxury Leather Restoration"
+        description="Learn about Faded Elegance, Dubai's premier luxury leather restoration studio. Specialists in handbag, shoe, wallet and jacket restoration, color work, stitching and hardware services."
+        keywords="faded elegance dubai, leather restoration company dubai, handbag repair dubai, shoe restoration dubai, leather color restoration"
         url="https://fadedelegance.ae/company-info"
         image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
         structuredData={companyInfoStructuredData}

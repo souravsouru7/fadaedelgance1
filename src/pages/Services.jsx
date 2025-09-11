@@ -60,7 +60,7 @@ const FallbackImage = ({ sources, alt, className = '' }) => {
       <img
         src={currentSrc}
         alt={alt}
-        className={`w-full h-full object-cover grayscale ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
+        className={`w-full h-full object-cover ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
         loading="lazy"
         referrerPolicy="no-referrer"
         onLoad={() => setLoaded(true)}
@@ -270,7 +270,7 @@ const SERVICE_DETAILS = {
     title: 'Cleaning & Conditioning',
     description: 'Deep cleaning and moisturizing to refresh leather.',
     images: [
-      '/nowimages/Cleaning & Conditioning.jpg',
+      '/nowimages/1000048222.jpg',
       '/nowimages/1000048222.jpg'
     ],
     process: [
@@ -316,7 +316,7 @@ const SERVICE_DETAILS = {
     title: 'Stitching & Edging',
     description: 'Repairing loose stitches and edges for a refined finish.',
     images: [
-      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
+      '/nowimages/Fine Stitch Detailing.jpg',
       '/FE%20JPEG/pexels-geyonk-1152077.jpg'
     ],
     process: [
@@ -339,8 +339,8 @@ const SERVICE_DETAILS = {
     title: 'Zipper Repair & Replacement',
     description: 'Fixing or replacing zippers for smooth use.',
     images: [
-      '/FE%20JPEG/pexels-ron-lach-9595289.jpg',
-      '/FE%20JPEG/pexels-vlada-karpovich-4452502.jpg'
+      '/nowimages/zip.jpg',
+      '/nowimages/zip.jpg'
     ],
     process: [
       'Zipper functionality assessment',
@@ -362,8 +362,8 @@ const SERVICE_DETAILS = {
     title: 'Hardware Repair & Replacement',
     description: 'Restoring metal clasps, locks, and buckles.',
     images: [
-      '/FE%20JPEG/pexels-castorlystock-3682292.jpg',
-      '/FE%20JPEG/pexels-august-de-richelieu-4427712.jpg'
+      '/nowimages/repair.jpg',
+      '/nowimages/repair.jpg'
     ],
     process: [
       'Hardware condition evaluation',
@@ -385,8 +385,8 @@ const SERVICE_DETAILS = {
     title: 'Stitching',
     description: 'Repairing seams for durability.',
     images: [
-      '/nowimages/Stitching.jpg',
-      '/nowimages/1000048234.jpg'
+      '/nowimages/Fine Stitch Detailing.jpg',
+      '/nowimages/1000048222.jpg'
     ],
     process: [
       'Seam inspection and damage assessment',
@@ -408,7 +408,7 @@ const SERVICE_DETAILS = {
     title: 'Shoe Stretching',
     description: 'Adjusting size for perfect comfort.',
     images: [
-      '/nowimages/Shoe Stretching.jpg',
+      '/nowimages/ShoeStretching.jpg',
       '/nowimages/s.jpg'
     ],
     process: [
@@ -431,8 +431,8 @@ const SERVICE_DETAILS = {
     title: 'Heel & Sole Repair',
     description: 'Fixing worn heels, adding new soles, or sole guards.',
     images: [
-      '/FE%20JPEG/pexels-matt-hatchett-982360-2599270.jpg',
-      '/FE%20JPEG/pexels-nishantaneja-12105084.jpg'
+      '/nowimages/Stitching.jpg',
+      '/nowimages/Stitching.jpg'
     ],
     process: [
       'Heel and sole condition assessment',
@@ -455,8 +455,8 @@ const SERVICE_DETAILS = {
     title: 'Custom Coloring & Patterns',
     description: 'Exclusive colors to match your personality.',
     images: [
-      '/nowimages/Custom Coloring & Patterns .jpg',
-      '/nowimages/1000048222.jpg'
+      '/nowimages/Customized Artwork.jpg',
+      '/nowimages/Custom Coloring & Patterns .jpg'
     ],
     process: [
       'Design consultation and planning',
@@ -478,8 +478,8 @@ const SERVICE_DETAILS = {
     title: 'Customized Artwork',
     description: 'Artistic hand designs for uniqueness.',
     images: [
-      '/nowimages/Customized Artwork.jpg',
-      '/nowimages/1000048234.jpg'
+      '/nowimages/Color Restoration.jpg',
+      '/nowimages/Color Restoration.jpg'
     ],
     process: [
       'Artwork concept development',
@@ -547,8 +547,8 @@ const SERVICE_DETAILS = {
     title: 'Bespoke Coloring & Patterns',
     description: 'Premium finishes that stand out.',
     images: [
-      '/FE%20JPEG/pexels-mikhail-nilov-8731040.jpg',
-      '/FE%20JPEG/pexels-lum3n-44775-167703.jpg'
+      '/nowimages/Customized Artwork.jpg',
+      '/nowimages/Customized Artwork.jpg'
     ],
     process: [
       'Design consultation',
@@ -571,7 +571,7 @@ const SERVICE_DETAILS = {
     title: 'Creative Coloring & Patterns',
     description: 'Unique, playful looks.',
     images: [
-      '/FE%20JPEG/pexels-746807869-18576107.jpg',
+      '/nowimages/1000048222.jpg',
       '/FE%20JPEG/pexels-27298298 (1).jpg'
     ],
     process: [
@@ -594,8 +594,8 @@ const SERVICE_DETAILS = {
     title: 'Personalized Artwork',
     description: 'Fun artwork designed for children.',
     images: [
-      '/FE%20JPEG/pexels-746807869-18576107.jpg',
-      '/FE%20JPEG/pexels-monicore-134064.jpg'
+      '/nowimages/nice.jpg',
+      '/nowimages/nice.jpg'
     ],
     process: [
       'Child-friendly artwork consultation',
@@ -657,7 +657,7 @@ const TABS = [
         title: 'Shoes & Sandals (Men & Women)',
         subtitle: 'Shine • Repair • Comfort',
         sources: [
-          '/nowimages/Shoe Stretching.jpg',
+          '/nowimages/Stitching.jpg',
           '/nowimages/Stitching.jpg'
         ],
         tags: ['Sole', 'Heel', 'Stretch', 'Shine'],
@@ -748,7 +748,7 @@ const TABS = [
         title: 'Kids Shoes',
         subtitle: 'Bright • Playful • Personalized',
         sources: [
-          '/nowimages/1000048234.jpg',
+          '/nowimages/1000048222.jpg',
           '/nowimages/s.jpg'
         ],
         tags: ['Color', 'Artwork'],
@@ -947,9 +947,9 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white text-black" style={pageFont}>
       <SEO 
-        title="Furniture Restoration Services Dubai | Luxury Furniture Repair & Antique Restoration"
-        description="Premium furniture restoration services in Dubai. Expert luxury furniture repair, antique restoration, upholstery, and custom design. Transform your furniture with our master craftsmen."
-        keywords="furniture restoration services dubai, luxury furniture repair, antique furniture restoration, upholstery services dubai, custom furniture design, furniture refinishing dubai"
+        title="Faded Elegance — Luxury Leather Restoration Services Dubai"
+        description="Premium luxury leather restoration in Dubai for handbags, shoes, wallets and jackets. Cleaning & conditioning, color restoration, recoloring, stitching, hardware repair and bespoke customization."
+        keywords="leather restoration services dubai, handbag repair dubai, shoe restoration dubai, leather recoloring dubai, leather color restoration, leather cleaning conditioning, zipper repair dubai, stitching repair leather dubai"
         url="https://fadedelegance.ae/services"
         image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
         structuredData={servicesStructuredData}

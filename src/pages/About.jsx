@@ -34,9 +34,9 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white text-black" style={pageFont}>
       <SEO 
-        title="About Faded Elegance Dubai | Premium Furniture Restoration Services"
-        description="Discover Faded Elegance's story of craftsmanship, care, and customization. Expert furniture restoration services in Dubai with years of experience in luxury furniture repair and antique restoration."
-        keywords="about furniture restoration dubai, luxury furniture repair about, antique restoration dubai, furniture restoration company dubai, premium upholstery dubai"
+        title="About Faded Elegance Dubai | Luxury Leather Restoration"
+        description="Discover Faded Elegance's story of craftsmanship in premium leather restoration: handbags, shoes, wallets and jackets. Cleaning & conditioning, color restoration, stitching and bespoke artistry."
+        keywords="about leather restoration dubai, luxury leather repair dubai, handbag restoration dubai, shoe restoration dubai, leather color restoration"
         url="https://fadedelegance.ae/about"
         image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
         structuredData={aboutStructuredData}
@@ -59,7 +59,7 @@ export default function About() {
             <div>
               <div className="relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=75"
+                  src="/nowimages/Color Restoration.jpg"
                   alt="Luxury leather craftsmanship"
                   className="w-full h-[250px] lg:h-[300px] object-cover rounded-2xl border border-black/10 transition-transform duration-500 group-hover:scale-[1.02]"
                 />
@@ -77,7 +77,7 @@ Our mission is to revive your treasured items with care, precision, and creative
             </div>
           </div>
 
-          {/* Section 2 */}
+          {/* Section 2 (Image Left, Text Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
               <div className="relative rounded-2xl p-8 lg:p-10 border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-colors duration-300 hover:border-black/20">
@@ -90,7 +90,7 @@ creative artists who treat every piece as a work of art.
             <div className="order-1 lg:order-2">
               <div className="relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1200&q=75"
+                  src="/nowimages/Customized Artwork.jpg"
                   alt="Leather restoration process"
                   className="w-full h-[250px] lg:h-[300px] object-cover rounded-2xl border border-black/10 transition-transform duration-500 group-hover:scale-[1.02]"
                 />
@@ -99,12 +99,12 @@ creative artists who treat every piece as a work of art.
             </div>
           </div>
 
-          {/* Section 3 (Image Left, Text Right) */}
+          {/* Section 3 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <div className="relative group">
                 <img
-                  src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=1200&q=75"
+                  src="/nowimages/abouts.jpg"
                   alt="Custom leather design"
                   className="w-full h-[250px] lg:h-[300px] object-cover rounded-2xl border border-black/10 transition-transform duration-500 group-hover:scale-[1.02]"
                 />

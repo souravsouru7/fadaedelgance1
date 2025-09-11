@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
+
+const LogoSlider = lazy(() => import('./LogoSlider'))
 
 export default function Hero() {
   const navigate = useNavigate()
@@ -33,9 +35,9 @@ export default function Hero() {
         <Navbar />
 
         {/* Main Content */}
-        <main className="flex flex-col lg:flex-row items-center min-h-[70vh] lg:min-h-[80vh] px-4 lg:px-10 pt-8 lg:pt-0">
+        <main className="flex flex-col lg:flex-row items-center min-h-[70vh] lg:min-h-[80vh] px-4 lg:px-10 pt-2 lg:pt-0">
           {/* Left Content */}
-          <div className="flex-1 max-w-2xl fade-in-up text-center lg:text-left mb-8 lg:mb-0">
+          <div className="flex-1 max-w-2xl fade-in-up text-center lg:text-left mb-2 lg:mb-0">
             {/* Main Title */}
             <div className="mb-1 lg:mb-1">
               <img 
@@ -71,10 +73,18 @@ export default function Hero() {
                 ENQUIRE NOW
               </button>
             </div>
+
           </div>
 
           
         </main>
+
+        {/* Full-width Brand Logos outside inner container */}
+        <div className="-mt-2 md:-mt-4 lg:-mt-6 w-screen" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+          <Suspense fallback={null}>
+            <LogoSlider />
+          </Suspense>
+        </div>
       </div>
     </div>
   )

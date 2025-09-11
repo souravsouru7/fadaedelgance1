@@ -9,7 +9,7 @@ import Footer from './components/Footer'
 import SEO from './components/SEO'
 import SEOOptimizer from './components/SEOOptimizer'
 import Watermark from './components/Watermark'
-import LogoSlider from './components/LogoSlider'
+// import LogoSlider from './components/LogoSlider'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -50,9 +50,9 @@ function App() {
     <div className="relative">
       <SEOOptimizer />
       <SEO 
-        title="Faded Elegance - Premium Furniture Restoration Dubai | Luxury Furniture Repair"
-        description="Expert furniture restoration services in Dubai. Specializing in luxury furniture repair, antique restoration, and premium upholstery. Transform your furniture with our master craftsmen. Call +971 54 5770967"
-        keywords="furniture restoration dubai, luxury furniture repair, antique furniture restoration, upholstery dubai, furniture refinishing, wood restoration, leather repair dubai, furniture repair services"
+        title="Faded Elegance — Premium Luxury Leather Restoration Dubai"
+        description="Premium luxury leather restoration in Dubai. Handbag, shoe, jacket and wallet repair, cleaning & conditioning, color restoration, recoloring, stitching and hardware fixes. Call +971 54 5770967"
+        keywords="leather restoration dubai, luxury leather repair dubai, handbag restoration dubai, leather bag repair dubai, shoe restoration dubai, leather recoloring dubai, leather color restoration, leather cleaning and conditioning, leather scratch repair, leather stain removal"
         url="https://fadedelegance.ae"
         image="https://fadedelegance.ae/Faded%20Elegance%20Logo%20Final-07.png"
         structuredData={homeStructuredData}
@@ -76,7 +76,6 @@ function App() {
         }`}
       >
         <Hero />
-        <LogoSlider />
         <WhyChooseUs />
         <WorkProcess />
         <FAQ />
