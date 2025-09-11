@@ -154,14 +154,14 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
                 serviceDetail?.title === 'Color Restoration' &&
                 parentService?.title === 'Shoes & Sandals (Men & Women)' &&
                 serviceDetail?.parentTabKey === 'reborn'
-              const imagesToShow = isShoesCleaning || isShoesColorRestoration
+              const imagesToShow = isRebornShoesColorRestoration
+                ? ['/nowimages/colourresttion.jpg', '/nowimages/colourresttion.jpg']
+                : isShoesCleaning || isShoesColorRestoration
                 ? ['/nowimages/Cleaning & Conditioning.jpg', '/nowimages/Cleaning & Conditioning.jpg']
                 : isKidsCustomColoring || isKidsCustomizedArtwork
                 ? ['/nowimages/Customized Artwork.jpg', '/nowimages/Customized Artwork.jpg']
                 : isSignatureShoesCustomizedArtwork
                 ? ['/nowimages/Customized Artwork.jpg', '/nowimages/Customized Artwork.jpg']
-                : isRebornShoesColorRestoration
-                ? ['/nowimages/Color Restoration(for men adn women).jpg', '/nowimages/Color Restoration(for men adn women).jpg']
                 : serviceDetail.images
               return (
                 <FallbackImage
