@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react'
+import { apiFetch } from '../lib/api.js'
 import { useSelector } from 'react-redux'
  
 
@@ -33,7 +34,7 @@ export default function AdminContacts() {
       setError(null)
       const params = new URLSearchParams({ page: String(page), limit: String(limit) })
       if (statusFilter) params.set('status', statusFilter)
-      const res = await fetch(`/api/admin/contacts?${params.toString()}`, {
+      const res = await apiFetch(`/api/admin/contacts?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (!res.ok) throw new Error('Failed to load messages')
@@ -51,7 +52,7 @@ export default function AdminContacts() {
 
   async function updateStatus(id, status) {
     try {
-      const res = await fetch(`/api/admin/contacts/${id}`, {
+      const res = await apiFetch(`/api/admin/contacts/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ status })
@@ -66,7 +67,7 @@ export default function AdminContacts() {
 
   async function saveNotes(id, notes) {
     try {
-      const res = await fetch(`/api/admin/contacts/${id}`, {
+      const res = await apiFetch(`/api/admin/contacts/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ notes })
@@ -82,7 +83,7 @@ export default function AdminContacts() {
   async function remove(id) {
     if (!confirm('Delete this message?')) return
     try {
-      const res = await fetch(`/api/admin/contacts/${id}`, {
+      const res = await apiFetch(`/api/admin/contacts/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       })

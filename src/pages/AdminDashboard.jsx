@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { apiFetch } from '../lib/api.js'
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutAdmin } from '../slices/adminAuthSlice.js'
 
@@ -23,7 +24,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch('/api/admin/stats', {
+        const res = await apiFetch('/api/admin/stats', {
           headers: { Authorization: `Bearer ${token}` }
         })
         if (!res.ok) throw new Error('Failed to load stats')

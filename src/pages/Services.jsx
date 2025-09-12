@@ -36,7 +36,7 @@ const aliasMap = {
 }
 
 // Reliable image with multiple fallbacks and skeleton
-const FallbackImage = ({ sources, alt, className = '' }) => {
+const FallbackImage = ({ sources, alt, className = '', sizes, priority = false, width, height }) => {
   const sourceList = Array.isArray(sources) ? sources : [sources]
   const [loaded, setLoaded] = useState(false)
   const [index, setIndex] = useState(0)
@@ -61,7 +61,12 @@ const FallbackImage = ({ sources, alt, className = '' }) => {
         src={currentSrc}
         alt={alt}
         className={`w-full h-full object-cover ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
-        loading="lazy"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+        decoding={priority ? 'sync' : 'async'}
+        sizes={sizes}
+        width={width}
+        height={height}
         referrerPolicy="no-referrer"
         onLoad={() => setLoaded(true)}
         onError={() => {
@@ -84,7 +89,14 @@ const ImageCard = ({ sources, title, subtitle, tags = [], onClick }) => (
     className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] cursor-pointer"
     onClick={onClick}
   >
-    <FallbackImage sources={sources} alt={title} className="h-56 sm:h-64 lg:h-72 w-full" />
+    <FallbackImage 
+      sources={sources} 
+      alt={title} 
+      className="h-56 sm:h-64 lg:h-72 w-full" 
+      sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+      width={1200}
+      height={800}
+    />
     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 text-white">
       <div className="text-[11px] sm:text-[12px] opacity-90">{subtitle}</div>
@@ -168,6 +180,9 @@ const ServiceDetailModal = ({ isOpen, onClose, serviceDetail, parentService }) =
                   sources={imagesToShow}
                   alt={serviceDetail.title}
                   className="w-full h-full"
+                  sizes="(min-width:1024px) 50vw, 100vw"
+                  width={1200}
+                  height={1200}
                 />
               )
             })()}
@@ -254,6 +269,9 @@ const ServiceModal = ({ isOpen, onClose, service, onServiceClick }) => {
               sources={service.sources}
               alt={service.title}
               className="w-full h-full"
+              sizes="(min-width:1024px) 50vw, 100vw"
+              width={1200}
+              height={1200}
             />
           </div>
 
@@ -976,6 +994,19 @@ export default function Services() {
     setSelectedDetail(null)
   }
 
+  // Preload current hero image for faster LCP
+  useEffect(() => {
+    const heroSrc = current?.cards?.[0]?.sources?.[0]
+    if (!heroSrc) return
+    const linkEl = document.createElement('link')
+    linkEl.rel = 'preload'
+    linkEl.as = 'image'
+    linkEl.href = heroSrc
+    linkEl.fetchPriority = 'high'
+    document.head.appendChild(linkEl)
+    return () => { document.head.removeChild(linkEl) }
+  }, [active])
+
   return (
     <div className="min-h-screen bg-white text-black" style={pageFont}>
       <SEO 
@@ -1036,6 +1067,10 @@ export default function Services() {
                   ]}
                   alt={current.cards[0]?.title || 'services'}
                   className="h-[220px] sm:h-[280px] lg:h-[420px] w-full"
+                  sizes="(min-width:1024px) 50vw, 100vw"
+                  priority={true}
+                  width={1600}
+                  height={900}
                 />
               </div>
             </div>

@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { apiFetch } from '../lib/api.js'
 
 export const submitContact = createAsyncThunk('contact/submit', async (payload) => {
-  const res = await fetch('/api/contact', {
+  const res = await apiFetch('/api/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)

@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { apiFetch } from '../lib/api.js'
 
 const tokenKey = 'fe_admin_token'
 
 export const loginAdmin = createAsyncThunk('adminAuth/login', async ({ email, password }) => {
-  const res = await fetch('/api/auth/login', {
+  const res = await apiFetch('/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { apiFetch } from '../lib/api.js'
  
 
 export default function AdminGallery() {
@@ -26,7 +27,7 @@ export default function AdminGallery() {
     try {
       setLoading(true)
       setError(null)
-      const res = await fetch('/api/gallery?page=1&limit=200')
+      const res = await apiFetch('/api/gallery?page=1&limit=200')
       if (!res.ok) throw new Error('Failed to load gallery')
       const data = await res.json()
       setItems(Array.isArray(data.items) ? data.items : [])
@@ -66,7 +67,7 @@ export default function AdminGallery() {
       setError(null)
       const method = editingId ? 'PATCH' : 'POST'
       const url = editingId ? `/api/gallery/${editingId}` : '/api/gallery'
-      const res = await fetch(url, {
+      const res = await apiFetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ export default function AdminGallery() {
   }
 
   async function requestCloudinarySignature() {
-    const res = await fetch('/api/uploads/sign', {
+    const res = await apiFetch('/api/uploads/sign', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -143,7 +144,7 @@ export default function AdminGallery() {
     try {
       setLoading(true)
       setError(null)
-      const res = await fetch(`/api/gallery/${id}`, {
+      const res = await apiFetch(`/api/gallery/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
