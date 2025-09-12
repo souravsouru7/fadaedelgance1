@@ -53,26 +53,23 @@ const SEO = ({
       ogImage.setAttribute('content', image);
     }
     
-    // Update Twitter tags
-    const twitterTitle = document.querySelector('meta[property="twitter:title"]');
-    if (twitterTitle) {
-      twitterTitle.setAttribute('content', title);
-    }
-    
-    const twitterDescription = document.querySelector('meta[property="twitter:description"]');
-    if (twitterDescription) {
-      twitterDescription.setAttribute('content', description);
-    }
-    
-    const twitterUrl = document.querySelector('meta[property="twitter:url"]');
-    if (twitterUrl) {
-      twitterUrl.setAttribute('content', url);
-    }
-    
-    const twitterImage = document.querySelector('meta[property="twitter:image"]');
-    if (twitterImage && image) {
-      twitterImage.setAttribute('content', image);
-    }
+    // Update Twitter tags (use name= per Twitter spec)
+    const ensureTwitterMeta = (name, content) => {
+      if (!content) return;
+      let el = document.querySelector(`meta[name="${name}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute('name', name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    ensureTwitterMeta('twitter:card', image ? 'summary_large_image' : 'summary');
+    ensureTwitterMeta('twitter:title', title);
+    ensureTwitterMeta('twitter:description', description);
+    ensureTwitterMeta('twitter:url', url);
+    if (image) ensureTwitterMeta('twitter:image', image);
     
   }, [title, description, keywords, image, url]);
 
@@ -90,11 +87,12 @@ const SEO = ({
       <meta property="og:type" content={type} />
       {image && <meta property="og:image" content={image} />}
       
-      {/* Twitter */}
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:url" content={url} />
-      {image && <meta property="twitter:image" content={image} />}
+      {/* Twitter (name=) */}
+      <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:url" content={url} />
+      {image && <meta name="twitter:image" content={image} />}
       
       {/* Structured Data */}
       {structuredData && (

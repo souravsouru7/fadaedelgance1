@@ -15,6 +15,7 @@ import { AnimatePresence, motion as Motion } from 'framer-motion'
 import FloatingContact from './components/FloatingContact.jsx'
 import Watermark from './components/Watermark.jsx'
 import { HelmetProvider } from '@dr.pogodin/react-helmet'
+import SEOOptimizer from './components/SEOOptimizer.jsx'
 import AdminLogin from './pages/AdminLogin.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
@@ -26,6 +27,7 @@ function CommonOverlays() {
   const isAdmin = location.pathname.startsWith('/admin')
   return (
     <>
+      {!isAdmin && <SEOOptimizer />}
       {!isAdmin && <FloatingContact />}
     </>
   )
